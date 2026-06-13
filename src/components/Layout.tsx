@@ -243,23 +243,32 @@ function SettingsModal({ onClose, installPrompt, onInstall, pwaDebug }: {
   const [invite, setInvite] = useState('');
   const [inviteSaved, setInviteSaved] = useState(false);
   const [pending, setPending] = useState<any[]>([]);
+  const [allUsers, setAllUsers] = useState<any[]>([]);
   const [admin, setAdmin] = useState(false);
+
+  const loadAdminData = async () => {
+    const c = await getInviteCode().catch(() => null);
+    if (c) setInvite(c);
+    const p = await getPendingAccounts().catch(() => []);
+    setPending(p);
+    const { getAllAccounts } = await import('../store/accounts');
+    const all = await getAllAccounts().catch(() => []);
+    setAllUsers(all);
+  };
 
   useEffect(() => {
     import('../store/db').then(({ getSettings }) => getSettings().then(setSettings));
-    isAdmin().then(setAdmin);
-    getInviteCode().then(c => { if (c) setInvite(c); }).catch(() => {});
-    getPendingAccounts().then(setPending).catch(() => {});
+    isAdmin().then(a => { setAdmin(a); if (a) loadAdminData(); });
   }, []);
 
   const handleApprove = async (id: string) => {
     await approveAccount(id);
-    getPendingAccounts().then(setPending).catch(() => {});
+    loadAdminData();
   };
 
   const handleReject = async (id: string) => {
     await rejectAccount(id);
-    getPendingAccounts().then(setPending).catch(() => {});
+    loadAdminData();
   };
 
   const handleSaveInvite = async () => {
@@ -390,6 +399,24 @@ function SettingsModal({ onClose, installPrompt, onInstall, pwaDebug }: {
                   ))}
                 </div>
               )}
+            </div>
+
+            {/* 所有用户 */}
+            <div className="p-4 rounded-2xl" style={{ background: '#fafdf6', border: '2px solid #e8f5e0' }}>
+              <p className="font-medium text-gray-700 mb-2">👥 所有用户 <span className="text-xs text-gray-400">({allUsers.length}人)</span></p>
+              <div className="space-y-1.5 max-h-64 overflow-y-auto">
+                {allUsers.map(u => (
+                  <div key={u.id} className="flex items-center justify-between py-1.5 px-2 rounded-lg text-sm bg-white">
+                    <span className="text-gray-700">{u.name}</span>
+                    <span className="text-xs px-2 py-0.5 rounded-full" style={{
+                      background: u.status === 'approved' ? '#f2fde4' : u.status === 'pending' ? '#fff8e1' : '#fff0f0',
+                      color: u.status === 'approved' ? '#387612' : u.status === 'pending' ? '#e67700' : '#cf1322',
+                    }}>
+                      {u.status === 'approved' ? '✅ 已通过' : u.status === 'pending' ? '⏳ 待审核' : '❌ 已拒绝'}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
         </>)}
 
