@@ -177,6 +177,26 @@ export default function Layout({ activeTab, onTabChange, children, accountName, 
         {children}
       </main>
 
+      {/* PWA 安装浮层 */}
+      {installPrompt && (
+        <div className="fixed bottom-20 left-4 right-4 z-50 animate-bounceIn">
+          <div className="card-apple p-4 flex items-center gap-3 shadow-lg" style={{ border: '2px solid #9ae869' }}>
+            <span className="text-3xl">🍏</span>
+            <div className="flex-1">
+              <p className="font-bold text-sm" style={{ color: '#387612' }}>添加到桌面</p>
+              <p className="text-xs text-gray-400">像 App 一样使用，无需每次打开浏览器</p>
+            </div>
+            <button onClick={handleInstall}
+              className="px-4 py-2 rounded-xl text-sm font-bold text-white shrink-0"
+              style={{ background: 'linear-gradient(135deg, #5cb818, #387612)' }}>
+              安装
+            </button>
+            <button onClick={() => setInstallPrompt(null)}
+              className="text-gray-300 hover:text-gray-500 text-lg leading-none">×</button>
+          </div>
+        </div>
+      )}
+
       {/* 底部导航 */}
       <nav className="fixed bottom-0 left-0 right-0 z-40 safe-area-bottom" style={{ background: 'rgba(255,255,255,0.94)', backdropFilter: 'blur(16px)', borderTop: '2px solid #e8f5e0' }}>
         <div className="max-w-lg mx-auto flex justify-around relative">
