@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { getAllAccounts, createAccount, loginAccount, deleteAccount, getCurrentAccount, exportAccountData, importAccountData, getInviteCode, type Account } from '../store/accounts';
-import Dexie from 'dexie';
 import { setDBAccount } from '../store/db';
 
 interface LoginScreenProps {
@@ -202,22 +201,6 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
       )}
 
       <div className="mt-8 text-center space-y-2">
-        <button
-          onClick={async () => {
-            if (!confirm('确定要清除所有账号数据吗？\n\n这会删除所有账号和刷题记录，让你重新注册成为管理员。')) return;
-            await new Dexie('StudyApp_Accounts').delete();
-            // 删除所有账号相关的数据库
-            const dbs = await indexedDB.databases?.() || [];
-            for (const db of dbs) {
-              if (db.name?.startsWith('StudyAppDB_') || db.name === 'StudyAppDB') {
-                await new Dexie(db.name).delete();
-              }
-            }
-            location.reload();
-          }}
-          className="text-xs text-red-300 hover:text-red-500 transition-colors underline">
-          🔄 重置所有数据
-        </button>
         <p className="text-xs text-gray-300">数据完全本地 · 不上传任何服务器</p>
       </div>
     </div>
