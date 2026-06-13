@@ -174,11 +174,20 @@ export default function ImportPanel() {
       </div>
 
       {/* 一键导入预置题库 */}
-      <PresetBankImport onQuestions={(questions) => {
-        setParsedQuestions(questions);
-        setBankName('发电厂热力设备');
-        setImported(false);
-      }} />
+      <PresetBankImport
+        label="发电厂热力设备题库"
+        desc="549 道选择题 · 含详细解析"
+        bankName="发电厂热力设备"
+        fileName="questions_parsed.json"
+        onDone={() => { setImported(false); }}
+      />
+      <PresetBankImport
+        label="高电压技术题库"
+        desc="500 道题 · 单选180 多选80 判断228 简答12"
+        bankName="高电压技术"
+        fileName="questions_gaodianya.json"
+        onDone={() => { setImported(false); }}
+      />
 
       {/* 题库管理面板 */}
       {showBanks && (
@@ -378,7 +387,13 @@ function readFileAsDataURL(file: File): Promise<string> {
 
 // ============ 📋 一键导入预置题库 ============
 
-function PresetBankImport({ onQuestions }: { onQuestions: (q: Partial<Question>[]) => void }) {
+function PresetBankImport({ label, desc, bankName, fileName, onDone }: {
+  label: string;
+  desc: string;
+  bankName: string;
+  fileName: string;
+  onDone: () => void;
+}) {
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -387,24 +402,18 @@ function PresetBankImport({ onQuestions }: { onQuestions: (q: Partial<Question>[
     setLoading(true);
     setError(null);
     try {
-      const url = import.meta.env.BASE_URL + 'questions_parsed.json';
+      const url = import.meta.env.BASE_URL + fileName;
       const res = await fetch(url);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const questions = await res.json();
       if (!Array.isArray(questions) || questions.length === 0) {
         throw new Error('题库数据为空');
       }
-      // 直接写入数据库
       const { createBank, addQuestions } = await import('../store/db');
-      const bankId = await createBank('发电厂热力设备');
-      await addQuestions(
-        questions as any,
-        bankId,
-        '发电厂热力设备'
-      );
+      const bankId = await createBank(bankName);
+      await addQuestions(questions as any, bankId, bankName);
       setDone(true);
-      // 触发父组件刷新
-      onQuestions([]);
+      onDone();
     } catch (e: any) {
       setError(e.message || '导入失败');
     } finally {
@@ -416,7 +425,7 @@ function PresetBankImport({ onQuestions }: { onQuestions: (q: Partial<Question>[
     return (
       <div className="card-apple p-4 mb-5 text-center animate-bounceIn">
         <p className="text-2xl mb-1">🍏</p>
-        <p className="font-bold text-apple-600">发电厂热力设备 · 549 题 · 已导入！</p>
+        <p className="font-bold text-apple-600">{bankName} · 已导入！</p>
         <p className="text-sm text-gray-400 mt-1">去「刷题」标签开始练习吧</p>
       </div>
     );
@@ -426,8 +435,8 @@ function PresetBankImport({ onQuestions }: { onQuestions: (q: Partial<Question>[
     <div className="card-apple p-4 mb-5">
       <div className="flex items-center justify-between gap-3">
         <div>
-          <p className="font-medium text-gray-700 text-sm">📋 发电厂热力设备题库</p>
-          <p className="text-xs text-gray-400 mt-0.5">549 道选择题 · 含详细解析</p>
+          <p className="font-medium text-gray-700 text-sm">📋 {label}</p>
+          <p className="text-xs text-gray-400 mt-0.5">{desc}</p>
         </div>
         <button
           onClick={handleQuickImport}
