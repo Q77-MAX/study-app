@@ -478,36 +478,43 @@ export default function ExamMode() {
           </div>
         )}
 
-        {grouped.map(g => (
-          <div key={g.type} className="mb-4">
-            <h3 className="font-medium text-sm mb-2" style={{ color: '#387612' }}>{g.label} ({g.details.length}题)</h3>
-            <div className="space-y-3">
-              {g.details.map((detail, i) => (
-                <div key={detail.question.id} className="card-apple p-4"
-                  style={{ borderLeft: `4px solid ${detail.isCorrect ? '#9ae869' : '#ff8787'}` }}>
-                  <div className="flex items-start gap-2">
-                    <span className="text-lg">{detail.isCorrect ? '✅' : '❌'}</span>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm text-gray-800">{i + 1}. {detail.question.content}</p>
-                      <div className="flex gap-4 mt-2 text-xs">
-                        {!detail.isCorrect && <span className="text-red-400">你的：{detail.userAnswer}</span>}
-                        <span style={{ color: '#4a9b10' }}>正确：{detail.question.answer}</span>
-                      </div>
-                      {detail.question.explanation && (
-                        <p className="text-xs text-gray-500 mt-1">💡 {detail.question.explanation}</p>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-
         <button onClick={() => setScreen('config')}
-          className="w-full mt-5 py-3.5 btn-apple text-base">
+          className="w-full py-3.5 btn-apple text-base mb-5">
           🍏 再来一次
         </button>
+
+        <details className="mb-4">
+          <summary className="text-sm font-medium text-gray-500 cursor-pointer hover:text-apple-600 transition-colors">
+            📋 查看答题详情 ↓
+          </summary>
+          <div className="mt-3 space-y-4">
+            {grouped.map(g => (
+              <div key={g.type} className="mb-4">
+                <h3 className="font-medium text-sm mb-2" style={{ color: '#387612' }}>{g.label} ({g.details.length}题)</h3>
+                <div className="space-y-3">
+                  {g.details.map((detail, i) => (
+                    <div key={detail.question.id} className="card-apple p-4"
+                      style={{ borderLeft: `4px solid ${detail.isCorrect ? '#9ae869' : '#ff8787'}` }}>
+                      <div className="flex items-start gap-2">
+                        <span className="text-lg">{detail.isCorrect ? '✅' : '❌'}</span>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm text-gray-800">{i + 1}. {detail.question.content}</p>
+                          <div className="flex gap-4 mt-2 text-xs">
+                            {!detail.isCorrect && <span className="text-red-400">你的：{detail.userAnswer}</span>}
+                            <span style={{ color: '#4a9b10' }}>正确：{detail.question.answer}</span>
+                          </div>
+                          {detail.question.explanation && (
+                            <p className="text-xs text-gray-500 mt-1">💡 {detail.question.explanation}</p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </details>
       </div>
     );
   }

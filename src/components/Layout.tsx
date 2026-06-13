@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { FiEdit3, FiPlusCircle, FiBookOpen, FiBarChart2, FiAward, FiSettings } from 'react-icons/fi';
+import WanderingApple from './WanderingApple';
+import AmbientSound from './AmbientSound';
 
 export type TabId = 'practice' | 'import' | 'wrong' | 'stats' | 'exam';
 
@@ -45,6 +47,8 @@ export default function Layout({ activeTab, onTabChange, children }: LayoutProps
   const [showSettings, setShowSettings] = useState(false);
   const [installPrompt, setInstallPrompt] = useState<any>(null);
   const [pwaDebug, setPwaDebug] = useState<string[]>([]);
+  const [soundEnabled, setSoundEnabled] = useState(false);
+  const [soundVolume, setSoundVolume] = useState(0.5);
 
   // PWA 安装事件监听
   useEffect(() => {
@@ -115,6 +119,8 @@ export default function Layout({ activeTab, onTabChange, children }: LayoutProps
     <div className="min-h-screen flex flex-col relative" style={{ background: 'linear-gradient(180deg, #f2fde4 0%, #fafdf6 15%, #fff 35%, #fff 100%)' }}>
       {/* 🍏🍎🍏 背景装饰苹果 */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        {/* 大苹果：可交互，到处漂泊 */}
+        <WanderingApple />
         {bgApples.map((a, i) => (
           <span
             key={i}
@@ -196,6 +202,10 @@ export default function Layout({ activeTab, onTabChange, children }: LayoutProps
           installPrompt={installPrompt}
           onInstall={handleInstall}
           pwaDebug={pwaDebug}
+          soundEnabled={soundEnabled}
+          onSoundToggle={() => setSoundEnabled(!soundEnabled)}
+          soundVolume={soundVolume}
+          onSoundVolumeChange={setSoundVolume}
         />
       )}
     </div>
@@ -204,11 +214,15 @@ export default function Layout({ activeTab, onTabChange, children }: LayoutProps
 
 // ============ 🍏 设置弹窗 ============
 
-function SettingsModal({ onClose, installPrompt, onInstall, pwaDebug }: {
+function SettingsModal({ onClose, installPrompt, onInstall, pwaDebug, soundEnabled, onSoundToggle, soundVolume, onSoundVolumeChange }: {
   onClose: () => void;
   installPrompt: any;
   onInstall: () => void;
   pwaDebug: string[];
+  soundEnabled: boolean;
+  onSoundToggle: () => void;
+  soundVolume: number;
+  onSoundVolumeChange: (v: number) => void;
 }) {
   const [settings, setSettings] = useState<any>(null);
   const [testing, setTesting] = useState(false);
@@ -295,6 +309,14 @@ function SettingsModal({ onClose, installPrompt, onInstall, pwaDebug }: {
             </div>
           </details>
         </div>
+
+        <AmbientSound
+          visible={true}
+          enabled={soundEnabled}
+          volume={soundVolume}
+          onToggle={onSoundToggle}
+          onVolumeChange={onSoundVolumeChange}
+        />
 
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-600 mb-2">🤖 AI 提供商</label>
