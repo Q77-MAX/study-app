@@ -3,6 +3,18 @@ import type { Question, WrongRecord, NoteAnnotation, PracticeSession, AppSetting
 import { defaultAppSettings } from '../types';
 import { v4 as uuidv4 } from 'uuid';
 
+let currentAccountId: string | null = null;
+
+export function setDBAccount(accountId: string | null) {
+  currentAccountId = accountId;
+  // 重建 db 实例
+  rebuildDB();
+}
+
+function getDBName() {
+  return currentAccountId ? `StudyAppDB_${currentAccountId}` : 'StudyAppDB';
+}
+
 export class StudyDB extends Dexie {
   questions!: Table<Question, string>;
   wrongRecords!: Table<WrongRecord, string>;
@@ -11,8 +23,8 @@ export class StudyDB extends Dexie {
   settings!: Table<{ key: string; value: any }, string>;
   banks!: Table<QuestionBank, string>;
 
-  constructor() {
-    super('StudyAppDB');
+  constructor(dbName?: string) {
+    super(dbName || getDBName());
     // 版本 1（旧版，会被升级清除）
     this.version(1).stores({
       questions: 'id, type, mastery, lastPracticed, *knowledgePoints',
@@ -39,7 +51,33 @@ export class StudyDB extends Dexie {
   }
 }
 
-export const db = new StudyDB();
+let dbInstance: StudyDB | null = null;
+
+function rebuildDB() {
+  if (dbInstance) {
+    dbInstance.close();
+  }
+  dbInstance = new StudyDB();
+}
+
+// 初始化
+rebuildDB();
+
+export function getDB(): StudyDB {
+  if (!dbInstance) rebuildDB();
+  return dbInstance!;
+}
+
+// 兼容旧代码：db 作为 getter
+export const db = new Proxy({} as StudyDB, {
+  get(_, prop) {
+    return (getDB() as any)[prop];
+  },
+  set(_, prop, value) {
+    (getDB() as any)[prop] = value;
+    return true;
+  },
+});
 
 // ============ 题库管理 ============
 

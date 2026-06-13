@@ -8,6 +8,8 @@ interface LayoutProps {
   activeTab: TabId;
   onTabChange: (tab: TabId) => void;
   children: React.ReactNode;
+  accountName: string;
+  onLogout: () => void;
 }
 
 // 苹果主题图标 + 点击时互换的表情
@@ -51,7 +53,7 @@ const bgApples = [
   { top: '95%', left: '15%', size: 18, anim: 'animate-sway', emoji: '🍎', op: 0.10 },
 ];
 
-export default function Layout({ activeTab, onTabChange, children }: LayoutProps) {
+export default function Layout({ activeTab, onTabChange, children, accountName, onLogout }: LayoutProps) {
   const [showSettings, setShowSettings] = useState(false);
   const [installPrompt, setInstallPrompt] = useState<any>(null);
   const [pwaDebug, setPwaDebug] = useState<string[]>([]);
@@ -154,6 +156,10 @@ export default function Layout({ activeTab, onTabChange, children }: LayoutProps
             <span>青苹果刷题</span>
           </h1>
           <div className="flex items-center gap-1">
+            <span className="text-xs text-gray-400 mr-1">{accountName}</span>
+            <button onClick={onLogout} className="text-xs px-2 py-1 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors" title="退出登录">
+              退出
+            </button>
             <button
               onClick={() => setShowSettings(!showSettings)}
               className="p-2 text-gray-400 hover:text-apple-600 active:bg-apple-50 rounded-full transition-all duration-200 hover:rotate-90"

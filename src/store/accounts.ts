@@ -1,0 +1,119 @@
+import Dexie, { type Table } from 'dexie';
+import { v4 as uuidv4 } from 'uuid';
+
+export interface Account {
+  id: string;
+  name: string;
+  password: string; // 简单本地密码，hash存储
+  createdAt: number;
+}
+
+class AccountDB extends Dexie {
+  accounts!: Table<Account, string>;
+  currentAccount!: Table<{ key: string; value: string }, string>;
+
+  constructor() {
+    super('StudyApp_Accounts');
+    this.version(1).stores({
+      accounts: 'id',
+      currentAccount: 'key',
+    });
+  }
+}
+
+const accountDB = new AccountDB();
+
+// 简单hash（本地账号保护，不需要强加密）
+function simpleHash(s: string): string {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) {
+    h = ((h << 5) - h + s.charCodeAt(i)) | 0;
+  }
+  return 'acct_' + Math.abs(h).toString(36);
+}
+
+export async function getAllAccounts(): Promise<Account[]> {
+  return accountDB.accounts.orderBy('createdAt').toArray();
+}
+
+export async function createAccount(name: string, password: string): Promise<Account> {
+  const existing = await accountDB.accounts.where('name').equals(name).first();
+  if (existing) throw new Error('用户名已存在');
+  const account: Account = {
+    id: uuidv4(),
+    name,
+    password: simpleHash(password),
+    createdAt: Date.now(),
+  };
+  await accountDB.accounts.add(account);
+  return account;
+}
+
+export async function loginAccount(name: string, password: string): Promise<Account> {
+  const account = await accountDB.accounts.where('name').equals(name).first();
+  if (!account) throw new Error('账号不存在');
+  if (account.password !== simpleHash(password)) throw new Error('密码错误');
+  await setCurrentAccount(account.id);
+  return account;
+}
+
+export async function deleteAccount(id: string): Promise<void> {
+  // 删除该账号的数据
+  const dbName = `StudyAppDB_${id}`;
+  await new Dexie(dbName).delete();
+  await accountDB.accounts.delete(id);
+  const current = await getCurrentAccountId();
+  if (current === id) await clearCurrentAccount();
+}
+
+export async function getCurrentAccountId(): Promise<string | null> {
+  const row = await accountDB.currentAccount.get('active');
+  return row?.value || null;
+}
+
+export async function setCurrentAccount(id: string): Promise<void> {
+  await accountDB.currentAccount.put({ key: 'active', value: id });
+}
+
+export async function clearCurrentAccount(): Promise<void> {
+  await accountDB.currentAccount.delete('active');
+}
+
+export async function getCurrentAccount(): Promise<Account | null> {
+  const id = await getCurrentAccountId();
+  if (!id) return null;
+  return (await accountDB.accounts.get(id)) || null;
+}
+
+// 导出当前账号数据
+export async function exportAccountData(accountId: string, accountName: string): Promise<void> {
+  const dbName = `StudyAppDB_${accountId}`;
+  const sourceDB = new Dexie(dbName);
+  await sourceDB.open();
+  const tables = sourceDB.tables;
+  const data: Record<string, any[]> = {};
+  for (const t of tables) {
+    data[t.name] = await t.toArray();
+  }
+  const blob = new Blob([JSON.stringify({ accountName, accountId, data, exportedAt: Date.now() })], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `青苹果刷题_${accountName}_${new Date().toLocaleDateString()}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// 导入数据到当前账号
+export async function importAccountData(jsonStr: string): Promise<void> {
+  const parsed = JSON.parse(jsonStr);
+  if (!parsed.data || !parsed.accountId) throw new Error('无效的备份文件');
+  const dbName = `StudyAppDB_${parsed.accountId}`;
+  const targetDB = new Dexie(dbName);
+  await targetDB.open();
+  for (const [tableName, rows] of Object.entries(parsed.data)) {
+    if ((rows as any[]).length > 0) {
+      await targetDB.table(tableName).bulkPut(rows as any[]);
+    }
+  }
+}
