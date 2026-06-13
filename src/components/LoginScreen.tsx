@@ -15,6 +15,7 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
   const [loading, setLoading] = useState(false);
   const [hasAccounts, setHasAccounts] = useState(false);
   const [showInstall, setShowInstall] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
 
   useEffect(() => {
     getAllAccounts().then(list => setHasAccounts(list.length > 0));
@@ -28,18 +29,32 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
       } catch {}
     }
     // PWA 安装监听
-    const handler = (e: Event) => { e.preventDefault(); setShowInstall(true); };
+    const handler = (e: Event) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setShowInstall(true);
+    };
     window.addEventListener('beforeinstallprompt', handler);
-    // 如果 SW 已注册，过一会儿还没收到事件，也显示手动指引
     setTimeout(() => {
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(regs => {
-          if (regs.length > 0) setShowInstall(true);
+          if (regs.length > 0 && !deferredPrompt) setShowInstall(true);
         });
       }
     }, 3000);
     return () => window.removeEventListener('beforeinstallprompt', handler);
   }, []);
+
+  const doInstall = async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const r = await deferredPrompt.userChoice;
+      if (r.outcome === 'accepted') {
+        setShowInstall(false);
+        setDeferredPrompt(null);
+      }
+    }
+  };
 
   const handleLogin = async () => {
     if (!name.trim() || !password.trim()) { setError('请填写用户名和密码'); return; }
@@ -123,8 +138,18 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
             <span className="text-3xl">🍏</span>
             <div className="flex-1">
               <p className="font-bold text-sm text-gray-800">安装到手机桌面</p>
-              <p className="text-xs text-gray-400">像 App 一样打开，无需输入网址</p>
+              {deferredPrompt
+                ? <p className="text-xs text-gray-400">点击安装，像 App 一样打开</p>
+                : <p className="text-xs text-gray-400">点 Chrome 地址栏 ⋮ → 添加到主屏幕</p>
+              }
             </div>
+            {deferredPrompt && (
+              <button onClick={doInstall}
+                className="px-4 py-2 rounded-xl text-sm font-bold text-white shrink-0"
+                style={{ background: 'linear-gradient(135deg, #5cb818, #387612)' }}>
+                安装
+              </button>
+            )}
             <button onClick={() => setShowInstall(false)}
               className="text-gray-300 text-lg leading-none">×</button>
           </div>
