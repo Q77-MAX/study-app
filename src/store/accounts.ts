@@ -40,9 +40,8 @@ export async function getAllAccounts(): Promise<Account[]> {
 export async function createAccount(name: string, password: string): Promise<Account> {
   const all = await accountDB.accounts.toArray();
   if (all.find(a => a.name === name)) throw new Error('用户名已存在');
-  // 如果还没有任何已通过的账号，自动通过（管理员）
-  const hasApproved = all.some(a => a.status === 'approved');
-  const shouldApprove = !hasApproved;
+  // 第一个账号自动通过（管理员）
+  const shouldApprove = all.length === 0;
   const account: Account = {
     id: uuidv4(),
     name,
@@ -119,11 +118,10 @@ export async function setInviteCode(code: string): Promise<void> {
   await accountDB.currentAccount.put({ key: 'invite_code', value: code });
 }
 
-// 第一个通过的即为管理员
+// 第一个注册的即为管理员（不论审核状态）
 export async function isAdmin(accountId: string): Promise<boolean> {
   const all = await accountDB.accounts.orderBy('createdAt').toArray();
-  const firstApproved = all.find(a => a.status === 'approved');
-  return firstApproved?.id === accountId;
+  return all.length > 0 && all[0].id === accountId;
 }
 
 // 导出当前账号数据
