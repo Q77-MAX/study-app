@@ -1,27 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <defs>
-    <radialGradient id="body" cx="35%" cy="30%">
-      <stop offset="0%" stop-color="#b0ea60"/>
-      <stop offset="50%" stop-color="#5cb818"/>
-      <stop offset="100%" stop-color="#2d6b08"/>
+    <radialGradient id="a" cx="37%" cy="33%">
+      <stop offset="0%" stop-color="#e2f0a0"/>
+      <stop offset="45%" stop-color="#c6d971"/>
+      <stop offset="100%" stop-color="#8aad2e"/>
     </radialGradient>
-    <radialGradient id="shine" cx="30%" cy="25%">
-      <stop offset="0%" stop-color="rgba(255,255,255,0.4)"/>
+    <radialGradient id="shine" cx="32%" cy="28%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.45)"/>
+      <stop offset="60%" stop-color="rgba(255,255,255,0.05)"/>
       <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
     </radialGradient>
   </defs>
   <!-- 茎 -->
-  <path d="M256 55 C253 30 248 14 242 4" fill="none" stroke="#5a3a0a" stroke-width="8" stroke-linecap="round"/>
+  <path d="M260 62 C258 40 254 24 248 12" fill="none" stroke="#5a3a0a" stroke-width="7" stroke-linecap="round"/>
   <!-- 叶子 -->
-  <path d="M254 52 C272 34 298 18 316 10 C296 26 278 42 268 58Z" fill="#4a9b10"/>
-  <path d="M268 58 C264 46 278 28 316 10 C300 20 284 32 272 44Z" fill="#387612"/>
+  <path d="M256 58 C274 40 300 28 314 22 C296 34 278 48 268 66Z" fill="#6b9e1a"/>
+  <path d="M268 66 C264 54 274 34 314 22 C300 28 286 38 274 50Z" fill="#4a7a10"/>
   <!-- 苹果身体 -->
-  <path d="M256 78 C148 78 48 175 48 310 C48 435 130 500 256 500 C382 500 464 435 464 310 C464 175 364 78 256 78Z" fill="url(#body)"/>
+  <path d="M256 80 C146 80 50 178 50 312 C50 436 132 498 256 498 C380 498 462 436 462 312 C462 178 366 80 256 80Z" fill="url(#a)"/>
   <!-- 顶部凹陷 -->
-  <ellipse cx="256" cy="88" rx="100" ry="18" fill="#2d6b08"/>
-  <ellipse cx="256" cy="86" rx="88" ry="14" fill="rgba(0,0,0,0.08)"/>
-  <!-- 全身高光 -->
-  <ellipse cx="175" cy="255" rx="65" ry="95" fill="url(#shine)" transform="rotate(-12 175 255)"/>
-  <!-- 小高光点 -->
-  <ellipse cx="160" cy="185" rx="15" ry="20" fill="rgba(255,255,255,0.3)" transform="rotate(-15 160 185)"/>
+  <ellipse cx="256" cy="88" rx="105" ry="20" fill="#6b8e1a"/>
+  <ellipse cx="256" cy="86" rx="90" ry="14" fill="rgba(0,0,0,0.06)"/>
+  <!-- 高光 -->
+  <ellipse cx="170" cy="260" rx="60" ry="90" fill="url(#shine)" transform="rotate(-12 170 260)"/>
+  <!-- 小高光 -->
+  <ellipse cx="158" cy="185" rx="14" ry="18" fill="rgba(255,255,255,0.35)" transform="rotate(-15 158 185)"/>
 </svg>

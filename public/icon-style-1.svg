@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="b1" cx="38%" cy="32%">
+      <stop offset="0%" stop-color="#bef264"/>
+      <stop offset="45%" stop-color="#65c21b"/>
+      <stop offset="100%" stop-color="#3a8010"/>
+    </radialGradient>
+  </defs>
+  <!-- 茎 -->
+  <path d="M258 70 C256 48 252 32 248 22" fill="none" stroke="#5b3a0f" stroke-width="7" stroke-linecap="round"/>
+  <!-- 叶子 -->
+  <path d="M256 66 C274 48 300 32 316 26 C298 38 280 52 270 70Z" fill="#4a9b10"/>
+  <!-- 苹果身体 -->
+  <path d="M256 100 C148 100 60 190 60 320 C60 440 138 496 256 496 C374 496 452 440 452 320 C452 190 364 100 256 100Z" fill="url(#b1)"/>
+  <!-- 高光 -->
+  <ellipse cx="170" cy="270" rx="55" ry="85" fill="rgba(255,255,255,0.25)" transform="rotate(-12 170 270)"/>
+  <!-- 可爱脸 -->
+  <circle cx="195" cy="310" r="10" fill="#1e3d08"/>
+  <circle cx="265" cy="310" r="10" fill="#1e3d08"/>
+  <circle cx="191" cy="306" r="4" fill="white"/>
+  <circle cx="261" cy="306" r="4" fill="white"/>
+  <path d="M210 340 Q230 358 250 340" fill="none" stroke="#1e3d08" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="165" cy="330" r="14" fill="rgba(255,150,150,0.25)"/>
+  <circle cx="295" cy="330" r="14" fill="rgba(255,150,150,0.25)"/>
+</svg>
