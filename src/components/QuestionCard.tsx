@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import type { Question } from '../types';
 import Timer from './Timer';
 import DrawingPad from './DrawingPad';
@@ -35,6 +35,16 @@ export default function QuestionCard({
     setIsCorrect(result.isCorrect);
     setState('feedback');
   };
+
+  // 答对自动跳下一题
+  useEffect(() => {
+    if (state === 'feedback' && isCorrect) {
+      const timer = setTimeout(() => {
+        handleNext();
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [state, isCorrect]);
 
   const handleNext = () => {
     if (isLastQuestion) {
@@ -202,10 +212,16 @@ export default function QuestionCard({
                 <p className="text-2xl mb-2">
                   {isCorrect ? '🍏 回答正确！太棒了！' : '🍎 回答错误'}
                 </p>
+                {isCorrect && !isLastQuestion && (
+                  <p className="text-sm text-gray-400 animate-sparkle">⏳ 1.5秒后自动跳下一题...</p>
+                )}
                 {!isCorrect && (
-                  <p className="text-sm mt-1" style={{ color: '#387612' }}>
-                    正确答案：<span className="font-bold text-base">{question.answer}</span>
-                  </p>
+                  <>
+                    <p className="text-sm mt-1" style={{ color: '#387612' }}>
+                      正确答案：<span className="font-bold text-base">{question.answer}</span>
+                    </p>
+                    <p className="text-xs text-gray-400 mt-1">仔细看看解析，准备好了再点下一题</p>
+                  </>
                 )}
                 {question.explanation && (
                   <p className="text-sm text-gray-600 mt-3 leading-relaxed p-3 rounded-xl" style={{ background: 'rgba(255,255,255,0.6)' }}>
@@ -213,9 +229,16 @@ export default function QuestionCard({
                   </p>
                 )}
               </div>
-              <button onClick={handleNext} className="w-full py-3.5 btn-apple text-base">
-                {isLastQuestion ? '🎉 完成练习' : '👉 下一题'}
-              </button>
+              {!isCorrect && (
+                <button onClick={handleNext} className="w-full py-3.5 btn-apple text-base">
+                  {isLastQuestion ? '🎉 完成练习' : '👉 下一题'}
+                </button>
+              )}
+              {isCorrect && (
+                <button onClick={handleNext} className="w-full py-2.5 text-sm text-gray-400 hover:text-gray-600 transition-colors">
+                  跳过等待 →
+                </button>
+              )}
             </div>
           )}
         </div>
