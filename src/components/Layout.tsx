@@ -246,23 +246,19 @@ function SettingsModal({ onClose, installPrompt, onInstall, pwaDebug }: {
 
   useEffect(() => {
     import('../store/db').then(({ getSettings }) => getSettings().then(setSettings));
-    getInviteCode().then(c => { if (c) setInvite(c); });
-    loadPending();
+    // 安全加载管理数据，失败不崩页面
+    getInviteCode().then(c => { if (c) setInvite(c); }).catch(() => {});
+    getPendingAccounts().then(setPending).catch(() => {});
   }, []);
-
-  const loadPending = async () => {
-    const list = await getPendingAccounts();
-    setPending(list);
-  };
 
   const handleApprove = async (id: string) => {
     await approveAccount(id);
-    await loadPending();
+    getPendingAccounts().then(setPending).catch(() => {});
   };
 
   const handleReject = async (id: string) => {
     await rejectAccount(id);
-    await loadPending();
+    getPendingAccounts().then(setPending).catch(() => {});
   };
 
   const handleSaveInvite = async () => {
@@ -316,7 +312,7 @@ function SettingsModal({ onClose, installPrompt, onInstall, pwaDebug }: {
 
         <div className="flex items-center gap-3 mb-5">
           <img src="/apple-icon.svg" alt="" className="w-8 h-8 animate-float" />
-          <h2 className="text-lg font-bold" style={{ color: '#387612' }}>设置</h2>
+          <h2 className="text-lg font-bold" style={{ color: '#387612' }}>设置 <span className="text-xs text-gray-300 font-normal">v2</span></h2>
         </div>
 
         {/* 📲 PWA 安装 */}
