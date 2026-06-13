@@ -22,10 +22,10 @@ function createApples(count: number): AppleData[] {
     y: Math.random() * (vh - 200),
     vx: (Math.random() - 0.5) * 1.5,
     vy: (Math.random() - 0.5) * 1.5,
-    // 最后一颗是超大苹果，其余 40-80px
-    size: i === count - 1 ? 140 : 40 + Math.random() * 40,
-    emoji: i % 2,
-    opacity: i === count - 1 ? 0.08 : 0.05 + Math.random() * 0.07, // 超大稍浓一点
+    // 最后一颗是超大绿苹果，其余 40-80px
+    size: i === count - 1 ? 200 : 40 + Math.random() * 40,
+    emoji: i === count - 1 ? 0 : i % 2, // 超大永远 🍏
+    opacity: i === count - 1 ? 0.10 : 0.05 + Math.random() * 0.07, // 超大稍浓一点
   }));
 }
 
@@ -74,8 +74,10 @@ export default function WanderingApple() {
     setTapMap(prev => ({ ...prev, [id]: true }));
     // 弹跳
     apples.current[idx].vy = -3;
-    // 变身
-    apples.current[idx].emoji = (apples.current[idx].emoji + 1) % EMOJIS.length;
+    // 变身（超大绿苹果不变）
+    if (idx !== apples.current.length - 1) {
+      apples.current[idx].emoji = (apples.current[idx].emoji + 1) % EMOJIS.length;
+    }
     setTimeout(() => setTapMap(prev => ({ ...prev, [id]: false })), 500);
   };
 
