@@ -37,8 +37,8 @@ export async function getAllAccounts(): Promise<Account[]> {
 }
 
 export async function createAccount(name: string, password: string): Promise<Account> {
-  const existing = await accountDB.accounts.where('name').equals(name).first();
-  if (existing) throw new Error('用户名已存在');
+  const all = await accountDB.accounts.toArray();
+  if (all.find(a => a.name === name)) throw new Error('用户名已存在');
   const account: Account = {
     id: uuidv4(),
     name,
@@ -50,7 +50,8 @@ export async function createAccount(name: string, password: string): Promise<Acc
 }
 
 export async function loginAccount(name: string, password: string): Promise<Account> {
-  const account = await accountDB.accounts.where('name').equals(name).first();
+  const all = await accountDB.accounts.toArray();
+  const account = all.find(a => a.name === name);
   if (!account) throw new Error('账号不存在');
   if (account.password !== simpleHash(password)) throw new Error('密码错误');
   await setCurrentAccount(account.id);
