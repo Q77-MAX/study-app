@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>导入题库</title>
+<style>
+  body { font-family: sans-serif; max-width: 600px; margin: 50px auto; text-align: center; }
+  button { font-size: 24px; padding: 20px 60px; background: #5cb818; color: white; border: none; border-radius: 16px; cursor: pointer; margin: 20px; }
+  button:disabled { background: #999; cursor: wait; }
+  .log { margin-top: 20px; font-size: 14px; color: #666; text-align: left; max-height: 400px; overflow-y: auto; background: #f9f9f9; padding: 10px; border-radius: 8px; }
+  .done { font-size: 32px; }
+</style>
+</head>
+<body>
+<div class="done">🍏</div>
+<h1>一键导入发电厂热力设备题库</h1>
+<p>549 道题目，点击按钮自动导入</p>
+<button id="btn" onclick="doImport()">开始导入</button>
+<div class="log" id="log"></div>
+
+<script>
+function log(msg, color) {
+  const line = document.createElement('div');
+  line.textContent = msg;
+  if (color) line.style.color = color;
+  document.getElementById('log').appendChild(line);
+}
+
+function uuid() { return crypto.randomUUID(); }
+
+async function doImport() {
+  const btn = document.getElementById('btn');
+  btn.disabled = true;
+  btn.textContent = '正在导入...';
+
+  try {
+    // 先删除旧数据库
+    log('🗑️ 清除旧数据库...');
+    await new Promise((resolve, reject) => {
+      const req = indexedDB.deleteDatabase('StudyAppDB');
+      req.onsuccess = () => { log('旧数据库已删除'); resolve(); };
+      req.onerror = () => { log('无旧数据库，跳过'); resolve(); };
+      req.onblocked = () => { log('⚠️ 请关闭所有青苹果刷题页面后刷新本页重试', 'red'); reject(new Error('DB blocked')); };
+    });
+
+    // 打开新数据库
+    log('📂 创建新数据库...');
+    const db = await new Promise((resolve, reject) => {
+      const req = indexedDB.open('StudyAppDB', 2);
+      req.onupgradeneeded = (e) => {
+        const idb = e.target.result;
+        log('  - 创建表结构...');
+        if (!idb.objectStoreNames.contains('questions')) {
+          const qs = idb.createObjectStore('questions', { keyPath: 'id' });
+          qs.createIndex('type', 'type', { unique: false });
+          qs.createIndex('mastery', 'mastery', { unique: false });
+          qs.createIndex('lastPracticed', 'lastPracticed', { unique: false });
+          qs.createIndex('batchId', 'batchId', { unique: false });
+          qs.createIndex('knowledgePoints', 'knowledgePoints', { unique: false, multiEntry: true });
+        }
+        if (!idb.objectStoreNames.contains('banks')) {
+          const bs = idb.createObjectStore('banks', { keyPath: 'id' });
+          bs.createIndex('createdAt', 'createdAt', { unique: false });
+        }
+        if (!idb.objectStoreNames.contains('wrongRecords')) {
+          const ws = idb.createObjectStore('wrongRecords', { keyPath: 'id' });
+          ws.createIndex('questionId', 'questionId', { unique: false });
+          ws.createIndex('timestamp', 'timestamp', { unique: false });
+          ws.createIndex('reviewed', 'reviewed', { unique: false });
+        }
+        if (!idb.objectStoreNames.contains('notes')) {
+          const ns = idb.createObjectStore('notes', { keyPath: 'id' });
+          ns.createIndex('questionId', 'questionId', { unique: false });
+        }
+        if (!idb.objectStoreNames.contains('sessions')) {
+          const ss = idb.createObjectStore('sessions', { keyPath: 'id' });
+          ss.createIndex('mode', 'mode', { unique: false });
+          ss.createIndex('startTime', 'startTime', { unique: false });
+        }
+        if (!idb.objectStoreNames.contains('settings')) {
+          idb.createObjectStore('settings', { keyPath: 'key' });
+        }
+      };
+      req.onerror = () => reject(req.error);
+      req.onsuccess = () => resolve(req.result);
+    });
+    log('✅ 数据库就绪');
+
+    // 创建题库
+    const bankId = uuid();
+    await new Promise((resolve, reject) => {
+      const tx = db.transaction('banks', 'readwrite');
+      const store = tx.objectStore('banks');
+      const req = store.add({ id: bankId, name: '发电厂热力设备', questionCount: 0, createdAt: Date.now() });
+      req.onsuccess = () => resolve();
+      req.onerror = () => reject(req.error);
+    });
+    log('📦 题库: 发电厂热力设备');
+
+    // 加载 JSON
+    log('📥 加载题目数据...');
+    const resp = await fetch('/questions_parsed.json');
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const questions = await resp.json();
+    log(`📋 共 ${questions.length} 道题`);
+
+    // 单条导入（避免批量事务超限）
+    let ok = 0, fail = 0;
+    for (let i = 0; i < questions.length; i++) {
+      const q = questions[i];
+      try {
+        await new Promise((resolve, reject) => {
+          const tx = db.transaction('questions', 'readwrite');
+          const store = tx.objectStore('questions');
+          const req = store.add({
+            ...q,
+            id: uuid(),
+            batchId: bankId,
+            batchName: '发电厂热力设备',
+            correctCount: 0,
+            wrongCount: 0,
+            lastPracticed: 0,
+            mastery: 0,
+            createdAt: Date.now()
+          });
+          req.onsuccess = resolve;
+          req.onerror = () => reject(req.error);
+        });
+        ok++;
+      } catch(e) {
+        fail++;
+        log(`  ⚠️ 第${i+1}条失败: ${e.message}`, 'orange');
+      }
+      if ((i + 1) % 50 === 0) {
+        log(`⏳ ${i + 1} / ${questions.length} (成功 ${ok}, 失败 ${fail})`);
+      }
+    }
+
+    // 更新题库计数
+    await new Promise((resolve, reject) => {
+      const tx = db.transaction('banks', 'readwrite');
+      const store = tx.objectStore('banks');
+      const req = store.get(bankId);
+      req.onsuccess = () => {
+        const bank = req.result;
+        bank.questionCount = ok;
+        const putReq = store.put(bank);
+        putReq.onsuccess = resolve;
+        putReq.onerror = reject;
+      };
+      req.onerror = reject;
+    });
+
+    log(`✅ 导入完成！成功 ${ok} 道，失败 ${fail} 道`, 'green');
+    btn.textContent = '导入完成！去刷题 →';
+    btn.style.background = '#4a9e12';
+    btn.onclick = () => { window.location.href = '/'; };
+
+  } catch(e) {
+    log(`❌ 错误: ${e.message}`, 'red');
+    console.error(e);
+    btn.disabled = false;
+    btn.textContent = '重试';
+  }
+}
+</script>
+</body>
+</html>
