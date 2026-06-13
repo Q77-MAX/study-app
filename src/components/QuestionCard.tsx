@@ -203,8 +203,9 @@ export default function QuestionCard({
           )}
 
           {state === 'feedback' && (
-            <div>
-              <div className="p-5 rounded-2xl mb-4 animate-fadeIn" style={{
+            <>
+              {/* 反馈内容区 */}
+              <div className="p-5 rounded-2xl animate-fadeIn" style={{
                 background: isCorrect ? '#f2fde4' : '#fff0f0',
                 border: `2px solid ${isCorrect ? '#c2f39e' : '#ffc9c9'}`,
               }}>
@@ -213,7 +214,7 @@ export default function QuestionCard({
                   {isCorrect ? '🍏 回答正确！太棒了！' : '🍎 回答错误'}
                 </p>
                 {isCorrect && !isLastQuestion && (
-                  <p className="text-sm text-gray-400 animate-sparkle">⏳ 1.5秒后自动跳下一题...</p>
+                  <p className="text-sm text-gray-400">⏳ 1.5秒后自动跳下一题...</p>
                 )}
                 {!isCorrect && (
                   <>
@@ -229,17 +230,18 @@ export default function QuestionCard({
                   </p>
                 )}
               </div>
-              {!isCorrect && (
-                <button onClick={handleNext} className="w-full py-3.5 btn-apple text-base">
-                  {isLastQuestion ? '🎉 完成练习' : '👉 下一题'}
-                </button>
-              )}
-              {isCorrect && (
-                <button onClick={handleNext} className="w-full py-2.5 text-sm text-gray-400 hover:text-gray-600 transition-colors">
-                  跳过等待 →
-                </button>
-              )}
-            </div>
+
+              {/* 按钮固定在底部——位置永远不变 */}
+              <button
+                onClick={handleNext}
+                className="w-full py-3.5 btn-apple text-base"
+              >
+                {isCorrect
+                  ? (isLastQuestion ? '🎉 完成练习' : '👉 下一题（跳过等待）')
+                  : (isLastQuestion ? '🎉 完成练习' : '👉 下一题')
+                }
+              </button>
+            </>
           )}
         </div>
       </div>
