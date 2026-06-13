@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { FiSettings } from 'react-icons/fi';
 import WanderingApple from './WanderingApple';
-import { getInviteCode, setInviteCode, isAdmin, getCurrentAccountId, getPendingAccounts, approveAccount, rejectAccount, type Account } from '../store/accounts';
+import { getInviteCode, setInviteCode, getPendingAccounts, approveAccount, rejectAccount } from '../store/accounts';
 
 export type TabId = 'practice' | 'import' | 'wrong' | 'stats' | 'exam';
 
@@ -240,14 +240,12 @@ function SettingsModal({ onClose, installPrompt, onInstall, pwaDebug }: {
   const [settings, setSettings] = useState<any>(null);
   const [testing, setTesting] = useState(false);
   const [testResult, setTestResult] = useState<string | null>(null);
-  const [admin, setAdmin] = useState(false);
   const [invite, setInvite] = useState('');
   const [inviteSaved, setInviteSaved] = useState(false);
-  const [pending, setPending] = useState<Account[]>([]);
+  const [pending, setPending] = useState<any[]>([]);
 
   useEffect(() => {
     import('../store/db').then(({ getSettings }) => getSettings().then(setSettings));
-    getCurrentAccountId().then(id => { if (id) isAdmin(id).then(setAdmin); });
     getInviteCode().then(c => { if (c) setInvite(c); });
     loadPending();
   }, []);
@@ -355,9 +353,7 @@ function SettingsModal({ onClose, installPrompt, onInstall, pwaDebug }: {
           </details>
         </div>
 
-        {admin && (
-          <>
-            <div className="mb-5 p-4 rounded-2xl" style={{ border: '2px solid #ffe082', background: '#fff8e1' }}>
+        <div className="mb-5 p-4 rounded-2xl" style={{ border: '2px solid #ffe082', background: '#fff8e1' }}>
               <p className="font-medium text-gray-700 mb-2">🔑 邀请码管理 <span className="text-xs text-orange-400">(管理员)</span></p>
               <p className="text-xs text-gray-400 mb-3">设置后新用户注册必须输入此邀请码</p>
               <div className="flex gap-2">
@@ -397,8 +393,6 @@ function SettingsModal({ onClose, installPrompt, onInstall, pwaDebug }: {
                 </div>
               )}
             </div>
-          </>
-        )}
 
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-600 mb-2">🤖 AI 提供商</label>
