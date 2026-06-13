@@ -127,8 +127,11 @@ export default function QuestionCard({
 
         {question.knowledgePoints.length > 0 && (
           <div className="px-4 py-2.5 flex flex-wrap gap-1.5" style={{ background: '#fafdf6' }}>
-            {question.knowledgePoints.map(kp => (
-              <span key={kp} className="badge-apple text-xs">{kp}</span>
+            {[...new Set(question.knowledgePoints.map(kp => {
+              const idx = kp.indexOf(' - ');
+              return idx > 0 ? kp.slice(0, idx) : kp;
+            }))].map(chapter => (
+              <span key={chapter} className="badge-apple text-xs">{chapter}</span>
             ))}
           </div>
         )}

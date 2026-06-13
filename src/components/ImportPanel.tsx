@@ -335,8 +335,11 @@ export default function ImportPanel() {
                 <div className="flex items-center gap-2 mb-1 flex-wrap">
                   <span className="badge-apple text-xs">{getTypeLabel(q.type)}</span>
                   <span className="text-xs text-gray-400">难度 {'⭐'.repeat(q.difficulty || 1)}</span>
-                  {q.knowledgePoints?.map((kp: string) => (
-                    <span key={kp} className="badge-pink text-xs">{kp}</span>
+                  {[...new Set((q.knowledgePoints || []).map((kp: string) => {
+                    const idx = kp.indexOf(' - ');
+                    return idx > 0 ? kp.slice(0, idx) : kp;
+                  }))].map((chapter: string) => (
+                    <span key={chapter} className="badge-pink text-xs">{chapter}</span>
                   ))}
                 </div>
                 <p className="text-sm text-gray-700 line-clamp-2">{q.content}</p>

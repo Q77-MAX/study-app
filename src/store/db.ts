@@ -230,8 +230,9 @@ export async function getWrongQuestionsByKnowledge(): Promise<Record<string, Que
   const grouped: Record<string, Question[]> = {};
   for (const q of valid) {
     for (const kp of q.knowledgePoints) {
-      if (!grouped[kp]) grouped[kp] = [];
-      if (!grouped[kp].find((x) => x.id === q.id)) grouped[kp].push(q);
+      const chapter = chapterOnly(kp);
+      if (!grouped[chapter]) grouped[chapter] = [];
+      if (!grouped[chapter].find((x) => x.id === q.id)) grouped[chapter].push(q);
     }
   }
   return grouped;
@@ -301,10 +302,11 @@ export async function getStats() {
   const kpStats: Record<string, { correct: number; wrong: number; total: number }> = {};
   for (const q of questions) {
     for (const kp of q.knowledgePoints) {
-      if (!kpStats[kp]) kpStats[kp] = { correct: 0, wrong: 0, total: 0 };
-      kpStats[kp].correct += q.correctCount;
-      kpStats[kp].wrong += q.wrongCount;
-      kpStats[kp].total += q.correctCount + q.wrongCount;
+      const chapter = chapterOnly(kp);
+      if (!kpStats[chapter]) kpStats[chapter] = { correct: 0, wrong: 0, total: 0 };
+      kpStats[chapter].correct += q.correctCount;
+      kpStats[chapter].wrong += q.wrongCount;
+      kpStats[chapter].total += q.correctCount + q.wrongCount;
     }
   }
 
@@ -350,6 +352,12 @@ export async function getStats() {
 }
 
 // ============ 辅助 ============
+
+// 知识点只保留章节（去掉子知识点）
+export function chapterOnly(kp: string): string {
+  const idx = kp.indexOf(' - ');
+  return idx > 0 ? kp.slice(0, idx) : kp;
+}
 
 export function typeLabel(type: string): string {
   const labels: Record<string, string> = {
