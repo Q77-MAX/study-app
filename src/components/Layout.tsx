@@ -425,8 +425,11 @@ function SettingsModal({ onClose, installPrompt, onInstall, pwaDebug }: {
           </details>
         )}
 
+        <details className="mb-4">
+          <summary className="text-sm font-medium text-gray-500 cursor-pointer hover:text-apple-600 transition-colors p-2">🤖 AI 提供商</summary>
+          <div className="mt-2">
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-600 mb-2">🤖 AI 提供商</label>
+          <label className="block text-sm font-medium text-gray-600 mb-2">服务商</label>
           <select
             value={settings.ai.provider}
             onChange={(e) => {
@@ -481,22 +484,8 @@ function SettingsModal({ onClose, installPrompt, onInstall, pwaDebug }: {
             />
           </div>
         )}
-
-        <div className="mb-5 card-apple p-4">
-          <label className="block text-sm font-medium text-gray-600 mb-2">
-            📝 每次刷题数量：<span className="text-apple-600 font-bold">{settings.questionsPerSession} 题</span>
-          </label>
-          <input type="range" min="5" max="50" step="5" value={settings.questionsPerSession}
-            onChange={(e) => setSettings({ ...settings, questionsPerSession: Number(e.target.value) })} className="w-full accent-apple-500" />
-        </div>
-
-        <div className="mb-5 card-apple p-4">
-          <label className="block text-sm font-medium text-gray-600 mb-2">
-            🏆 考试题目数量：<span className="text-apple-600 font-bold">{settings.examQuestionCount} 题</span>
-          </label>
-          <input type="range" min="10" max="100" step="5" value={settings.examQuestionCount}
-            onChange={(e) => setSettings({ ...settings, examQuestionCount: Number(e.target.value) })} className="w-full accent-apple-500" />
-        </div>
+          </div>
+        </details>
 
         <button onClick={handleTest} disabled={testing}
           className="w-full py-2.5 mb-3 text-sm btn-apple-outline disabled:opacity-50">
