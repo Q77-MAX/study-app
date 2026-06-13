@@ -36,15 +36,15 @@ export default function QuestionCard({
     setState('feedback');
   };
 
-  // 答对自动跳下一题
+  // 答完自动跳下一题（不论对错）
   useEffect(() => {
-    if (state === 'feedback' && isCorrect) {
+    if (state === 'feedback') {
       const timer = setTimeout(() => {
         handleNext();
-      }, 1500);
+      }, 1000);
       return () => clearTimeout(timer);
     }
-  }, [state, isCorrect]);
+  }, [state]);
 
   const handleNext = () => {
     if (isLastQuestion) {
@@ -211,19 +211,14 @@ export default function QuestionCard({
               }}>
                 {isCorrect ? <AppleExplosion /> : null}
                 <p className="text-2xl mb-2">
-                  {isCorrect ? '🍏 回答正确！太棒了！' : '🍎 回答错误'}
+                  {isCorrect ? '🍏 回答正确！' : '🍎 回答错误'}
                 </p>
-                {isCorrect && !isLastQuestion && (
-                  <p className="text-sm text-gray-400">⏳ 1.5秒后自动跳下一题...</p>
-                )}
                 {!isCorrect && (
-                  <>
-                    <p className="text-sm mt-1" style={{ color: '#387612' }}>
-                      正确答案：<span className="font-bold text-base">{question.answer}</span>
-                    </p>
-                    <p className="text-xs text-gray-400 mt-1">仔细看看解析，准备好了再点下一题</p>
-                  </>
+                  <p className="text-sm mt-1" style={{ color: '#387612' }}>
+                    正确答案：<span className="font-bold text-base">{question.answer}</span>
+                  </p>
                 )}
+                <p className="text-xs text-gray-400 mt-1">⏳ 1秒后自动跳下一题...</p>
                 {question.explanation && (
                   <p className="text-sm text-gray-600 mt-3 leading-relaxed p-3 rounded-xl" style={{ background: 'rgba(255,255,255,0.6)' }}>
                     💡 {question.explanation}
@@ -234,12 +229,9 @@ export default function QuestionCard({
               {/* 按钮固定在底部——位置永远不变 */}
               <button
                 onClick={handleNext}
-                className="w-full py-3.5 btn-apple text-base"
+                className="w-full py-2.5 text-sm text-gray-400 hover:text-gray-600 transition-colors"
               >
-                {isCorrect
-                  ? (isLastQuestion ? '🎉 完成练习' : '👉 下一题（跳过等待）')
-                  : (isLastQuestion ? '🎉 完成练习' : '👉 下一题')
-                }
+                跳过等待 →
               </button>
             </>
           )}
