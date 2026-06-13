@@ -3,6 +3,7 @@ import { getSettings, addQuestions, createBank, getAllBanks, deleteBank, renameB
 import { parseQuestions, parseQuestionsFromImage } from '../services/ai';
 import type { Question, QuestionBank } from '../types';
 import mammoth from 'mammoth';
+import * as XLSX from 'xlsx';
 
 export default function ImportPanel() {
   const [textInput, setTextInput] = useState('');
@@ -20,35 +21,78 @@ export default function ImportPanel() {
   useEffect(() => { loadBanks(); }, []);
   const loadBanks = async () => setBanks(await getAllBanks());
 
+  // ============ 本地解析（不用AI）============
+  const localParse = (text: string): Partial<Question>[] => {
+    // 先试试 JSON
+    try {
+      const parsed = JSON.parse(text.trim());
+      if (Array.isArray(parsed) && parsed.length > 0 && parsed[0].content) return parsed;
+    } catch {}
+
+    // 尝试按行解析常见题库格式
+    const lines = text.split(/\n/).map(l => l.trim()).filter(l => l.length > 5);
+    const questions: Partial<Question>[] = [];
+    let current: Partial<Question> | null = null;
+
+    for (const line of lines) {
+      // 匹配题号开头: "1." "1、" "1）" "(1)" 或 "1 " 开头
+      const qMatch = line.match(/^[\s]*(\d+)[\.、）\)\s]\s*(.+)/);
+      if (qMatch) {
+        if (current && current.content) questions.push(current);
+        current = { type: 'single', content: qMatch[2], options: [], answer: '', explanation: '', knowledgePoints: [], difficulty: 1 };
+        continue;
+      }
+      // 匹配选项: "A." "A、" "A）" "A " 开头
+      const optMatch = line.match(/^[\s]*([A-H])[\.、）\)\s]\s*(.+)/);
+      if (optMatch && current) {
+        current.options = [...(current.options || []), optMatch[2]];
+        continue;
+      }
+      // 匹配答案: "答案：C" "答案:C" "正确答案C"
+      const ansMatch = line.match(/(?:答案|正确答案)[：:\s]*([A-H]+)/i);
+      if (ansMatch && current) {
+        current.answer = ansMatch[1].toUpperCase();
+        continue;
+      }
+      // 匹配解析
+      const expMatch = line.match(/(?:解析|说明)[：:\s]*(.+)/);
+      if (expMatch && current) {
+        current.explanation = expMatch[1];
+        continue;
+      }
+      // 匹配知识点
+      const kpMatch = line.match(/(?:知识点|章节|考点)[：:\s]*(.+)/);
+      if (kpMatch && current) {
+        current.knowledgePoints = kpMatch[1].split(/[,，、]/).map(k => k.trim()).filter(Boolean);
+        continue;
+      }
+    }
+    if (current && current.content) questions.push(current);
+
+    if (questions.length > 0) return questions;
+    return [];
+  };
+
   // ============ 核心：智能解析一切内容 ============
   const smartParse = async (rawContent: string, isImage: boolean = false): Promise<Partial<Question>[]> => {
     if (!rawContent.trim() && !isImage) throw new Error('请粘贴内容或上传文件');
 
-    // 先尝试：如果是 JSON 格式的题库，直接解析（不需要 API Key）
-    if (!isImage) {
-      try {
-        const parsed = JSON.parse(rawContent.trim());
-        if (Array.isArray(parsed) && parsed.length > 0 && parsed[0].content) {
-          return parsed; // 标准题库 JSON，直接返回
-        }
-      } catch {}
-    }
-
-    // 不是 JSON，需要 AI → 检查 API Key
-    const { ai: aiSettings } = await getSettings();
-    if (!aiSettings.apiKey) throw new Error('非JSON格式需要AI识别，请先配置 API Key（点右上角 ⚙️ 设置）');
-
-    let questions: Partial<Question>[];
+    // 图片必须用 AI
     if (isImage) {
-      questions = await parseQuestionsFromImage(aiSettings, rawContent);
-    } else {
-      questions = await parseQuestions(aiSettings, rawContent);
+      const { ai: aiSettings } = await getSettings();
+      if (!aiSettings.apiKey) throw new Error('图片识别需要 AI，请先配置 API Key');
+      return await parseQuestionsFromImage(aiSettings, rawContent);
     }
 
-    if (!questions || questions.length === 0) {
-      throw new Error('AI 未识别到题目，请确认内容包含题目信息');
-    }
-    return questions;
+    // 先尝试本地解析
+    const local = localParse(rawContent);
+    if (local.length > 0) return local;
+
+    // 本地解析失败 → 尝试 AI
+    const { ai: aiSettings } = await getSettings();
+    if (!aiSettings.apiKey) throw new Error('未识别到题目格式，请使用 JSON 格式或配置 AI Key 进行智能识别');
+
+    return await parseQuestions(aiSettings, rawContent);
   };
 
   // ============ 处理粘贴的文字 ============
@@ -87,16 +131,25 @@ export default function ImportPanel() {
         const base64 = await readFileAsDataURL(file);
         questions = await smartParse(base64, true);
       }
-      // Word 文档 → 提取文字 → AI 识别
+      // Excel → 直接解析
+      else if (['xlsx', 'xls'].includes(ext)) {
+        const buffer = await file.arrayBuffer();
+        const wb = XLSX.read(buffer, { type: 'array' });
+        const qs = parseExcel(wb);
+        questions = qs;
+        setTextInput(qs.length > 0 ? JSON.stringify(qs.slice(0, 3), null, 2) : '');
+      }
+      // Word → 提取文字 → 本地解析或AI
       else if (ext === 'docx') {
         const buffer = await file.arrayBuffer();
         const result = await mammoth.extractRawText({ arrayBuffer: buffer });
+        setTextInput(result.value);
         questions = await smartParse(result.value);
       }
-      // 其他所有格式（txt, csv, xls, xlsx, json, md 等）→ 读文字 → 智能解析
+      // 其他格式 → 读文字 → 智能解析
       else {
         const text = await readFileAsText(file);
-        setTextInput(text); // 同步显示到文本框
+        setTextInput(text);
         questions = await smartParse(text);
       }
 
@@ -370,6 +423,76 @@ export default function ImportPanel() {
       )}
     </div>
   );
+}
+
+// ============ Excel 直接解析 ============
+
+function parseExcel(wb: XLSX.WorkBook): Partial<Question>[] {
+  const questions: Partial<Question>[] = [];
+  const sheet = wb.Sheets[wb.SheetNames[0]];
+  const rows = XLSX.utils.sheet_to_json<any[]>(sheet, { header: 1, defval: '' });
+
+  // 自动检测表头行和数据起始行
+  let dataStart = 0;
+  for (let r = 0; r < Math.min(10, rows.length); r++) {
+    const row = rows[r];
+    const cells = row.map((c: any) => String(c).trim());
+    const rowStr = cells.join(' ');
+    if (rowStr.includes('题目') || rowStr.includes('内容') || rowStr.includes('题干')) {
+      dataStart = r + 1;
+      break;
+    }
+    // 第一行数据通常就是题目
+    const firstCell = String(row[0] || '').trim();
+    if (firstCell.length > 5 && r >= 1) { dataStart = r; break; }
+  }
+
+  const typeMap: Record<string, string> = {
+    '单选': 'single', '单选题': 'single', '多选': 'multiple', '多选题': 'multiple',
+    '判断': 'judge', '判断题': 'judge', '填空': 'fill', '填空题': 'fill',
+    '简答': 'essay', '简答题': 'essay', '论述': 'essay', '论述题': 'essay',
+    '问答': 'essay', '问答题': 'essay', '计算': 'essay', '计算题': 'essay',
+  };
+
+  for (let r = dataStart; r < rows.length; r++) {
+    const row = rows[r];
+    if (!row || row.every((c: any) => !String(c).trim())) continue;
+
+    const cells = row.map((c: any) => String(c).trim());
+    const firstCell = cells[0] || '';
+
+    // 判断题型
+    let qtype = 'single';
+    for (const [kw, t] of Object.entries(typeMap)) {
+      if (firstCell.includes(kw)) { qtype = t; break; }
+    }
+
+    const content = cells[1] || cells[0] || '';
+    if (!content || content.length < 2) continue;
+
+    // 解析选项（第3列，分号分隔）
+    const optionsRaw = cells[2] || '';
+    let options: string[] = [];
+    if (qtype === 'judge') {
+      options = ['对', '错'];
+    } else if (qtype === 'single' || qtype === 'multiple') {
+      options = optionsRaw.split(/[；;]/).map(o => o.trim()).filter(Boolean);
+    }
+
+    // 答案
+    let answer = cells[3] || '';
+    if (qtype === 'judge') {
+      answer = answer === '1' || answer === '对' || answer === 'A' ? 'A' : 'B';
+    }
+
+    questions.push({
+      type: qtype as any, content, options, answer: answer.toUpperCase(),
+      explanation: cells[4] || '', knowledgePoints: [cells[5] || ''].filter(Boolean),
+      difficulty: 1,
+    });
+  }
+
+  return questions;
 }
 
 // ============ 工具 ============
