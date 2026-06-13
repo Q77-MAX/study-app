@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FiEdit3, FiPlusCircle, FiBookOpen, FiBarChart2, FiAward, FiSettings } from 'react-icons/fi';
+import { FiEdit3, FiPlusCircle, FiBookOpen, FiBarChart2, FiAward, FiSettings, FiDownload } from 'react-icons/fi';
 
 export type TabId = 'practice' | 'import' | 'wrong' | 'stats' | 'exam';
 
@@ -33,6 +33,76 @@ const bgApples = [
 
 export default function Layout({ activeTab, onTabChange, children }: LayoutProps) {
   const [showSettings, setShowSettings] = useState(false);
+  const [installPrompt, setInstallPrompt] = useState<any>(null);
+  const [showInstallBanner, setShowInstallBanner] = useState(true);
+  const [pwaDebug, setPwaDebug] = useState<string[]>([]);
+
+  // PWA 安装事件监听
+  useEffect(() => {
+    const logs: string[] = [];
+
+    // 检查 SW 支持
+    if (!('serviceWorker' in navigator)) {
+      logs.push('❌ 浏览器不支持 Service Worker');
+      setPwaDebug(logs);
+      return;
+    }
+
+    // 检查当前 SW 状态
+    navigator.serviceWorker.getRegistrations().then(regs => {
+      logs.push(`SW 注册数: ${regs.length}`);
+      regs.forEach(r => {
+        logs.push(`  SW scope: ${r.scope}, active: ${!!r.active?.state}`);
+      });
+      if (regs.length === 0) {
+        logs.push('⚠️ 无 SW 注册 - 等待页面加载后注册');
+      }
+      setPwaDebug([...logs]);
+    });
+
+    const onInstall = (e: Event) => {
+      logs.push('🍏 beforeinstallprompt 已触发！');
+      setPwaDebug([...logs]);
+      e.preventDefault();
+      setInstallPrompt(e);
+    };
+
+    const onInstalled = () => {
+      logs.push('✅ App 已安装');
+      setPwaDebug([...logs]);
+      setInstallPrompt(null);
+      setShowInstallBanner(false);
+    };
+
+    window.addEventListener('beforeinstallprompt', onInstall);
+    window.addEventListener('appinstalled', onInstalled);
+
+    // 过几秒再检查一次 SW（等注册完成）
+    setTimeout(() => {
+      navigator.serviceWorker.getRegistrations().then(regs => {
+        if (regs.length > 0 && !logs.some(l => l.includes('已触发'))) {
+          const log = `⏳ SW 已注册但 beforeinstallprompt 尚未触发 (${new Date().toLocaleTimeString()})`;
+          logs.push(log);
+          setPwaDebug([...logs]);
+        }
+      });
+    }, 5000);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', onInstall);
+      window.removeEventListener('appinstalled', onInstalled);
+    };
+  }, []);
+
+  const handleInstall = async () => {
+    if (!installPrompt) return;
+    installPrompt.prompt();
+    const result = await installPrompt.userChoice;
+    if (result.outcome === 'accepted') {
+      setInstallPrompt(null);
+      setShowInstallBanner(false);
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col relative" style={{ background: 'linear-gradient(180deg, #f2fde4 0%, #fafdf6 15%, #fff 35%, #fff 100%)' }}>
@@ -61,15 +131,47 @@ export default function Layout({ activeTab, onTabChange, children }: LayoutProps
             <img src="/apple-icon.svg" alt="" className="w-7 h-7 animate-float" />
             <span>青苹果刷题</span>
           </h1>
-          <button
-            onClick={() => setShowSettings(!showSettings)}
-            className="p-2 text-gray-400 hover:text-apple-600 active:bg-apple-50 rounded-full transition-all duration-200 hover:rotate-90"
-            title="设置"
-          >
-            <FiSettings size={20} />
-          </button>
+          <div className="flex items-center gap-1">
+            {installPrompt && (
+              <button
+                onClick={handleInstall}
+                className="px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-1.5 animate-bounceIn"
+                style={{ background: 'linear-gradient(135deg, #5cb818, #387612)', color: 'white', boxShadow: '0 2px 8px rgba(92,184,24,0.35)' }}
+              >
+                <FiDownload size={14} />
+                安装
+              </button>
+            )}
+            <button
+              onClick={() => setShowSettings(!showSettings)}
+              className="p-2 text-gray-400 hover:text-apple-600 active:bg-apple-50 rounded-full transition-all duration-200 hover:rotate-90"
+              title="设置"
+            >
+              <FiSettings size={20} />
+            </button>
+          </div>
         </div>
       </header>
+
+      {/* PWA 安装横幅（备用，当 beforeinstallprompt 未触发时显示指引） */}
+      {showInstallBanner && !installPrompt && (
+        <div className="sticky top-14 z-30 px-4 py-2.5 text-center text-sm animate-fadeIn"
+          style={{ background: 'linear-gradient(90deg, #5cb818, #9ae869)', color: 'white' }}>
+          <p className="flex items-center justify-center gap-2 flex-wrap">
+            🍏 点击右上角 <span className="font-bold">⋮</span> → <span className="font-bold">添加到主屏幕</span>
+            <button onClick={() => setShowInstallBanner(false)} className="ml-2 opacity-70 hover:opacity-100 text-lg leading-none">×</button>
+          </p>
+        </div>
+      )}
+
+      {/* PWA 调试信息（开发时可见） */}
+      {pwaDebug.length > 0 && (
+        <div className="sticky top-14 z-30 px-3 py-1.5 text-xs bg-yellow-50 border-b border-yellow-200 text-yellow-800 font-mono">
+          {pwaDebug.map((log, i) => (
+            <div key={i}>{log}</div>
+          ))}
+        </div>
+      )}
 
       {/* 主内容区 */}
       <main className="flex-1 max-w-lg mx-auto w-full px-4 pb-24 pt-4 overflow-y-auto relative z-10">
