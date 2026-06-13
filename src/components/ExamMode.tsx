@@ -12,15 +12,17 @@ const TYPE_LABELS: Record<string, string> = {
 };
 const TYPE_ORDER = ['single', 'multiple', 'judge', 'fill', 'essay'];
 const TYPE_ICONS: Record<string, string> = { single: '1️⃣', multiple: '☑️', judge: '⚖️', fill: '✍️', essay: '📝' };
-const DEFAULT_RATIO: Record<string, number> = { single: 0.40, multiple: 0.20, judge: 0.28, fill: 0.10, essay: 0.02 };
+// 模拟考试基准比例（单选40 多选20 判断28 简答1 = 89题）
+const BASE_COUNTS: Record<string, number> = { single: 40, multiple: 20, judge: 28, fill: 0, essay: 1 };
+const BASE_TOTAL = 89;
 
 export default function ExamMode() {
   const [screen, setScreen] = useState<ExamState>('config');
   const [examMode, setExamMode] = useState<ExamModeType>('type-practice');
   const [singleType, setSingleType] = useState('single');
-  const [questionCount, setQuestionCount] = useState(30);
+  const [questionCount, setQuestionCount] = useState(89);
   const [timeMinutes, setTimeMinutes] = useState(60);
-  const [enabledTypes, setEnabledTypes] = useState<Set<string>>(new Set(['single', 'multiple', 'judge', 'fill', 'essay']));
+  const [enabledTypes, setEnabledTypes] = useState<Set<string>>(new Set(['single', 'multiple', 'judge', 'essay']));
   const [typeCounts, setTypeCounts] = useState<Record<string, number>>({});
   const [availableCounts, setAvailableCounts] = useState<Record<string, number>>({});
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -44,35 +46,59 @@ export default function ExamMode() {
     const counts: Record<string, number> = { single: 0, multiple: 0, judge: 0, fill: 0, essay: 0 };
     all.forEach(q => { if (counts[q.type] !== undefined) counts[q.type]++; });
     setAvailableCounts(counts);
-    distributeTypes(new Set(['single', 'multiple', 'judge', 'fill', 'essay']), questionCount, counts);
+    // 初始化：按可用题目自动计算总题数
+    const maxTotal = Math.min(BASE_TOTAL,
+      (counts.single || 0) + (counts.multiple || 0) + (counts.judge || 0) + (counts.essay || 0));
+    const total = maxTotal > 0 ? maxTotal : BASE_TOTAL;
+    setQuestionCount(total);
+    distributeTypes(new Set(['single', 'multiple', 'judge', 'essay']), total, counts);
   };
 
+  // 按 40:20:28:1 比例分配各题型数量
   const distributeTypes = (types: Set<string>, total: number, available?: Record<string, number>) => {
     const avail = available || availableCounts;
-    const counts: Record<string, number> = {};
-    const activeTypes = TYPE_ORDER.filter(t => types.has(t));
-    if (activeTypes.length === 0) { setTypeCounts({}); return; }
+    const counts: Record<string, number> = { single: 0, multiple: 0, judge: 0, fill: 0, essay: 0 };
+    const activeTypes = TYPE_ORDER.filter(t => types.has(t) && (avail[t] || 0) > 0);
+    if (activeTypes.length === 0) { setTypeCounts(counts); return; }
 
-    let remaining = total;
-    activeTypes.forEach((type, i) => {
-      if (i === activeTypes.length - 1) {
-        counts[type] = Math.min(remaining, avail[type] || 0);
-      } else {
-        const allocated = Math.min(Math.round(total * (DEFAULT_RATIO[type] || 0)), avail[type] || 0);
-        counts[type] = allocated;
-        remaining -= allocated;
-      }
+    // 计算本次基准总量（基于选中的题型）
+    const baseOfSelected = activeTypes.reduce((s, t) => s + (BASE_COUNTS[t] || 0), 0);
+    if (baseOfSelected === 0) { setTypeCounts(counts); return; }
+
+    // 按基准比例缩放
+    const scale = total / baseOfSelected;
+    let allocated = 0;
+    const ordered = [...activeTypes].sort((a, b) => activeTypes.indexOf(b) - activeTypes.indexOf(a));
+
+    activeTypes.forEach((type) => {
+      const want = Math.round((BASE_COUNTS[type] || 0) * scale);
+      counts[type] = Math.min(want, avail[type] || 0);
+      allocated += counts[type];
     });
-    if (remaining > 0) {
-      for (const type of activeTypes) {
-        const extra = Math.min(remaining, (avail[type] || 0) - (counts[type] || 0));
-        counts[type] = (counts[type] || 0) + extra;
-        remaining -= extra;
-        if (remaining <= 0) break;
+
+    // 微调：如果分配总数 != total，调整最大的题型
+    let diff = total - allocated;
+    for (const type of ordered) {
+      if (diff === 0) break;
+      if (diff > 0) {
+        const add = Math.min(diff, (avail[type] || 0) - (counts[type] || 0));
+        counts[type] = (counts[type] || 0) + add;
+        diff -= add;
+      } else {
+        const sub = Math.min(-diff, counts[type] || 0);
+        counts[type] = (counts[type] || 0) - sub;
+        diff += sub;
       }
     }
+
     setTypeCounts(counts);
     setManualCounts(false);
+
+    // 同步总题数 = 实际分配之和
+    const actualTotal = Object.values(counts).reduce((a, b) => a + b, 0);
+    if (actualTotal !== questionCount && actualTotal > 0) {
+      setQuestionCount(actualTotal);
+    }
   };
 
   const toggleSimType = (type: string) => {
@@ -256,39 +282,45 @@ export default function ExamMode() {
 
             <div>
               <label className="block text-sm font-medium text-gray-600 mb-2">
-                📝 题目总量：<span className="text-apple-600 font-bold text-lg">{questionCount} 题</span>
+                📝 题目总量：<span className="text-apple-600 font-bold text-lg">{totalEnabled} 题</span>
               </label>
-              <input type="range" min="5" max="100" step="5" value={questionCount}
-                onChange={(e) => { const v = Number(e.target.value); setQuestionCount(v); if (!manualCounts) distributeTypes(enabledTypes, v); }}
+              <input type="range" min="5"
+                max={TYPE_ORDER.reduce((s, t) => s + (enabledTypes.has(t) ? (availableCounts[t] || 0) : 0), 0)}
+                step="1" value={totalEnabled}
+                onChange={(e) => { const v = Number(e.target.value); setQuestionCount(v); distributeTypes(enabledTypes, v); }}
                 className="w-full accent-apple-500" />
             </div>
 
-            {enabledTypes.size > 1 && (
-              <div className="p-4 rounded-2xl" style={{ background: '#fafdf6', border: '2px solid #e8f5e0' }}>
-                <div className="flex items-center justify-between mb-2">
-                  <p className="text-sm font-medium text-gray-600">📊 题型分配</p>
-                  <button onClick={() => { distributeTypes(enabledTypes, questionCount); setManualCounts(false); }}
-                    className="text-xs px-2 py-1 rounded-lg bg-white border border-gray-200 text-gray-500 hover:text-apple-600">
-                    🔄 自动分配
-                  </button>
-                </div>
-                <div className="space-y-1.5">
-                  {TYPE_ORDER.filter(t => enabledTypes.has(t)).map(type => (
-                    <div key={type} className="flex items-center justify-between text-sm">
-                      <span className="text-gray-500 w-14">{TYPE_LABELS[type]}</span>
-                      <input type="range" min="0" max={Math.min(availableCounts[type] || 0, questionCount)}
-                        value={typeCounts[type] || 0}
-                        onChange={(e) => { setManualCounts(true); setTypeCounts({ ...typeCounts, [type]: Number(e.target.value) }); }}
-                        className="flex-1 mx-2 accent-apple-500" />
-                      <span className="text-apple-600 font-bold w-14 text-right">{typeCounts[type] || 0}<span className="text-xs text-gray-400">/{availableCounts[type] || 0}</span></span>
-                    </div>
-                  ))}
-                </div>
-                <p className="text-xs text-gray-400 mt-3">
-                  合计 <span className="font-bold text-apple-600">{totalEnabled} 题</span>
-                </p>
+            <div className="p-4 rounded-2xl" style={{ background: '#fafdf6', border: '2px solid #e8f5e0' }}>
+              <div className="flex items-center justify-between mb-2">
+                <p className="text-sm font-medium text-gray-600">📊 题型分配（单选{Math.round(BASE_COUNTS.single/BASE_TOTAL*totalEnabled)} 多选{Math.round(BASE_COUNTS.multiple/BASE_TOTAL*totalEnabled)} 判断{Math.round(BASE_COUNTS.judge/BASE_TOTAL*totalEnabled)}）</p>
+                <button onClick={() => { distributeTypes(enabledTypes, totalEnabled || questionCount); setManualCounts(false); }}
+                  className="text-xs px-2 py-1 rounded-lg bg-white border border-gray-200 text-gray-500 hover:text-apple-600">
+                  🔄 重置比例
+                </button>
               </div>
-            )}
+              <div className="space-y-1.5">
+                {TYPE_ORDER.filter(t => enabledTypes.has(t)).map(type => (
+                  <div key={type} className="flex items-center justify-between text-sm">
+                    <span className="text-gray-500 w-14">{TYPE_LABELS[type]}</span>
+                    <input type="range" min="0" max={availableCounts[type] || 0}
+                      value={typeCounts[type] || 0}
+                      onChange={(e) => {
+                        setManualCounts(true);
+                        const newCounts = { ...typeCounts, [type]: Number(e.target.value) };
+                        setTypeCounts(newCounts);
+                        setQuestionCount(Object.values(newCounts).reduce((a, b) => a + b, 0));
+                      }}
+                      className="flex-1 mx-2 accent-apple-500" />
+                    <span className="text-apple-600 font-bold w-14 text-right">{typeCounts[type] || 0}<span className="text-xs text-gray-400">/{availableCounts[type] || 0}</span></span>
+                  </div>
+                ))}
+              </div>
+              <p className="text-xs text-gray-400 mt-3">
+                合计 <span className="font-bold text-apple-600">{totalEnabled} 题</span>
+                <span className="ml-2">（{Math.round(BASE_COUNTS.single/BASE_TOTAL*100)}% : {Math.round(BASE_COUNTS.multiple/BASE_TOTAL*100)}% : {Math.round(BASE_COUNTS.judge/BASE_TOTAL*100)}% : {Math.round(BASE_COUNTS.essay/BASE_TOTAL*100)}%）</span>
+              </p>
+            </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-600 mb-2">
