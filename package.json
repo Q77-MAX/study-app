@@ -10,7 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@capacitor/android": "^8.4.0",
+    "@capacitor/cli": "^8.4.0",
+    "@capacitor/core": "^8.4.0",
     "@supabase/supabase-js": "^2.108.1",
+    "cordova": "^13.0.0",
     "dexie": "^4.4.3",
     "fake-indexeddb": "^6.2.5",
     "mammoth": "^1.12.0",

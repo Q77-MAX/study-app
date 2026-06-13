@@ -1,0 +1,17 @@
+{
+  "packageId": "com.qingpingguo.shuati",
+  "host": "q77-max.github.io",
+  "name": "青苹果刷题",
+  "launcherName": "青苹果刷题",
+  "display": "standalone",
+  "themeColor": "#5cb818",
+  "backgroundColor": "#f2fde4",
+  "startUrl": "/study-app/",
+  "iconUrl": "https://q77-max.github.io/study-app/icon-512.png",
+  "maskableIconUrl": "https://q77-max.github.io/study-app/icon-512-maskable.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "alias": "my-key-alias",
+    "path": "./android.keystore"
+  }
+}

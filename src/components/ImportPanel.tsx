@@ -22,12 +22,9 @@ export default function ImportPanel() {
 
   // ============ 核心：智能解析一切内容 ============
   const smartParse = async (rawContent: string, isImage: boolean = false): Promise<Partial<Question>[]> => {
-    const { ai: aiSettings } = await getSettings();
-    if (!aiSettings.apiKey) throw new Error('请先配置 AI API Key（点右上角 ⚙️ 设置）');
-
     if (!rawContent.trim() && !isImage) throw new Error('请粘贴内容或上传文件');
 
-    // 先尝试：如果是 JSON 格式的题库，直接解析（省 API 费用）
+    // 先尝试：如果是 JSON 格式的题库，直接解析（不需要 API Key）
     if (!isImage) {
       try {
         const parsed = JSON.parse(rawContent.trim());
@@ -37,7 +34,10 @@ export default function ImportPanel() {
       } catch {}
     }
 
-    // 不是 JSON，交给 AI 识别
+    // 不是 JSON，需要 AI → 检查 API Key
+    const { ai: aiSettings } = await getSettings();
+    if (!aiSettings.apiKey) throw new Error('非JSON格式需要AI识别，请先配置 API Key（点右上角 ⚙️ 设置）');
+
     let questions: Partial<Question>[];
     if (isImage) {
       questions = await parseQuestionsFromImage(aiSettings, rawContent);
