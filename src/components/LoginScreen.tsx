@@ -14,6 +14,7 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [hasAccounts, setHasAccounts] = useState(false);
+  const [showInstall, setShowInstall] = useState(false);
 
   useEffect(() => {
     getAllAccounts().then(list => setHasAccounts(list.length > 0));
@@ -26,6 +27,18 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
         onLogin(acct);
       } catch {}
     }
+    // PWA 安装监听
+    const handler = (e: Event) => { e.preventDefault(); setShowInstall(true); };
+    window.addEventListener('beforeinstallprompt', handler);
+    // 如果 SW 已注册，过一会儿还没收到事件，也显示手动指引
+    setTimeout(() => {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(regs => {
+          if (regs.length > 0) setShowInstall(true);
+        });
+      }
+    }, 3000);
+    return () => window.removeEventListener('beforeinstallprompt', handler);
   }, []);
 
   const handleLogin = async () => {
@@ -103,6 +116,20 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
 
         {mode === 'register' && <p className="text-xs text-gray-400 text-center">密码至少3位。首次注册需管理员审核</p>}
       </div>
+
+      {showInstall && (
+        <div className="fixed bottom-6 left-4 right-4 z-50 animate-bounceIn">
+          <div className="bg-white rounded-2xl p-4 flex items-center gap-3 shadow-lg border-2 border-green-300">
+            <span className="text-3xl">🍏</span>
+            <div className="flex-1">
+              <p className="font-bold text-sm text-gray-800">安装到手机桌面</p>
+              <p className="text-xs text-gray-400">像 App 一样打开，无需输入网址</p>
+            </div>
+            <button onClick={() => setShowInstall(false)}
+              className="text-gray-300 text-lg leading-none">×</button>
+          </div>
+        </div>
+      )}
 
       <p className="text-xs text-gray-300 mt-8">账号云端存储 · 刷题数据完全本地</p>
     </div>
