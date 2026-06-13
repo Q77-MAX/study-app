@@ -1,0 +1,37 @@
+name: Build APK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install bubblewrap
+        run: npm install -g @bubblewrap/cli
+
+      - name: Initialize TWA
+        run: |
+          bubblewrap init --manifest https://q77-max.github.io/study-app/manifest.json --directory twa
+
+      - name: Build APK
+        run: |
+          cd twa
+          bubblewrap build
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: 青苹果刷题-APK
+          path: twa/*.apk
