@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { getAllAccounts, createAccount, loginAccount, deleteAccount, getCurrentAccount, getInviteCode, type Account } from '../store/accounts';
+import { getAllAccounts, createAccount, loginAccount, getInviteCode } from '../store/accounts';
 import { setDBAccount } from '../store/db';
 
 interface LoginScreenProps {
-  onLogin: (account: Account) => void;
+  onLogin: (account: any) => void;
 }
 
 export default function LoginScreen({ onLogin }: LoginScreenProps) {
@@ -11,24 +11,13 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [inviteCode, setInviteCode] = useState('');
-  const [accounts, setAccounts] = useState<Account[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [hasAccounts, setHasAccounts] = useState(false);
 
-  useEffect(() => { loadAccounts(); }, []);
-
-  const loadAccounts = async () => {
-    const list = await getAllAccounts();
-    setAccounts(list);
-    setHasAccounts(list.length > 0);
-    // 自动登录
-    const current = await getCurrentAccount();
-    if (current) {
-      setDBAccount(current.id);
-      onLogin(current);
-    }
-  };
+  useEffect(() => {
+    getAllAccounts().then(list => setHasAccounts(list.length > 0));
+  }, []);
 
   const handleLogin = async () => {
     if (!name.trim() || !password.trim()) { setError('请填写用户名和密码'); return; }
@@ -69,45 +58,11 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
     }
   };
 
-  const handleDelete = async (account: Account) => {
-    if (!confirm(`确定删除账号「${account.name}」？`)) return;
-    await deleteAccount(account.id);
-    await loadAccounts();
-  };
-
-  const handleSwitch = async (account: Account) => {
-    const pw = prompt(`请输入「${account.name}」的密码`);
-    if (!pw) return;
-    try {
-      const acct = await loginAccount(account.name, pw);
-      setDBAccount(acct.id);
-      onLogin(acct);
-    } catch { alert('密码错误'); }
-  };
-
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-6" style={{ background: 'linear-gradient(180deg, #f2fde4 0%, #fafdf6 50%, #fff 100%)' }}>
       <div className="text-8xl animate-float mb-4">🍏</div>
       <h1 className="text-2xl font-bold mb-1" style={{ color: '#387612' }}>青苹果刷题</h1>
       <p className="text-sm text-gray-400 mb-8">云端账号 · 管理员审核制</p>
-
-      {accounts.length > 0 && (
-        <div className="w-full max-w-sm mb-6 space-y-2">
-          {accounts.filter(a => a.status === 'approved').map(a => (
-            <div key={a.id} className="card-apple p-4 flex items-center justify-between">
-              <div className="flex-1 min-w-0">
-                <p className="font-medium text-gray-700 truncate">{a.name}</p>
-                <p className="text-xs text-gray-400">{new Date(a.created_at).toLocaleDateString()} 创建</p>
-              </div>
-              <div className="flex gap-1">
-                <button onClick={() => handleDelete(a)} className="text-xs px-2 py-1 rounded-lg hover:bg-red-50" style={{ color: '#e03131' }}>🗑</button>
-                <button onClick={() => handleSwitch(a)} className="text-xs px-3 py-1.5 rounded-xl font-bold text-white"
-                  style={{ background: 'linear-gradient(135deg, #5cb818, #387612)' }}>进入</button>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
 
       <div className="w-full max-w-sm card-apple p-5 space-y-4">
         <div className="flex rounded-xl overflow-hidden border-2 border-gray-100">
