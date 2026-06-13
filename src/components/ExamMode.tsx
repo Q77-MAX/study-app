@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import type { Question } from '../types';
-import { getAllQuestions, updateQuestionMastery, addWrongRecord, saveSession, getSettings } from '../store/db';
+import { getAllQuestions, updateQuestionMastery, addWrongRecord, saveSession, getSettings, getAllBanks } from '../store/db';
+import type { QuestionBank } from '../types';
 import Timer from './Timer';
 import DrawingPad from './DrawingPad';
 
@@ -35,16 +36,20 @@ export default function ExamMode() {
   } | null>(null);
   const [loading, setLoading] = useState(false);
   const [manualCounts, setManualCounts] = useState(false);
+  const [banks, setBanks] = useState<QuestionBank[]>([]);
+  const [selectedBankId, setSelectedBankId] = useState<string>('all');
 
   useEffect(() => {
     getSettings().then((s) => { setQuestionCount(s.examQuestionCount); setTimeMinutes(s.examTimeMinutes); });
-    loadAvailableCounts();
+    getAllBanks().then(setBanks);
+    loadAvailableCounts('all');
   }, []);
 
-  const loadAvailableCounts = async () => {
+  const loadAvailableCounts = async (bankId: string) => {
     const all = await getAllQuestions();
+    const filtered = bankId === 'all' ? all : all.filter(q => q.batchId === bankId);
     const counts: Record<string, number> = { single: 0, multiple: 0, judge: 0, fill: 0, essay: 0 };
-    all.forEach(q => { if (counts[q.type] !== undefined) counts[q.type]++; });
+    filtered.forEach(q => { if (counts[q.type] !== undefined) counts[q.type]++; });
     setAvailableCounts(counts);
     // 初始化：按可用题目自动计算总题数
     const maxTotal = Math.min(BASE_TOTAL,
@@ -112,10 +117,11 @@ export default function ExamMode() {
   const startExam = async () => {
     setLoading(true);
     const all = await getAllQuestions();
-    if (all.length === 0) { alert('题库为空，请先导入题目'); setLoading(false); return; }
+    const pool = selectedBankId === 'all' ? all : all.filter(q => q.batchId === selectedBankId);
+    if (pool.length === 0) { alert('该题库无题目'); setLoading(false); return; }
 
     const byType: Record<string, Question[]> = {};
-    all.forEach(q => {
+    pool.forEach(q => {
       if (!byType[q.type]) byType[q.type] = [];
       byType[q.type].push(q);
     });
@@ -179,6 +185,24 @@ export default function ExamMode() {
         <div className="flex items-center gap-3 mb-5">
           <span className="text-2xl animate-float">🏆</span>
           <h2 className="text-lg font-bold" style={{ color: '#387612' }}>考试</h2>
+        </div>
+
+        {/* 题库选择 */}
+        <div className="mb-4">
+          <select
+            value={selectedBankId}
+            onChange={(e) => {
+              const id = e.target.value;
+              setSelectedBankId(id);
+              loadAvailableCounts(id);
+            }}
+            className="input-apple w-full"
+          >
+            <option value="all">📚 全部题库</option>
+            {banks.map(b => (
+              <option key={b.id} value={b.id}>{b.name} ({b.questionCount}题)</option>
+            ))}
+          </select>
         </div>
 
         {/* 模式选择：专项练习 vs 模拟考试 */}
