@@ -22,9 +22,10 @@ function createApples(count: number): AppleData[] {
     y: Math.random() * (vh - 200),
     vx: (Math.random() - 0.5) * 1.5,
     vy: (Math.random() - 0.5) * 1.5,
-    size: 40 + Math.random() * 50, // 40-90px 大小不一
+    // 最后一颗是超大苹果，其余 40-80px
+    size: i === count - 1 ? 140 : 40 + Math.random() * 40,
     emoji: i % 2,
-    opacity: 0.06 + Math.random() * 0.08, // 半透明 0.06-0.14
+    opacity: i === count - 1 ? 0.08 : 0.05 + Math.random() * 0.07, // 超大稍浓一点
   }));
 }
 
@@ -40,12 +41,15 @@ export default function WanderingApple() {
   const animate = useCallback(() => {
     const aw = window.innerWidth;
     const ah = window.innerHeight;
-    apples.current.forEach(a => {
-      // 随机微调方向
-      a.vx += (Math.random() - 0.5) * 0.08;
-      a.vy += (Math.random() - 0.5) * 0.08;
+    apples.current.forEach((a, i) => {
+      // 大苹果更慢更优雅
+      const isGiant = i === apples.current.length - 1;
+      const wiggle = isGiant ? 0.03 : 0.08;
+      const maxSpd = isGiant ? 0.5 : 1.0;
+      a.vx += (Math.random() - 0.5) * wiggle;
+      a.vy += (Math.random() - 0.5) * wiggle;
       const speed = Math.sqrt(a.vx * a.vx + a.vy * a.vy);
-      const maxSpeed = 1.0;
+      const maxSpeed = maxSpd;
       if (speed > maxSpeed) { a.vx = (a.vx / speed) * maxSpeed; a.vy = (a.vy / speed) * maxSpeed; }
       if (speed < 0.15) { a.vx *= 1.1; a.vy *= 1.1; }
 
