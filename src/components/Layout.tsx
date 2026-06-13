@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { FiSettings } from 'react-icons/fi';
 import WanderingApple from './WanderingApple';
-import { getInviteCode, setInviteCode, isAdmin, getCurrentAccountId } from '../store/accounts';
+import { getInviteCode, setInviteCode, isAdmin, getCurrentAccountId, getPendingAccounts, approveAccount, rejectAccount, type Account } from '../store/accounts';
 
 export type TabId = 'practice' | 'import' | 'wrong' | 'stats' | 'exam';
 
@@ -243,13 +243,29 @@ function SettingsModal({ onClose, installPrompt, onInstall, pwaDebug }: {
   const [admin, setAdmin] = useState(false);
   const [invite, setInvite] = useState('');
   const [inviteSaved, setInviteSaved] = useState(false);
+  const [pending, setPending] = useState<Account[]>([]);
 
   useEffect(() => {
     import('../store/db').then(({ getSettings }) => getSettings().then(setSettings));
-    // 检查是否管理员
     getCurrentAccountId().then(id => { if (id) isAdmin(id).then(setAdmin); });
     getInviteCode().then(c => { if (c) setInvite(c); });
+    loadPending();
   }, []);
+
+  const loadPending = async () => {
+    const list = await getPendingAccounts();
+    setPending(list);
+  };
+
+  const handleApprove = async (id: string) => {
+    await approveAccount(id);
+    await loadPending();
+  };
+
+  const handleReject = async (id: string) => {
+    await rejectAccount(id);
+    await loadPending();
+  };
 
   const handleSaveInvite = async () => {
     await setInviteCode(invite.trim());
@@ -340,19 +356,48 @@ function SettingsModal({ onClose, installPrompt, onInstall, pwaDebug }: {
         </div>
 
         {admin && (
-          <div className="mb-5 p-4 rounded-2xl" style={{ border: '2px solid #ffe082', background: '#fff8e1' }}>
-            <p className="font-medium text-gray-700 mb-2">🔑 邀请码管理 <span className="text-xs text-orange-400">(管理员)</span></p>
-            <p className="text-xs text-gray-400 mb-3">设置后新用户注册必须输入此邀请码</p>
-            <div className="flex gap-2">
-              <input value={invite} onChange={e => setInvite(e.target.value)}
-                placeholder="输入邀请码" className="input-apple flex-1" />
-              <button onClick={handleSaveInvite}
-                className="px-4 py-2 rounded-xl text-sm font-bold text-white"
-                style={{ background: inviteSaved ? '#9ae869' : '#5cb818' }}>
-                {inviteSaved ? '✅' : '保存'}
-              </button>
+          <>
+            <div className="mb-5 p-4 rounded-2xl" style={{ border: '2px solid #ffe082', background: '#fff8e1' }}>
+              <p className="font-medium text-gray-700 mb-2">🔑 邀请码管理 <span className="text-xs text-orange-400">(管理员)</span></p>
+              <p className="text-xs text-gray-400 mb-3">设置后新用户注册必须输入此邀请码</p>
+              <div className="flex gap-2">
+                <input value={invite} onChange={e => setInvite(e.target.value)}
+                  placeholder="输入邀请码" className="input-apple flex-1" />
+                <button onClick={handleSaveInvite}
+                  className="px-4 py-2 rounded-xl text-sm font-bold text-white"
+                  style={{ background: inviteSaved ? '#9ae869' : '#5cb818' }}>
+                  {inviteSaved ? '✅' : '保存'}
+                </button>
+              </div>
             </div>
-          </div>
+
+            {/* 审核队列 */}
+            <div className="mb-5 p-4 rounded-2xl" style={{ border: '2px solid #ffc9c9', background: '#fff5f5' }}>
+              <p className="font-medium text-gray-700 mb-2">📋 待审核 <span className="text-xs text-red-400">({pending.length}人)</span></p>
+              {pending.length === 0 ? (
+                <p className="text-sm text-gray-400">暂无待审核用户</p>
+              ) : (
+                <div className="space-y-2">
+                  {pending.map(a => (
+                    <div key={a.id} className="flex items-center justify-between py-2 px-3 rounded-xl bg-white">
+                      <div>
+                        <p className="text-sm font-medium text-gray-700">{a.name}</p>
+                        <p className="text-xs text-gray-400">{new Date(a.createdAt).toLocaleString()}</p>
+                      </div>
+                      <div className="flex gap-2">
+                        <button onClick={() => handleApprove(a.id)}
+                          className="px-3 py-1.5 rounded-lg text-xs font-bold text-white"
+                          style={{ background: '#5cb818' }}>✓ 通过</button>
+                        <button onClick={() => handleReject(a.id)}
+                          className="px-3 py-1.5 rounded-lg text-xs font-bold text-white"
+                          style={{ background: '#e03131' }}>✕ 拒绝</button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </>
         )}
 
         <div className="mb-4">

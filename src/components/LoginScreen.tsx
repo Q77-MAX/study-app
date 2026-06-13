@@ -57,8 +57,15 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
     setLoading(true); setError(null);
     try {
       const account = await createAccount(name.trim(), password);
-      setDBAccount(account.id);
-      onLogin(account);
+      if (account.status === 'pending') {
+        setError(null);
+        alert('✅ 注册成功！\n\n请等待管理员审核通过后即可登录。');
+        setName(''); setPassword(''); setInviteCode('');
+        setMode('login');
+      } else {
+        setDBAccount(account.id);
+        onLogin(account);
+      }
     } catch (e: any) {
       setError(e.message);
     } finally {

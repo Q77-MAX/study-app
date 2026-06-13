@@ -4,7 +4,8 @@ import { v4 as uuidv4 } from 'uuid';
 export interface Account {
   id: string;
   name: string;
-  password: string; // 简单本地密码，hash存储
+  password: string;
+  status: 'approved' | 'pending' | 'rejected';
   createdAt: number;
 }
 
@@ -39,10 +40,13 @@ export async function getAllAccounts(): Promise<Account[]> {
 export async function createAccount(name: string, password: string): Promise<Account> {
   const all = await accountDB.accounts.toArray();
   if (all.find(a => a.name === name)) throw new Error('用户名已存在');
+  // 第一个注册的自动通过（管理员），其余待审核
+  const isFirst = all.length === 0;
   const account: Account = {
     id: uuidv4(),
     name,
     password: simpleHash(password),
+    status: isFirst ? 'approved' : 'pending',
     createdAt: Date.now(),
   };
   await accountDB.accounts.add(account);
@@ -53,6 +57,8 @@ export async function loginAccount(name: string, password: string): Promise<Acco
   const all = await accountDB.accounts.toArray();
   const account = all.find(a => a.name === name);
   if (!account) throw new Error('账号不存在');
+  if (account.status === 'pending') throw new Error('账号审核中，请等待管理员审批');
+  if (account.status === 'rejected') throw new Error('账号已被拒绝');
   if (account.password !== simpleHash(password)) throw new Error('密码错误');
   await setCurrentAccount(account.id);
   return account;
@@ -84,6 +90,21 @@ export async function getCurrentAccount(): Promise<Account | null> {
   const id = await getCurrentAccountId();
   if (!id) return null;
   return (await accountDB.accounts.get(id)) || null;
+}
+
+// ============ 审核管理 ============
+
+export async function getPendingAccounts(): Promise<Account[]> {
+  const all = await accountDB.accounts.toArray();
+  return all.filter(a => a.status === 'pending');
+}
+
+export async function approveAccount(id: string): Promise<void> {
+  await accountDB.accounts.update(id, { status: 'approved' });
+}
+
+export async function rejectAccount(id: string): Promise<void> {
+  await accountDB.accounts.update(id, { status: 'rejected' });
 }
 
 // ============ 邀请码 ============
