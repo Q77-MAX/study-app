@@ -10,12 +10,21 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
-const tabs: { id: TabId; label: string; icon: string }[] = [
-  { id: 'practice', label: '刷题', icon: '🍏' },
-  { id: 'import', label: '导入', icon: '🍎' },
-  { id: 'wrong', label: '错题', icon: '📝' },
-  { id: 'stats', label: '统计', icon: '📊' },
-  { id: 'exam', label: '考试', icon: '🏆' },
+// 苹果主题图标 + 点击时互换的表情
+const applePairs: Record<string, [string, string]> = {
+  practice: ['🍏', '😋'],
+  import: ['🍎', '🤩'],
+  wrong: ['🍐', '😤'],
+  stats: ['🌳', '🍃'],
+  exam: ['🍎', '🏅'],
+};
+
+const tabs: { id: TabId; label: string }[] = [
+  { id: 'practice', label: '刷题' },
+  { id: 'import', label: '导入' },
+  { id: 'wrong', label: '错题' },
+  { id: 'stats', label: '统计' },
+  { id: 'exam', label: '考试' },
 ];
 
 // 背景装饰苹果（大小参差，各有动画）
@@ -46,6 +55,7 @@ export default function Layout({ activeTab, onTabChange, children }: LayoutProps
   const [showSettings, setShowSettings] = useState(false);
   const [installPrompt, setInstallPrompt] = useState<any>(null);
   const [pwaDebug, setPwaDebug] = useState<string[]>([]);
+  const [tabTaps, setTabTaps] = useState<Record<string, boolean>>({});
 
   // PWA 安装事件监听
   useEffect(() => {
@@ -113,7 +123,7 @@ export default function Layout({ activeTab, onTabChange, children }: LayoutProps
   };
 
   return (
-    <div className="min-h-screen flex flex-col relative" style={{ background: 'linear-gradient(180deg, #f2fde4 0%, #fafdf6 15%, #fff 35%, #fff 100%)' }}>
+    <div className="min-h-screen flex flex-col relative" style={{ background: 'linear-gradient(180deg, #d9eec0 0%, #e8f5d0 15%, #f5fae8 35%, #fafdf2 100%)' }}>
       {/* 🍏🍎🍏 背景装饰苹果 */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
         {/* 大苹果：可交互，到处漂泊 */}
@@ -168,22 +178,29 @@ export default function Layout({ activeTab, onTabChange, children }: LayoutProps
           <span className="absolute -top-5 right-[8%] text-xs opacity-40 animate-float" style={{ animationDelay: '1.5s' }}>🌱</span>
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
+            const pair = applePairs[tab.id];
+            const tapped = tabTaps[tab.id];
+            const icon = tapped ? pair[1] : pair[0];
             return (
               <button
                 key={tab.id}
-                onClick={() => onTabChange(tab.id)}
+                onClick={() => {
+                  onTabChange(tab.id);
+                  setTabTaps(prev => ({ ...prev, [tab.id]: true }));
+                  setTimeout(() => setTabTaps(prev => ({ ...prev, [tab.id]: false })), 800);
+                }}
                 className="flex flex-col items-center py-2 px-2 text-xs gap-0.5 min-w-0 flex-1 transition-all duration-200 relative"
               >
                 {isActive && (
                   <>
-                    <div className="absolute -top-3 w-8 h-1 rounded-full" style={{ background: 'linear-gradient(90deg, #9ae869, #5cb818)' }} />
+                    <div className="absolute -top-3 w-8 h-1 rounded-full" style={{ background: 'linear-gradient(90deg, #8fd84e, #4ea80e)' }} />
                     <span className="absolute -top-5 text-xs animate-bounceIn">🍏</span>
                   </>
                 )}
-                <span className={`transition-all duration-200 text-2xl ${isActive ? 'scale-110' : 'opacity-50'}`}>
-                  {tab.icon}
+                <span className={`transition-all duration-200 text-2xl ${isActive ? 'scale-110' : 'opacity-50'} ${tapped ? 'animate-bounceIn' : ''}`}>
+                  {icon}
                 </span>
-                <span style={{ color: isActive ? '#387612' : '#9ca3af', fontWeight: isActive ? 600 : 400 }}>
+                <span style={{ color: isActive ? '#2e6b08' : '#9ca3af', fontWeight: isActive ? 600 : 400 }}>
                   {tab.label}
                 </span>
               </button>
