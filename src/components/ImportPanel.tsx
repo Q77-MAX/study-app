@@ -126,10 +126,9 @@ export default function ImportPanel() {
       let questions: Partial<Question>[] = [];
       const ext = file.name.split('.').pop()?.toLowerCase() || '';
 
-      // 图片类 → 转 base64 → AI 视觉识别
+      // 图片类 → 不支持本地解析，提示用AI
       if (['png', 'jpg', 'jpeg', 'gif', 'webp', 'bmp'].includes(ext)) {
-        const base64 = await readFileAsDataURL(file);
-        questions = await smartParse(base64, true);
+        throw new Error('图片识别需要 AI，请在下方「AI 智能识别」区域操作');
       }
       // Excel → 直接解析
       else if (['xlsx', 'xls'].includes(ext)) {
@@ -288,62 +287,54 @@ export default function ImportPanel() {
       )}
 
 
-      {/* ============ 统一输入区：粘贴 or 上传 ============ */}
-      <div className="card-apple p-5 space-y-4">
-        <p className="text-sm text-gray-500">
-          🤖 <span className="font-medium">粘贴内容或上传文件</span>，AI 会自动识别题目、答案和解析
-        </p>
+      {/* ============ 📂 方式一：上传文件自动识别（无需AI）============ */}
+      <div className="card-apple p-5 mb-4">
+        <div className="flex items-center gap-2 mb-4">
+          <span className="text-xl">📂</span>
+          <div>
+            <p className="font-medium text-sm text-gray-700">上传文件自动识别</p>
+            <p className="text-xs text-gray-400">无需 AI Key · 支持 JSON / Excel / Word / TXT</p>
+          </div>
+        </div>
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept=".txt,.md,.docx,.xls,.xlsx,.csv,.json,.png,.jpg,.jpeg,.gif,.webp,.bmp"
+          onChange={handleFileUpload}
+          className="hidden"
+        />
+        <button
+          onClick={() => fileInputRef.current?.click()}
+          disabled={loading}
+          className="w-full py-3 btn-apple disabled:opacity-40 text-sm"
+        >
+          {loading ? '🍏 识别中...' : '📁 选择文件'}
+        </button>
+        {fileName && <p className="text-xs text-gray-400 text-center mt-2">已选：{fileName}</p>}
+      </div>
 
-        {/* 文本框 */}
+      {/* ============ 🤖 方式二：AI 识别 ============ */}
+      <div className="card-apple p-5 mb-4">
+        <div className="flex items-center gap-2 mb-4">
+          <span className="text-xl">🤖</span>
+          <div>
+            <p className="font-medium text-sm text-gray-700">AI 智能识别</p>
+            <p className="text-xs text-gray-400">粘贴任意格式文字或上传图片 · 需配置 API Key</p>
+          </div>
+        </div>
         <textarea
           value={textInput}
           onChange={(e) => setTextInput(e.target.value)}
-          placeholder={
-            '支持任意格式：\n\n' +
-            '📝 直接粘贴题目文字\n' +
-            '📊 从 Excel/WPS 复制粘贴表格数据\n' +
-            '📄 上传 Word / Excel / CSV / JSON 文件\n' +
-            '📷 上传题目截图\n\n' +
-            'AI 会自动判断哪些是题目、选项、答案和解析，无需关心原始格式。'
-          }
-          className="input-apple w-full h-44 resize-none text-sm"
+          placeholder="直接粘贴题目文字、表格数据、或复制的内容...&#10;&#10;AI 会自动识别题目、选项、答案和解析"
+          className="input-apple w-full h-36 resize-none text-sm mb-3"
         />
-
-        {/* 操作按钮 */}
-        <div className="flex gap-3">
-          <button
-            onClick={handleTextParse}
-            disabled={loading || !textInput.trim()}
-            className="flex-1 py-3 btn-apple disabled:opacity-40 disabled:cursor-not-allowed text-sm"
-          >
-            {loading ? '🍏 识别中...' : '🤖 AI 识别题目'}
-          </button>
-
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept=".txt,.md,.docx,.xls,.xlsx,.csv,.json,.png,.jpg,.jpeg,.gif,.webp,.bmp"
-            onChange={handleFileUpload}
-            className="hidden"
-          />
-          <button
-            onClick={() => fileInputRef.current?.click()}
-            disabled={loading}
-            className="flex-1 py-3 btn-apple-outline disabled:opacity-40 text-sm"
-          >
-            📂 上传文件
-          </button>
-        </div>
-
-        {fileName && (
-          <p className="text-xs text-gray-400 text-center">
-            已选择：{fileName}
-          </p>
-        )}
-
-        <p className="text-xs text-gray-400 text-center">
-          支持 .txt .md .docx .xls .xlsx .csv .json .png .jpg 等格式
-        </p>
+        <button
+          onClick={handleTextParse}
+          disabled={loading || !textInput.trim()}
+          className="w-full py-3 btn-apple-outline disabled:opacity-40 text-sm"
+        >
+          {loading ? '🍏 识别中...' : '🤖 AI 识别'}
+        </button>
       </div>
 
       {/* 错误 */}
@@ -503,15 +494,6 @@ function readFileAsText(file: File): Promise<string> {
     reader.onload = () => resolve(reader.result as string);
     reader.onerror = reject;
     reader.readAsText(file, 'UTF-8');
-  });
-}
-
-function readFileAsDataURL(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
   });
 }
 
