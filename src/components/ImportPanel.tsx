@@ -173,6 +173,13 @@ export default function ImportPanel() {
         </button>
       </div>
 
+      {/* 一键导入预置题库 */}
+      <PresetBankImport onQuestions={(questions) => {
+        setParsedQuestions(questions);
+        setBankName('发电厂热力设备');
+        setImported(false);
+      }} />
+
       {/* 题库管理面板 */}
       {showBanks && (
         <div className="card-apple p-4 mb-5 animate-fadeIn">
@@ -364,4 +371,71 @@ function readFileAsDataURL(file: File): Promise<string> {
     reader.onerror = reject;
     reader.readAsDataURL(file);
   });
+}
+
+// ============ 📋 一键导入预置题库 ============
+
+function PresetBankImport({ onQuestions }: { onQuestions: (q: Partial<Question>[]) => void }) {
+  const [loading, setLoading] = useState(false);
+  const [done, setDone] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleQuickImport = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const url = import.meta.env.BASE_URL + 'questions_parsed.json';
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const questions = await res.json();
+      if (!Array.isArray(questions) || questions.length === 0) {
+        throw new Error('题库数据为空');
+      }
+      // 直接写入数据库
+      const { createBank, addQuestions } = await import('../store/db');
+      const bankId = await createBank('发电厂热力设备');
+      await addQuestions(
+        questions as any,
+        bankId,
+        '发电厂热力设备'
+      );
+      setDone(true);
+      // 触发父组件刷新
+      onQuestions([]);
+    } catch (e: any) {
+      setError(e.message || '导入失败');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (done) {
+    return (
+      <div className="card-apple p-4 mb-5 text-center animate-bounceIn">
+        <p className="text-2xl mb-1">🍏</p>
+        <p className="font-bold text-apple-600">发电厂热力设备 · 549 题 · 已导入！</p>
+        <p className="text-sm text-gray-400 mt-1">去「刷题」标签开始练习吧</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="card-apple p-4 mb-5">
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <p className="font-medium text-gray-700 text-sm">📋 发电厂热力设备题库</p>
+          <p className="text-xs text-gray-400 mt-0.5">549 道选择题 · 含详细解析</p>
+        </div>
+        <button
+          onClick={handleQuickImport}
+          disabled={loading}
+          className="px-4 py-2 rounded-xl text-sm font-bold text-white shrink-0 disabled:opacity-50"
+          style={{ background: 'linear-gradient(135deg, #5cb818, #387612)' }}
+        >
+          {loading ? '⌛ 导入中...' : '一键导入'}
+        </button>
+      </div>
+      {error && <p className="text-xs text-red-500 mt-2">🍎 {error}</p>}
+    </div>
+  );
 }
