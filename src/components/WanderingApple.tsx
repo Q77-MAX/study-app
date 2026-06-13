@@ -22,34 +22,47 @@ function createApples(count: number): AppleData[] {
     y: Math.random() * (vh - 200),
     vx: (Math.random() - 0.5) * 1.5,
     vy: (Math.random() - 0.5) * 1.5,
-    // 最后一颗是超大绿苹果，其余 40-80px
-    size: i === count - 1 ? 200 : 40 + Math.random() * 40,
-    emoji: i === count - 1 ? 0 : i % 2, // 超大永远 🍏
-    opacity: i === count - 1 ? 0.10 : 0.05 + Math.random() * 0.07, // 超大稍浓一点
+    size: 40 + Math.random() * 40,
+    emoji: i % 2,
+    opacity: 0.05 + Math.random() * 0.07,
   }));
 }
 
+// ============ 🍏 屏幕正中央超大绿苹果（不飘，只顺时针旋转）============
+function CenterApple() {
+  return (
+    <div
+      className="fixed z-0 select-none pointer-events-none"
+      style={{
+        left: '50%',
+        top: '50%',
+        transform: 'translate(-50%, -50%)',
+        fontSize: '360px',
+        lineHeight: 1,
+        opacity: 0.05,
+      }}
+    >
+      <span style={{ display: 'inline-block', animation: 'centerSpin 80s linear infinite' }}>🍏</span>
+    </div>
+  );
+}
+
+// ============ 🍏 漂泊小苹果 ============
 export default function WanderingApple() {
-  const count = 6; // 6个大苹果
+  const count = 5;
   const apples = useRef<AppleData[]>(createApples(count));
   const animRef = useRef<number>(0);
   const [, setTick] = useState(0);
   const [tapMap, setTapMap] = useState<Record<number, boolean>>({});
 
-  // 如果窗口大小变化，不做处理（保持简单）
-
   const animate = useCallback(() => {
     const aw = window.innerWidth;
     const ah = window.innerHeight;
-    apples.current.forEach((a, i) => {
-      // 大苹果更慢更优雅
-      const isGiant = i === apples.current.length - 1;
-      const wiggle = isGiant ? 0.03 : 0.08;
-      const maxSpd = isGiant ? 0.5 : 1.0;
-      a.vx += (Math.random() - 0.5) * wiggle;
-      a.vy += (Math.random() - 0.5) * wiggle;
+    apples.current.forEach(a => {
+      a.vx += (Math.random() - 0.5) * 0.08;
+      a.vy += (Math.random() - 0.5) * 0.08;
       const speed = Math.sqrt(a.vx * a.vx + a.vy * a.vy);
-      const maxSpeed = maxSpd;
+      const maxSpeed = 1.0;
       if (speed > maxSpeed) { a.vx = (a.vx / speed) * maxSpeed; a.vy = (a.vy / speed) * maxSpeed; }
       if (speed < 0.15) { a.vx *= 1.1; a.vy *= 1.1; }
 
@@ -72,17 +85,14 @@ export default function WanderingApple() {
 
   const handleTap = (id: number, idx: number) => {
     setTapMap(prev => ({ ...prev, [id]: true }));
-    // 弹跳
     apples.current[idx].vy = -3;
-    // 变身（超大绿苹果不变）
-    if (idx !== apples.current.length - 1) {
-      apples.current[idx].emoji = (apples.current[idx].emoji + 1) % EMOJIS.length;
-    }
+    apples.current[idx].emoji = (apples.current[idx].emoji + 1) % EMOJIS.length;
     setTimeout(() => setTapMap(prev => ({ ...prev, [id]: false })), 500);
   };
 
   return (
     <>
+      <CenterApple />
       {apples.current.map((a, idx) => (
         <div
           key={a.id}

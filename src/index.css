@@ -127,6 +127,11 @@ body {
 }
 .animate-spin-slow { animation: spin-slow 20s linear infinite; }
 
+@keyframes centerSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 @keyframes pulse-green {
   0%, 100% { opacity: 0.08; }
   50% { opacity: 0.18; }
