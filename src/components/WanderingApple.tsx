@@ -28,21 +28,28 @@ function createApples(count: number): AppleData[] {
   }));
 }
 
-// ============ 🍏 屏幕正中央超大绿苹果（不飘，只顺时针旋转）============
+// ============ 🍏 屏幕正中央超大绿苹果（不飘，只顺时针旋转，点击变色）============
 function CenterApple() {
+  const [emoji, setEmoji] = useState(0);
+  const [bounce, setBounce] = useState(false);
+
   return (
     <div
-      className="fixed z-0 select-none pointer-events-none"
+      onClick={() => { setEmoji(e => (e + 1) % 2); setBounce(true); setTimeout(() => setBounce(false), 600); }}
+      className="fixed z-0 select-none"
       style={{
         left: '50%',
         top: '50%',
-        transform: 'translate(-50%, -50%)',
+        transform: `translate(-50%, -50%) ${bounce ? 'scale(1.08)' : 'scale(1)'}`,
         fontSize: '360px',
         lineHeight: 1,
         opacity: 0.05,
+        cursor: 'pointer',
+        pointerEvents: 'auto',
+        transition: 'transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
       }}
     >
-      <span style={{ display: 'inline-block', animation: 'centerSpin 80s linear infinite' }}>🍏</span>
+      <span style={{ display: 'inline-block', animation: 'centerSpin 80s linear infinite' }}>{emoji === 0 ? '🍏' : '🍎'}</span>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FiEdit3, FiPlusCircle, FiBookOpen, FiBarChart2, FiAward, FiSettings } from 'react-icons/fi';
+import { FiSettings } from 'react-icons/fi';
 import WanderingApple from './WanderingApple';
 
 export type TabId = 'practice' | 'import' | 'wrong' | 'stats' | 'exam';
@@ -10,12 +10,12 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
-const tabs: { id: TabId; label: string; icon: React.ReactNode }[] = [
-  { id: 'practice', label: '刷题', icon: <FiEdit3 size={22} /> },
-  { id: 'import', label: '导入', icon: <FiPlusCircle size={22} /> },
-  { id: 'wrong', label: '错题', icon: <FiBookOpen size={22} /> },
-  { id: 'stats', label: '统计', icon: <FiBarChart2 size={22} /> },
-  { id: 'exam', label: '考试', icon: <FiAward size={22} /> },
+const tabs: { id: TabId; label: string; icon: string }[] = [
+  { id: 'practice', label: '刷题', icon: '🍏' },
+  { id: 'import', label: '导入', icon: '🍎' },
+  { id: 'wrong', label: '错题', icon: '📝' },
+  { id: 'stats', label: '统计', icon: '📊' },
+  { id: 'exam', label: '考试', icon: '🏆' },
 ];
 
 // 背景装饰苹果（大小参差，各有动画）
@@ -180,7 +180,7 @@ export default function Layout({ activeTab, onTabChange, children }: LayoutProps
                     <span className="absolute -top-5 text-xs animate-bounceIn">🍏</span>
                   </>
                 )}
-                <span className={`transition-all duration-200 ${isActive ? 'scale-110' : 'opacity-50'}`}>
+                <span className={`transition-all duration-200 text-2xl ${isActive ? 'scale-110' : 'opacity-50'}`}>
                   {tab.icon}
                 </span>
                 <span style={{ color: isActive ? '#387612' : '#9ca3af', fontWeight: isActive ? 600 : 400 }}>
