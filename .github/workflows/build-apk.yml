@@ -6,123 +6,29 @@ on:
 jobs:
   build-apk:
     runs-on: ubuntu-latest
+    container:
+      image: seanmorris/bubblewrap:latest
     steps:
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Create Project
+      - name: Setup keystore
         run: |
-          set -e
-          mkdir -p twa/app/src/main/java/com/qp/shuati
-          mkdir -p twa/app/src/main/res/values
-          mkdir -p twa/app/src/main/res/mipmap-hdpi
+          keytool -genkey -v -keystore release.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000 -storepass apple123 -keypass apple123 -dname "CN=QP,OU=Q,O=Apple,L=BJ,ST=BJ,C=CN" -noprompt
 
-          # settings.gradle
-          echo "include ':app'" > twa/settings.gradle
+      - name: Init TWA
+        run: |
+          bubblewrap init --manifest https://q77-max.github.io/study-app/manifest.json --directory . << ANSWERS
+          n
+          /usr/lib/jvm/java-17-openjdk-amd64
+          ANSWERS
 
-          # build.gradle
-          cat > twa/build.gradle << 'EOF'
-          plugins { id 'com.android.application' version '8.1.0' apply false }
-          EOF
-
-          # app/build.gradle
-          cat > twa/app/build.gradle << 'EOF'
-          plugins { id 'com.android.application' }
-          android {
-            namespace 'com.qp.shuati'
-            compileSdk 34
-            defaultConfig {
-              applicationId 'com.qp.shuati'
-              minSdk 21
-              targetSdk 34
-              versionCode 1
-              versionName '1.0'
-            }
-            signingConfigs {
-              release {
-                storeFile file('release.keystore')
-                storePassword 'apple123'
-                keyAlias 'release'
-                keyPassword 'apple123'
-              }
-            }
-            buildTypes {
-              release {
-                signingConfig signingConfigs.release
-                minifyEnabled false
-              }
-            }
-          }
-          dependencies {}
-          EOF
-
-          # AndroidManifest.xml
-          cat > twa/app/src/main/AndroidManifest.xml << 'EOF'
-          <?xml version="1.0" encoding="utf-8"?>
-          <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-            <uses-permission android:name="android.permission.INTERNET"/>
-            <application android:label="青苹果刷题" android:icon="@mipmap/ic_launcher"
-              android:usesCleartextTraffic="true">
-              <activity android:name=".MainActivity" android:exported="true"
-                android:theme="@android:style/Theme.NoTitleBar">
-                <intent-filter>
-                  <action android:name="android.intent.action.MAIN"/>
-                  <category android:name="android.intent.category.LAUNCHER"/>
-                </intent-filter>
-              </activity>
-            </application>
-          </manifest>
-          EOF
-
-          # MainActivity.java - WebView wrapper
-          cat > twa/app/src/main/java/com/qp/shuati/MainActivity.java << 'EOF'
-          package com.qp.shuati;
-          import android.app.Activity;
-          import android.os.Bundle;
-          import android.webkit.WebView;
-          import android.webkit.WebViewClient;
-          import android.webkit.WebSettings;
-          public class MainActivity extends Activity {
-            @Override
-            protected void onCreate(Bundle s) {
-              super.onCreate(s);
-              WebView wv = new WebView(this);
-              WebSettings ws = wv.getSettings();
-              ws.setJavaScriptEnabled(true);
-              ws.setDomStorageEnabled(true);
-              ws.setDatabaseEnabled(true);
-              ws.setAllowFileAccess(false);
-              wv.setWebViewClient(new WebViewClient());
-              wv.loadUrl("https://q77-max.github.io/study-app/");
-              setContentView(wv);
-            }
-          }
-          EOF
-
-          # styles.xml
-          echo '<?xml version="1.0" encoding="utf-8"?><resources><style name="AppTheme" parent="@android:style/Theme.NoTitleBar"/></resources>' > twa/app/src/main/res/values/styles.xml
-
-          # Generate keystore
-          keytool -genkey -v -keystore twa/app/release.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000 -storepass apple123 -keypass apple123 -dname "CN=QP,OU=Study,O=Apple,L=BJ,ST=BJ,C=CN" -noprompt
-
-          # Copy icon
-          curl -sL https://q77-max.github.io/study-app/icon-192.png -o twa/app/src/main/res/mipmap-hdpi/ic_launcher.png
+      - name: Update keystore config
+        run: |
+          bubblewrap update --manifest ./twa-manifest.json --keyAlias release --keyPassword apple123 --keyStore ./release.keystore --storePassword apple123
 
       - name: Build APK
-        run: |
-          cd twa
-          # Use gradle wrapper
-          gradle wrapper --gradle-version 8.4
-          ./gradlew assembleRelease
+        run: bubblewrap build
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: 青苹果刷题-APK
-          path: twa/app/build/outputs/apk/release/*.apk
+          path: ./*.apk
