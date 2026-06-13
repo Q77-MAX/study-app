@@ -1,36 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <defs>
-    <radialGradient id="body" cx="38%" cy="32%">
-      <stop offset="0%" stop-color="#b8f075"/>
-      <stop offset="35%" stop-color="#6bc820"/>
+    <radialGradient id="a" cx="35%" cy="30%">
+      <stop offset="0%" stop-color="#a3e635"/>
+      <stop offset="40%" stop-color="#65c21b"/>
       <stop offset="100%" stop-color="#3a8010"/>
     </radialGradient>
-    <radialGradient id="shine" cx="32%" cy="28%">
-      <stop offset="0%" stop-color="rgba(255,255,255,0.55)"/>
-      <stop offset="50%" stop-color="rgba(255,255,255,0.08)"/>
+    <radialGradient id="b" cx="30%" cy="25%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.35)"/>
       <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
     </radialGradient>
   </defs>
-  <!-- 叶子 -->
-  <path d="M280 55 C275 40 265 20 255 10 C258 28 260 42 258 55" fill="#4a9b10"/>
-  <path d="M258 55 C262 48 268 38 278 28 C275 40 272 50 272 58" fill="#5cb818"/>
-  <path d="M255 10 C265 20 275 40 280 55 C278 65 270 50 258 55 C260 42 258 28 255 10Z" fill="#387612"/>
   <!-- 茎 -->
-  <path d="M278 28 C280 20 285 18 288 22" fill="none" stroke="#3a6b0f" stroke-width="3" stroke-linecap="round"/>
-  <!-- 苹果身体 -->
-  <path d="M248 120 C258 100 268 90 272 82 C276 92 284 102 290 118 C320 120 370 140 410 180 C458 230 472 290 468 340 C463 400 425 460 368 485 C320 505 258 505 210 485 C150 460 108 400 100 340 C93 290 110 230 158 180 C198 140 220 120 248 120Z" fill="url(#body)"/>
-  <!-- 高光 -->
-  <ellipse cx="190" cy="280" rx="55" ry="70" fill="url(#shine)" transform="rotate(-15 190 280)"/>
-  <!-- 可爱眼睛 -->
-  <circle cx="200" cy="300" r="12" fill="#1e3d08"/>
-  <circle cx="258" cy="300" r="12" fill="#1e3d08"/>
-  <circle cx="196" cy="296" r="5" fill="white"/>
-  <circle cx="254" cy="296" r="5" fill="white"/>
-  <!-- 微笑 -->
-  <path d="M205 326 Q228 352 252 326" fill="none" stroke="#1e3d08" stroke-width="5" stroke-linecap="round"/>
-  <!-- 腮红 -->
-  <circle cx="168" cy="320" r="18" fill="rgba(255,140,140,0.25)"/>
-  <circle cx="288" cy="320" r="18" fill="rgba(255,140,140,0.25)"/>
+  <path d="M256 58 C254 32 250 18 248 8" fill="none" stroke="#5b3a0f" stroke-width="6" stroke-linecap="round"/>
+  <!-- 叶子 -->
+  <path d="M256 54 C272 38 298 24 312 18 C296 30 280 44 272 58Z" fill="#5cb818"/>
+  <path d="M312 18 C302 28 290 38 280 46 C296 36 308 26 312 18Z" fill="#4a9b10"/>
+  <!-- 苹果身体（圆润饱满，像emoji🍏） -->
+  <path d="M256 82 C156 82 52 180 52 310 C52 430 130 498 256 498 C382 498 460 430 460 310 C460 180 356 82 256 82Z" fill="url(#a)"/>
+  <!-- 顶部凹陷 -->
+  <ellipse cx="256" cy="90" rx="95" ry="22" fill="#3a8010" transform="translate(0 -12)"/>
+  <ellipse cx="256" cy="88" rx="85" ry="18" fill="rgba(0,0,0,0.1)" transform="translate(0 -8)"/>
+  <!-- 全身高光 -->
+  <ellipse cx="180" cy="260" rx="70" ry="100" fill="url(#b)" transform="rotate(-12 180 260)"/>
   <!-- 小高光点 -->
-  <circle cx="172" cy="230" r="6" fill="rgba(255,255,255,0.7)"/>
+  <ellipse cx="165" cy="190" rx="18" ry="22" fill="rgba(255,255,255,0.25)" transform="rotate(-20 165 190)"/>
+  <!-- 底部反光 -->
+  <ellipse cx="300" cy="440" rx="60" ry="15" fill="rgba(255,255,255,0.08)"/>
 </svg>
