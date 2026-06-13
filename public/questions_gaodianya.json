@@ -3828,8 +3828,11 @@
   {
     "type": "judge",
     "content": "电介质的电气特性，主要表现为它们在电场作用下的导电性能、介电性能和电气强度。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -3839,8 +3842,11 @@
   {
     "type": "judge",
     "content": "一切电介质在电场的作用下都会出现极化、电导和损耗等电气物理现象。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -3850,8 +3856,11 @@
   {
     "type": "judge",
     "content": "具有绝缘作用的材料称为电介质。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -3861,8 +3870,11 @@
   {
     "type": "judge",
     "content": "电介质在电场作用下所发生的束缚电荷的弹性位移和极性分子的转向现象，称为电介质的极化。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -3872,8 +3884,11 @@
   {
     "type": "judge",
     "content": "极化的结果是：在电介质沿电场方向的两端出现等量异号电荷形成电矩。与正极板相对的一端出现正电荷，与负极板相对的一端出现负电荷。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -3883,8 +3898,11 @@
   {
     "type": "judge",
     "content": "在外电场的作用下，物质原子里的电子轨道相对于原子核发生位移，从而产生感应电矩的过程称为电子式极化。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -3894,8 +3912,11 @@
   {
     "type": "judge",
     "content": "离子式结构的电介质在无外电场作用时，每个分子的正、负离子的作用中心是不重合的。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -3905,8 +3926,11 @@
   {
     "type": "judge",
     "content": "在外电场的作用下，电场力使得正、负离子发生相对位移，整个分子呈现极性。这种极化形式称为离子式极化。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -3916,8 +3940,11 @@
   {
     "type": "judge",
     "content": "偶极子是一种特殊的分子，其正、负电荷的作用中心不重合，形成永久性的偶极矩，即单个偶极子不呈现极性。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -3927,8 +3954,11 @@
   {
     "type": "judge",
     "content": "由于偶极子在转向时需要克服分子间的作用力，即需要消耗电场能量，消耗的能量在复原时不能收回，所以偶极子式极化属非弹性极化。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -3938,8 +3968,11 @@
   {
     "type": "judge",
     "content": "在不同介质的交界面处会发生由带电质点的移动所形成的夹层式极化。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -3949,8 +3982,11 @@
   {
     "type": "judge",
     "content": "气体电介质的密度很小，所以气体电介质的介电常数都很小，在工程应用中一切气体电介质的相对介电常数都可看作1。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -3960,8 +3996,11 @@
   {
     "type": "judge",
     "content": "当频率很高时偶极分子转向跟不上电场方向的改变，极化率减小，因而相对介电常数增大。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -3971,8 +4010,11 @@
   {
     "type": "judge",
     "content": "介质损耗与介质的极化类型有关，而介质损耗对绝缘老化和热击穿有很大的影响。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -3982,8 +4024,11 @@
   {
     "type": "judge",
     "content": "表征电介质电导大小的物理量是绝缘的电导率。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -3993,8 +4038,11 @@
   {
     "type": "judge",
     "content": "电泳电导是由液体本身和所含杂质的分子离解出的离子造成。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4004,8 +4052,11 @@
   {
     "type": "judge",
     "content": "液体电介质的电导与分子的极性、电场强度、温度及液体的纯净度无关。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4015,8 +4066,11 @@
   {
     "type": "judge",
     "content": "固体电介质的电导分为体积电导和表面电导两种。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4026,8 +4080,11 @@
   {
     "type": "judge",
     "content": "影响体积电导的因素主要有电场强度、温度和杂质。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4037,8 +4094,11 @@
   {
     "type": "judge",
     "content": "表面电导主要由电介质表面吸附的水分和污物引起。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4048,8 +4108,11 @@
   {
     "type": "judge",
     "content": "憎水性电介质表面不易形成连续的水膜，表面电导比亲水性电介质的大。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4059,8 +4122,11 @@
   {
     "type": "judge",
     "content": "电导损耗在交流电压和直流电压作用下均存在。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4070,8 +4136,11 @@
   {
     "type": "judge",
     "content": "不均匀结构的介质，其损耗的大小取决于其中各成分的性能及数量间的比例。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4081,8 +4150,11 @@
   {
     "type": "judge",
     "content": "气体常作为电力系统和电气设备中的绝缘介质，工程上使用最多的是空气和六氟化硫气体。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4092,8 +4164,11 @@
   {
     "type": "judge",
     "content": "气体间隙发生击穿时的最高临界电压称为击穿电压。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4103,8 +4178,11 @@
   {
     "type": "judge",
     "content": "分子或原子的游离可以一次完成，也可以分级完成，即先经过激发阶段，然后再发生游离，这种游离称为分级游离。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4114,8 +4192,11 @@
   {
     "type": "judge",
     "content": "由光辐射引起气体原子或分子产生的游离，称为光游离。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4125,8 +4206,11 @@
   {
     "type": "judge",
     "content": "放在气体中的金属电极表面游离出自由电子的现象称为热游离。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4136,8 +4220,11 @@
   {
     "type": "judge",
     "content": "高气压或高真空可提高击穿电压。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4147,8 +4234,11 @@
   {
     "type": "judge",
     "content": "流注理论认为电子的碰撞游离和空间光游离是形成自持放电的主要因素，空间电荷对电场的畸变作用是产生光游离的重要原因。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4158,8 +4248,11 @@
   {
     "type": "judge",
     "content": "高压实验室中测量电压用的球间隙是典型的稍不均匀电场的例子。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4169,8 +4262,11 @@
   {
     "type": "judge",
     "content": "高压输电线之间的空气绝缘就是典型的极不均匀电场的例子。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4180,8 +4276,11 @@
   {
     "type": "judge",
     "content": "极不均匀电场中放电则不同，间隙击穿前在高场强区(曲率半径较小的电极表面附近)会出现蓝紫色的晕光，并发出“咝咝”的响声，称为电晕放电。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4191,8 +4290,11 @@
   {
     "type": "judge",
     "content": "在极不均匀电场中，距曲率半径小的电极越近，场强越小。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4202,8 +4304,11 @@
   {
     "type": "judge",
     "content": "限制电晕最有效的方法是改进电极的形状，增大电极的曲率半径。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4213,8 +4318,11 @@
   {
     "type": "judge",
     "content": "可利用电晕原理来制造臭氧发生器、电除尘器。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4224,8 +4332,11 @@
   {
     "type": "judge",
     "content": "极性效应是不对称的稍不均匀电场所具有的特性之一。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4235,8 +4346,11 @@
   {
     "type": "judge",
     "content": "极性效应使负棒一正板间隙的起晕电压低于正棒一负板间隙的起晕电压。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4246,8 +4360,11 @@
   {
     "type": "judge",
     "content": "在极不均匀电场中，间隙越长，先导过程就发展得越充分。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4257,8 +4374,11 @@
   {
     "type": "judge",
     "content": "电场越均匀，同样间隙距离下的击穿电压就越高，其极限就是均匀电场中的击穿电压。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4268,8 +4388,11 @@
   {
     "type": "judge",
     "content": "每个气体间隙都有它的静态击穿电压，即长时间作用在间隙上能使间隙击穿的最高电压。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4279,8 +4402,11 @@
   {
     "type": "judge",
     "content": "在电场比较均匀时，放电发展速度快，放形成时延较长。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4290,8 +4416,11 @@
   {
     "type": "judge",
     "content": "伏秒特性曲线用实验方法求取。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4301,8 +4430,11 @@
   {
     "type": "judge",
     "content": "间隙伏秒特性曲线的形状取决于电极间电场的分布。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4312,8 +4444,11 @@
   {
     "type": "judge",
     "content": "改进电极形状、增大电极曲率半径，以改善电场分布，提高间隙的击穿电压。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4323,8 +4458,11 @@
   {
     "type": "judge",
     "content": "在标准大气压下，SF6气体的击穿场强约为空气的2.5倍。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4334,8 +4472,11 @@
   {
     "type": "judge",
     "content": "在标准大气压下，SF6气体的灭弧能力为空气的100倍。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4345,8 +4486,11 @@
   {
     "type": "judge",
     "content": "使固体介质表面的气体发生闪络时的电压称为固体介质的沿面闪络电压。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4356,8 +4500,11 @@
   {
     "type": "judge",
     "content": "10kV及以上的高压线路都使用由悬式绝缘子组成的绝缘子串作为线路绝缘。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4367,8 +4514,11 @@
   {
     "type": "judge",
     "content": "35 kV线路悬式绝缘子一般用7片。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4378,8 +4528,11 @@
   {
     "type": "judge",
     "content": "绝缘子表面处于干燥、洁净状态下的闪络电压称为湿闪电压。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4389,8 +4542,11 @@
   {
     "type": "judge",
     "content": "爬电距离是指两极问的沿面最长距离。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4400,8 +4556,11 @@
   {
     "type": "judge",
     "content": "规程上规定加压后15s所测得的电阻值为绝缘电阻值.",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4411,8 +4570,11 @@
   {
     "type": "judge",
     "content": "干燥绝缘吸收过程明显，吸收电流衰减缓慢，吸收比K小。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4422,8 +4584,11 @@
   {
     "type": "judge",
     "content": "绝缘电阻测试前，将被试品对地充分放电，容量较大的放电不得少于1min。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4433,8 +4598,11 @@
   {
     "type": "judge",
     "content": "变压器绝缘电阻测试时，被测绕组各引线端应短路，其余各非被测绕组都开路。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4444,8 +4612,11 @@
   {
     "type": "judge",
     "content": "在安装时，绝缘电阻值不应低于出厂试验时绝缘电阻测量值的70%。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4455,8 +4626,11 @@
   {
     "type": "judge",
     "content": "波过程中的电压波和电流波以波的形式沿导线传播称为行波",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4466,8 +4640,11 @@
   {
     "type": "judge",
     "content": "输电设备和电气设备的绕组上有可能产生高于设备正常工作时的额定电压的电压，称之为过电压",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4477,8 +4654,11 @@
   {
     "type": "judge",
     "content": "架空线的波阻一般在300－500欧范围内。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4488,8 +4668,11 @@
   {
     "type": "judge",
     "content": "波速与导线周围介质有关，与导线的几何尺寸及悬挂高度无关。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4499,8 +4682,11 @@
   {
     "type": "judge",
     "content": "电压波的极性只与产生电压波的电荷极性有关，而与传播方向无关。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4510,8 +4696,11 @@
   {
     "type": "judge",
     "content": "电流波的极性不仅与移动电荷 的极性有关，还与移动的方向有关。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4521,8 +4710,11 @@
   {
     "type": "judge",
     "content": "波阻抗的大小只与导线单位长度的电感和电容有关，而与线路的长度无关。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4532,8 +4724,11 @@
   {
     "type": "judge",
     "content": "波阻抗表示同一方向传播的电压波与电流波之间的比值大小。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4543,8 +4738,11 @@
   {
     "type": "judge",
     "content": "行波到导线节点时会发生波的折射与反射。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4554,8 +4752,11 @@
   {
     "type": "judge",
     "content": "折射波永远为正，说明入射波电压与反射波电压同极性。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4565,8 +4766,11 @@
   {
     "type": "judge",
     "content": "线路末端开路，末端电压上升到入射波的两倍",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4576,8 +4780,11 @@
   {
     "type": "judge",
     "content": "线路末端短路，电流上升到原来的两倍。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4587,8 +4794,11 @@
   {
     "type": "judge",
     "content": "彼德逊法则中线路波阻抗Z1可以用数值相等的集中参数电阻代替。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4598,8 +4808,11 @@
   {
     "type": "judge",
     "content": "在雷电冲击波作用时，变压器绕组中的波过程应采用分布参数电路进行分析。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4609,8 +4822,11 @@
   {
     "type": "judge",
     "content": "采用彼德逊法则，可以将分布参数电路中的波过程有关的问题简化成我们所熟悉的集中参数电路的计算。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4620,8 +4836,11 @@
   {
     "type": "judge",
     "content": "内部过电压为2.5-4系统最大运行相电压",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4631,8 +4850,11 @@
   {
     "type": "judge",
     "content": "内部过电压主要包括操作过电压和誓时过电压两大类",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4642,8 +4864,11 @@
   {
     "type": "judge",
     "content": "操作过电压一般持续时间一般较短，其幅值在很大程度受中性点接地方式的影响",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4653,8 +4878,11 @@
   {
     "type": "judge",
     "content": "晢时过电压包括工频电压升高及谐振过电压",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4664,8 +4892,11 @@
   {
     "type": "judge",
     "content": "铁磁谐振过电压，由系统中变压器、电压互感器，消弧线圈铁芯电感的磁路饱和作用而激发起的过电压",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4675,8 +4906,11 @@
   {
     "type": "judge",
     "content": "一般说来，谐振过电压的持续时间较操作过电压长很多，可能长期存在。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4686,8 +4920,11 @@
   {
     "type": "judge",
     "content": "如果工频电压升高，那么在工频升高基础上产生的操作过电压幅值就会更大。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4697,8 +4934,11 @@
   {
     "type": "judge",
     "content": "工频电压升高的大小不影响保护电器的工作条件和保护效果",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4708,8 +4948,11 @@
   {
     "type": "judge",
     "content": "工频电压升高持续时间长，对设备绝缘及其运行性能有重大影响",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4719,8 +4962,11 @@
   {
     "type": "judge",
     "content": "操作过电压是电力系统中由于操作或事故，由一种稳态转到另一种状态所引起的一类过电压。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4730,8 +4976,11 @@
   {
     "type": "judge",
     "content": "电力系统中常见的操作过电压有间隙电弧接地过电压、切除空载线路过电压、空载线路合闸过电压、切除空载变压器过电压",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4741,8 +4990,11 @@
   {
     "type": "judge",
     "content": "操作过电压的持续时间比较短",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4752,8 +5004,11 @@
   {
     "type": "judge",
     "content": "操作过电压是某一瞬间储存于电感中的磁场能量转变为电容中的电场能量。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4763,8 +5018,11 @@
   {
     "type": "judge",
     "content": "操作过电压是决定电力系统绝缘水平的依据之一。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4774,8 +5032,11 @@
   {
     "type": "judge",
     "content": "可选用灭弧能力强的快速断路器来限制切空载线路过电压",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4785,8 +5046,11 @@
   {
     "type": "judge",
     "content": "可通过断路器的并联电阻降低断路器触头间的恢复电压，避免电弧重燃，来限制切除空载线路过电压",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4796,8 +5060,11 @@
   {
     "type": "judge",
     "content": "限制空载线路合闸过电压的措施可以从降低线路稳态电压分量和限制自由电压分量二个方面入手。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4807,8 +5074,11 @@
   {
     "type": "judge",
     "content": "断路器的性能能影响切空载变压器过电压",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4818,8 +5088,11 @@
   {
     "type": "judge",
     "content": "限制切除空载变压器的主要措施是采用阀型避雷器",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4829,8 +5102,11 @@
   {
     "type": "judge",
     "content": "线性谐振是电力系统中最简单的谐振形式。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4840,8 +5116,11 @@
   {
     "type": "judge",
     "content": "电力系统中谐振过电压主要分三类：线性谐振、非线性谐振、参数谐振",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4851,8 +5130,11 @@
   {
     "type": "judge",
     "content": "铁磁谐振一旦发生会出现幅值较高的过电太坏，破坏电气设备绝缘",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4862,8 +5144,11 @@
   {
     "type": "judge",
     "content": "铁磁谐振在非线性电感线圈中产生很大的过电流，引起线圈的危险温升",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4873,8 +5158,11 @@
   {
     "type": "judge",
     "content": "铁磁谐振可能影响过电压保护装置的工作条件",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4884,8 +5172,11 @@
   {
     "type": "judge",
     "content": "铁磁谐振会产生分频、高次等谐波分量",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4895,8 +5186,11 @@
   {
     "type": "judge",
     "content": "交流耐压试验属于非破坏性试验",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4906,8 +5200,11 @@
   {
     "type": "judge",
     "content": "在高于工作电压下进行的试验称为破坏性试验",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4917,8 +5214,11 @@
   {
     "type": "judge",
     "content": "绝缘结构在其整个运行过程中，必须能够长期连续地承受工频最高工作电压，通常称为系统最高运行相电压。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4928,8 +5228,11 @@
   {
     "type": "judge",
     "content": "雷云过电压是由雷云放电产生，幅值很高；作用时间很短。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4939,8 +5242,11 @@
   {
     "type": "judge",
     "content": "直流耐压试验不属于破坏性试验",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4950,8 +5256,11 @@
   {
     "type": "judge",
     "content": "直流耐压试验可使试验设备轻小",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4961,8 +5270,11 @@
   {
     "type": "judge",
     "content": "在时行直流耐压试验同时，可通过测量泄漏电流来观察绝缘内部集中性缺陷。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4972,8 +5284,11 @@
   {
     "type": "judge",
     "content": "直流耐压试验比交流耐压试验 更能发现电机端部的绝缘缺陷",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4983,8 +5298,11 @@
   {
     "type": "judge",
     "content": "在电力电缆进行直流耐压试验时，通常也利用泄漏值寻找缺陷。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -4994,8 +5312,11 @@
   {
     "type": "judge",
     "content": "耐压试验对绝缘损伤大",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5005,8 +5326,11 @@
   {
     "type": "judge",
     "content": "直流耐压试验对绝缘考验不如交流下接近实际和准确。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5016,8 +5340,11 @@
   {
     "type": "judge",
     "content": "球间隙所构成的电场为稍不均匀电场时，放电才比较稳定。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5027,8 +5354,11 @@
   {
     "type": "judge",
     "content": "球间隙是利用气体介质放电来时行测量的，所以应该注意大气条件对测量结果的影响。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5038,8 +5368,11 @@
   {
     "type": "judge",
     "content": "利用球隙测量高压时，还须在带电球极与高压引线间串入一个电阻，来限制和削弱球隙放电时由于振荡造成的过电压，并且防止球表面电极被烧球。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5049,8 +5382,11 @@
   {
     "type": "judge",
     "content": "交流耐压试验加压1min后，缓慢降低电压。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5060,8 +5396,11 @@
   {
     "type": "judge",
     "content": "直流耐压试验可以用高压静电电压表测量高压",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5071,8 +5410,11 @@
   {
     "type": "judge",
     "content": "直流高压可以用电容分压器与低压电阻测量系统",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5082,8 +5424,11 @@
   {
     "type": "judge",
     "content": "金属氧化物避雷器的保护比愈小，说明残压愈低，避雷器保护性能愈好",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5093,8 +5438,11 @@
   {
     "type": "judge",
     "content": "一般情况下，介损tg δ试验主要反映设备绝缘整体缺陷，而对局部缺陷反映不灵敏",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5104,8 +5452,11 @@
   {
     "type": "judge",
     "content": "金属氧化物避雷器(MOA)，其阀片是以氧化锌(ZnO)为主要材料，掺以少量其他金属氧化物等添加剂经高温烧结制成的具有良好非线性特性的压敏电阻",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5115,8 +5466,11 @@
   {
     "type": "judge",
     "content": "金属氧化物避雷器也有带并联或串联间隙的结构型式，其间隙起灭弧作用",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5126,8 +5480,11 @@
   {
     "type": "judge",
     "content": "金属氧化物避雷器的额定电压是指允许长期加在避雷器上的最大工频电压(有效值)",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5137,8 +5494,11 @@
   {
     "type": "judge",
     "content": "金属氧化物避雷器的最大长期工作电压是指允许长期加在避雷器上的系统最大工作线电压",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5148,8 +5508,11 @@
   {
     "type": "judge",
     "content": "110kV及220kV有效接地系统避雷器的额定电压要求不低于0.8Um",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5159,8 +5522,11 @@
   {
     "type": "judge",
     "content": "对防雷接地来说，其允许的接地电阻值约为5 ~ 30 Ω , 一般应小于10 Ω",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5170,8 +5536,11 @@
   {
     "type": "judge",
     "content": "复式接地装置的总接地电阻Rch就等于各个单个接地电阻并联之值",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5181,8 +5550,11 @@
   {
     "type": "judge",
     "content": "防止雷击导线的主要措施是沿线架设避雷针",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5192,8 +5564,11 @@
   {
     "type": "judge",
     "content": "用在铁塔及钢筋混凝土杆线路上的避雷线，其保护角α愈大，其遮蔽保护效果也愈好",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5203,8 +5578,11 @@
   {
     "type": "judge",
     "content": "变压器中性点绝缘为分级绝缘时，中性点一般不需要保护",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5214,8 +5592,11 @@
   {
     "type": "judge",
     "content": "测量绝缘电阻可以有效地发现固体绝缘对地的贯穿性裂纹",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5225,8 +5606,11 @@
   {
     "type": "judge",
     "content": "我国的规程中规定线路防雷设计用雷电流波头时间为2.6",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5236,8 +5620,11 @@
   {
     "type": "judge",
     "content": "雷击时线路绝缘不发生闪络的最大雷电流幅值称为输电线路的耐雷水平",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5247,8 +5634,11 @@
   {
     "type": "judge",
     "content": "在均匀电场和稍不均匀电场中，设置屏障能提高气体间隙的击穿电压",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5258,8 +5648,11 @@
   {
     "type": "judge",
     "content": "提高气体压力时，减少了电子的自由行程，削弱了游离过程，可以提高气体的电气强度",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5269,8 +5662,11 @@
   {
     "type": "judge",
     "content": "通常情况下，电气设备受潮后，绝缘电组和电容量都减小",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5280,8 +5676,11 @@
   {
     "type": "judge",
     "content": "普通阀型避雷器的工频放电电压愈高，它的保护性能愈好",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5291,8 +5690,11 @@
   {
     "type": "judge",
     "content": "避雷针的接地线应与变压器的接地网连接",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5302,8 +5704,11 @@
   {
     "type": "judge",
     "content": "中性点非直接接地的电力网中，阀型避雷器的灭弧电压一般不应低于设备最高运行线电压的 100%",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5313,8 +5718,11 @@
   {
     "type": "judge",
     "content": "进行泄漏电流试验结束后，应对试品进行放电，放电的最好方式是通过电阻放电",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5324,8 +5732,11 @@
   {
     "type": "judge",
     "content": "在电介质上施加直流电压后，由电介质的电导所决定的电流是泄漏电流",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5335,8 +5746,11 @@
   {
     "type": "judge",
     "content": "避雷器的屏蔽环是悬挂状的",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5346,8 +5760,11 @@
   {
     "type": "judge",
     "content": "先导通道的形成是以热游离的出现为特征",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5357,8 +5774,11 @@
   {
     "type": "judge",
     "content": "我国35~220kV电网的电气设备绝缘水平是以避雷器5kA下的残压作为绝缘配合的设计依据",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5368,8 +5788,11 @@
   {
     "type": "judge",
     "content": "避雷针加设在配电装置构架上时，避雷针与主接地网的地下连接点到变压器接地线与主接地网的地下连接点之间的距离不得小于15m。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5379,8 +5802,11 @@
   {
     "type": "judge",
     "content": "排气式（管型）避雷器的伏秒特性较平缓。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5390,8 +5816,11 @@
   {
     "type": "judge",
     "content": "降低杆塔接地电阻是提高线路耐雷水平, 防止反击的有效措施",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5401,8 +5830,11 @@
   {
     "type": "judge",
     "content": "大气过电压可分为直击雷过电压及感应雷过电压两种。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5412,8 +5844,11 @@
   {
     "type": "judge",
     "content": "绝缘的缺陷通常可分为集中性缺陷和分布性缺陷两大类。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5423,8 +5858,11 @@
   {
     "type": "judge",
     "content": "绝缘预防性试验的方法可分为破坏性试验和非破坏性试验两大类。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5434,8 +5872,11 @@
   {
     "type": "judge",
     "content": "降低切断空载线路过电压的措施有：提高断路器性能和采用带并联电阻的开关。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5445,8 +5886,11 @@
   {
     "type": "judge",
     "content": "在极不均匀电场中，改进电极形状，空气间隙击穿电压提高。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5456,8 +5900,11 @@
   {
     "type": "judge",
     "content": "接地装置的冲击系数ach等于冲击接地电阻与工频接地电阻之比。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5467,8 +5914,11 @@
   {
     "type": "judge",
     "content": "发电厂大型电网的接地电阻值除了与当地土质情况有关外，主要取决于接地网面积S。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5478,8 +5928,11 @@
   {
     "type": "judge",
     "content": "中性点不接地系统中产生电弧接地过电压的原因是间歇性电弧(或电弧间歇性重燃)中性点不接地系统中产生电弧接地过电压的原因是间歇性电弧(或电弧间歇性重燃)",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5489,8 +5942,11 @@
   {
     "type": "judge",
     "content": "极不均匀电场中，屏障的作用是由于其对空间电荷的阻挡作用，造成电场分布的改变，以提高间隙的击穿电压。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5500,8 +5956,11 @@
   {
     "type": "judge",
     "content": "消弧线圈的脱谐度γ愈大，中性点位移电压愈小。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5511,8 +5970,11 @@
   {
     "type": "judge",
     "content": "避雷针（线）的保护范围是指具有0.1%左右雷击概率的空间范围。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5522,8 +5984,11 @@
   {
     "type": "judge",
     "content": "线路侧装有电磁式电压互感器时，由于其泄放线路电荷（降低线路残余电压）的作用故有助于降低空载线路合闸过电压",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5533,8 +5998,11 @@
   {
     "type": "judge",
     "content": "雷云对地放电多为重复的，每次放电分为先导放电、主放电和余辉放电三个阶段。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5544,8 +6012,11 @@
   {
     "type": "judge",
     "content": "某一地区的雷电活动强度可用该地区的雷暴日或雷暴小时来表示。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5555,8 +6026,11 @@
   {
     "type": "judge",
     "content": "当导线受到雷击出现冲击电晕以后，它与其它导线间的耦合系数将增大。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5566,8 +6040,11 @@
   {
     "type": "judge",
     "content": "压比越大，表明通过冲击大电流时的残压越低，MOA的保护性能越好",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5577,8 +6054,11 @@
   {
     "type": "judge",
     "content": "弧光接地过电压多存在于中性点不接地系统中",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5588,8 +6068,11 @@
   {
     "type": "judge",
     "content": "电弧接地过电压属于操作过电压。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5599,8 +6082,11 @@
   {
     "type": "judge",
     "content": "避雷器到变压器的最大允许距离随变压器多次截波耐压值与避雷器残压的差值增大而增大。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5610,8 +6096,11 @@
   {
     "type": "judge",
     "content": "220 kV及以下的线路和变电所的绝缘，按外部过电压选择时应以阀型避雷器的残压为基础。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5621,8 +6110,11 @@
   {
     "type": "judge",
     "content": "绝缘的集中性缺陷越严重，出现泄漏电流激增点的电压将越高。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5632,8 +6124,11 @@
   {
     "type": "judge",
     "content": "当直流电压加与被试设备时，其充电电流（几何电流和吸收电流）随时间的减少而逐渐衰减至零，而漏导电流则保持不变。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5643,8 +6138,11 @@
   {
     "type": "judge",
     "content": "但当绝缘受潮以后，泄漏电流随外施电压下降很大",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5654,8 +6152,11 @@
   {
     "type": "judge",
     "content": "泄漏电流测量中所用的电源一般均由高压整流设备供给，并用兆欧表直接读取泄漏电流。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5665,8 +6166,11 @@
   {
     "type": "judge",
     "content": "测量泄漏电流时是对一定电压等级的被试设备施以相应的试验电压，这个试验电压比兆欧表额定电压低得多。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5676,8 +6180,11 @@
   {
     "type": "judge",
     "content": "泄漏电流可由微安表随时监视，灵敏度低。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5687,8 +6194,11 @@
   {
     "type": "judge",
     "content": "根据泄漏电流测量值不可以换算出绝缘电阻值。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5698,8 +6208,11 @@
   {
     "type": "judge",
     "content": "微安表的作用是测量泄漏电流的。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5709,8 +6222,11 @@
   {
     "type": "judge",
     "content": "电击穿过程是以固体电介质中发生碰撞游离为基础的。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5720,8 +6236,11 @@
   {
     "type": "judge",
     "content": "热击穿的特点是：当外施电压作用时间长时，击穿电压下降。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5731,8 +6250,11 @@
   {
     "type": "judge",
     "content": "电化学击穿通常是长期在电压作用下逐步发展而形成的。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5742,8 +6264,11 @@
   {
     "type": "judge",
     "content": "对于多数固体电介质，其击穿电压随电压作用时间的延长而明显地下降。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5753,8 +6278,11 @@
   {
     "type": "judge",
     "content": "在低温区域内，固体电介质的击穿电压随温度的升高几乎不变，而在较高温度下，则随温度的升高击穿电压明显下降。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5764,8 +6292,11 @@
   {
     "type": "judge",
     "content": "在均匀电场中，固体电介质的击穿电压与厚度有直线关系",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5775,8 +6306,11 @@
   {
     "type": "judge",
     "content": "对同一介质，同一电极布置时，其交流、直流、冲击下的击穿电压往往是相同的。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5786,8 +6320,11 @@
   {
     "type": "judge",
     "content": "固体电介质受潮以后,由于水分电导大，损耗大，所以击穿电压也要下降，下降的程度与固体介质的性能无关。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5797,8 +6334,11 @@
   {
     "type": "judge",
     "content": "机械应力可能造成绝缘材料开裂、松散、使击穿电压降低。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5808,8 +6348,11 @@
   {
     "type": "judge",
     "content": "通过精选材料、改善工艺、真空干燥、加强浸渍（油、胶、漆等），以清除固体电介质中残留的杂质、气泡、水分等。可以提高固体击穿电压。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5819,8 +6362,11 @@
   {
     "type": "judge",
     "content": "改善电极形状及表面光洁度，使电场分布均匀可以提高固体击穿电压。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5830,8 +6376,11 @@
   {
     "type": "judge",
     "content": "电介质在电场的长期作用下，其耐电强度逐渐降低的现象称为电老化。电老化主要由介质中的局部放电所引起。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5841,8 +6390,11 @@
   {
     "type": "judge",
     "content": "电介质在热的长期作用下发生化学反应，从而使其电气性能和其他性能逐渐变差，这一现象称为环境老化。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5852,8 +6404,11 @@
   {
     "type": "judge",
     "content": "绝缘从周围环境中吸收的水分、氧气等的作用及环境中各种射线的作用使介质的绝缘性\n能降低的现象称为热老化。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5863,8 +6418,11 @@
   {
     "type": "judge",
     "content": "当雷击线路附近大地时，由于雷电通道周围空间电磁场的急剧变化，会在线路上产生直击雷过电压。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5874,8 +6432,11 @@
   {
     "type": "judge",
     "content": "实际上避雷线是接地的，其电位为零。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5885,8 +6446,11 @@
   {
     "type": "judge",
     "content": "线间距离越近，则耦合系数愈大，导线上感应过电压愈低。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5896,8 +6460,11 @@
   {
     "type": "judge",
     "content": "雷直击于有避雷线线路的情况可分为三种，即雷击杆塔塔顶、雷击避雷线档距中间和雷绕过避雷线击于导线。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5907,8 +6474,11 @@
   {
     "type": "judge",
     "content": "雷击杆塔顶时，雷电流大部分通过被击杆塔进入大地，另一部分流经两侧避雷线通过相邻杆塔入地。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5918,8 +6488,11 @@
   {
     "type": "judge",
     "content": "当雷电流幅值超过该线路允许的耐雷水平时，则绝缘子链将发生闪络。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5929,8 +6502,11 @@
   {
     "type": "judge",
     "content": "减小分流系数 会提高线路的耐雷水平。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5940,8 +6516,11 @@
   {
     "type": "judge",
     "content": "减小杆塔等值电感会提高线路的耐雷水平。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5951,8 +6530,11 @@
   {
     "type": "judge",
     "content": "减小杆塔冲击接地电阻会提高线路的耐雷水平。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5962,8 +6544,11 @@
   {
     "type": "judge",
     "content": "加大导、地线之间的耦合系数 会提高线路的耐雷水平。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5973,8 +6558,11 @@
   {
     "type": "judge",
     "content": "增加线路的绝缘以提高绝缘子链的50％冲击闪络电压会提高线路的耐雷水平。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5984,8 +6572,11 @@
   {
     "type": "judge",
     "content": "雷击输电线路导致跳闸需要具备两个条件，其一是雷电流超过线路的耐雷水平，其二是冲击电弧转化为稳定的工频短路电弧",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -5995,8 +6586,11 @@
   {
     "type": "judge",
     "content": "介质损耗是指介质在直流或交流电压作用下的有功损耗。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6006,8 +6600,11 @@
   {
     "type": "judge",
     "content": "介质损耗会随外施电压的变化而变化。外施电压愈大，流过的电流也愈大，介质损耗就更大。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6017,8 +6614,11 @@
   {
     "type": "judge",
     "content": "电导损耗是与电场频率无关，在直流和交流电压作用下都会发生这种损耗。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6028,8 +6628,11 @@
   {
     "type": "judge",
     "content": "介质损耗会引起介质内部的发热，损耗越大，发热越严重。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6039,8 +6642,11 @@
   {
     "type": "judge",
     "content": "在直流电压的作用下，由于介质中没有周期性的极化过程，因此不存在极化损耗，只有电导损耗和游离损耗。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6050,8 +6656,11 @@
   {
     "type": "judge",
     "content": "用介质损耗P表示介质的好坏是不方便的，因为它与试验电压、被试品尺寸等因素有关，不同的被试品难于相互比较。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6061,8 +6670,11 @@
   {
     "type": "judge",
     "content": "在交流电压的作用下，流过介质的电流由两部分组成;无功电流和有功电流",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6072,8 +6684,11 @@
   {
     "type": "judge",
     "content": "对一定尺寸结构的介质，在一定电压下，介质损耗正切值的大小反映了介质损耗的大小。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6083,8 +6698,11 @@
   {
     "type": "judge",
     "content": "如果绝缘内的缺陷不是集中性的，而是分布性的．则测量介质损耗的方法有时反映就不很灵敏",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6094,8 +6712,11 @@
   {
     "type": "judge",
     "content": "测量介质损耗可采用西林电桥。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6105,8 +6726,11 @@
   {
     "type": "judge",
     "content": "用西林电桥测介质损耗时，常用的接线方式有两种：正接线和负接线。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6116,8 +6740,11 @@
   {
     "type": "judge",
     "content": "测得电容型少油设备，如套管电容比历史数据增大。此时一般存在两种缺陷；其一是设备密封不良，进水受潮。其二是电容型少油设备如套管内部游离放电，烧坏部分绝缘层的绝缘。导致电极间的短路。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6127,8 +6754,11 @@
   {
     "type": "judge",
     "content": "极化损耗是由电介质中某些极化形式引起的",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6138,8 +6768,11 @@
   {
     "type": "judge",
     "content": "游离损耗是气体间隙中的电离损耗和液体、固体电介质中的局部放电引起的功率损耗。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6149,8 +6782,11 @@
   {
     "type": "judge",
     "content": "电离损耗就是气体介质在电场的作用下发生游离所造成的损耗。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6160,8 +6796,11 @@
   {
     "type": "judge",
     "content": "在直流电压的作用下，当外施电压较低，不足以引起气体发生游离时，介质中的损耗仅由电导决定。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6171,8 +6810,11 @@
   {
     "type": "judge",
     "content": "气体电介质的极化率是极小的。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6182,8 +6824,11 @@
   {
     "type": "judge",
     "content": "中性液体或中性固体电介质中的极化主要是电子位移极化和离子位移极化，它们是无损的或几乎是无损的。于是，这类介质中的损耗便主要由泄漏电流决定。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6193,8 +6838,11 @@
   {
     "type": "judge",
     "content": "测量三绕组变压器绕组介质损耗时，如果被侧绕组为高压和中压绕组，接地部位该是低压绕组。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6204,8 +6852,11 @@
   {
     "type": "judge",
     "content": "测量三绕组变压器绕组介质损耗时，如果被侧绕组为高压、中压和低压绕组，接地部位该是低压绕组。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6215,8 +6866,11 @@
   {
     "type": "judge",
     "content": "测量双绕组变压器绕组介质损耗时，如果被侧绕组为高压绕组，接地部位该是外壳和低压绕组。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6226,8 +6880,11 @@
   {
     "type": "judge",
     "content": "测量双绕组变压器绕组介质损耗时，如果被侧绕组为低压绕组，接地部位该是外壳和高压绕组。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6237,8 +6894,11 @@
   {
     "type": "judge",
     "content": "测量双绕组变压器绕组介质损耗时，如果被侧绕组为高压和低压绕组，接地部位该是外壳。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6248,8 +6908,11 @@
   {
     "type": "judge",
     "content": "AI-6000自动抗干扰精密介质损耗测量仪特有的45Hz-55Hz自动双变频测量能在50Hz强干扰环境中直接得出50Hz的结果。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6259,8 +6922,11 @@
   {
     "type": "judge",
     "content": "由于杂质小桥的形成带有统计性，因而工程液体电介质的击穿电压有较大的分散性。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6270,8 +6936,11 @@
   {
     "type": "judge",
     "content": "当电场极不均匀时，由于棒电极附近会出现局部放电现象，造成油的扰动，妨碍小桥的形成。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6281,8 +6950,11 @@
   {
     "type": "judge",
     "content": "在冲击电压作用下，由于作用时间极短，液体介质中导电小桥容易形成。",
-    "options": [],
-    "answer": "0.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "B",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6292,8 +6964,11 @@
   {
     "type": "judge",
     "content": "油的纯净度愈高时，改善电场均匀程度，就愈能使工频、直流击穿电压提高。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6303,8 +6978,11 @@
   {
     "type": "judge",
     "content": "在品质较差的油中，改善电场均匀程度的好处并不显著，因杂质的影响能使电场畸变。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6314,8 +6992,11 @@
   {
     "type": "judge",
     "content": "在冲击电压作用下，由于油中杂质的作用减弱，改善了电场，能提高其击穿电压。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6325,8 +7006,11 @@
   {
     "type": "judge",
     "content": "因为在油中杂质的聚集、介质发热等需要较长时间，故油间隙的击穿电压随电压作用的时间增大而下降。",
-    "options": [],
-    "answer": "1.0",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "A",
     "explanation": "",
     "knowledgePoints": [
       "高电压技术"
@@ -6468,7 +7152,9 @@
   {
     "type": "single",
     "content": "分析绝缘子发生闪络放电现象的原因是什么?",
-    "options": [],
+    "options": [
+      ""
+    ],
     "answer": "(1)绝缘子表面和瓷裙内落有污秽，受潮以后耐压强度降低，绝缘子表面形成放电回路，使泄漏电流增大，当达到一定值时，造成表面击穿放电。(2)绝缘子表面落有污秽虽然很小，但由于电力系统中发生某种过电压，在过电压的作用下使绝缘子表面闪络放电。处理方法是：绝缘子发生闪络放电后，绝缘子表面绝缘性能下降很大，应立即更换，并对未闪络放电绝缘子进行清洁处理",
     "explanation": "",
     "knowledgePoints": [
@@ -6479,7 +7165,9 @@
   {
     "type": "single",
     "content": "试述交流耐压试验步骤",
-    "options": [],
+    "options": [
+      ""
+    ],
     "answer": "1、应对试验现场设好围栏，挂好标志牌，并派专人监视2、试验前应将被试设备的表面擦试干净3、调整保护球隙，使其放电电压为试验电压的110%－120%，试验三次，应无明显差别，检查过流保护装置动作的可靠性4、按试验接线图接好线后，检查调压器是否在零位，应从零开始升压5、升压至试验电压后，加压一分种。6、加压后，缓慢降低电压7、试验结束后，要先放电，再拆线",
     "explanation": "",
     "knowledgePoints": [
@@ -6490,7 +7178,9 @@
   {
     "type": "single",
     "content": "什么是接地？接地有哪些类型？各有何用途？",
-    "options": [],
+    "options": [
+      ""
+    ],
     "answer": "接地就是指将电力系统中电气装置和设施的某些导电部分，经接地线连接至接地极。接地按用途可分为工作接地、保护接地、防雷接地和静电接地四种。工作接地。电力系统电气装置中，为运行需要所设的接地，如中性点的直接接地、中性点经消弧线圈、电阻接地，又称系统接地。保护接地。电气装置的金属外壳、配电装置的构架和线路杆塔等，由于绝缘损坏有可能带电，为防止其危及人身和设备的安全而设的接地。防雷接地。为雷电保护装置（避雷针、避雷线和避雷器等）向大地泄放雷电流而设的接地，也称为雷电保护接地。防静电接地。为防止静电对易燃油、天然气贮罐、氢气贮罐和管道等的危险作用而设的接地",
     "explanation": "",
     "knowledgePoints": [
@@ -6501,7 +7191,9 @@
   {
     "type": "single",
     "content": "试综述输电线路的防雷措施。",
-    "options": [],
+    "options": [
+      ""
+    ],
     "answer": "一、架设避雷线\n二、加强线路绝缘。\n三、耦合地埋线\n四、采用不平衡绝缘方式\n五、采用消弧线圈接地方式\n六、装设自动重合闸\n七、安装线路避雷器\n八、降低杆塔接地电阻\n九、架设耦合地线。\n十、预放电棒与负角保护针",
     "explanation": "",
     "knowledgePoints": [
