@@ -44,7 +44,7 @@ export async function createAccount(name: string, password: string): Promise<Acc
   };
 
   const { error } = await supabase.from('profiles').insert(account);
-  if (error) throw new Error(error.message);
+  if (error) throw new Error('注册失败: ' + (error.message || JSON.stringify(error)));
 
   // 本地缓存登录状态
   localStorage.setItem('current_account', JSON.stringify(account));
