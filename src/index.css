@@ -94,6 +94,45 @@ body {
 }
 .animate-float { animation: float 3s ease-in-out infinite; }
 
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-12px) rotate(5deg); }
+  66% { transform: translateY(4px) rotate(-3deg); }
+}
+.animate-float-slow { animation: float-slow 5s ease-in-out infinite; }
+
+@keyframes float-fast {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-8px) scale(1.08); }
+}
+.animate-float-fast { animation: float-fast 2s ease-in-out infinite; }
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-10px); }
+  50% { transform: translateY(-3px); }
+  75% { transform: translateY(-8px); }
+}
+.animate-bob { animation: bob 4s ease-in-out infinite; }
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-8deg) translateY(0); }
+  50% { transform: rotate(8deg) translateY(-5px); }
+}
+.animate-sway { animation: sway 4s ease-in-out infinite; }
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow { animation: spin-slow 20s linear infinite; }
+
+@keyframes pulse-green {
+  0%, 100% { opacity: 0.08; }
+  50% { opacity: 0.18; }
+}
+.animate-pulse-green { animation: pulse-green 3s ease-in-out infinite; }
+
 @keyframes wiggle {
   0%, 100% { transform: rotate(0deg); }
   25% { transform: rotate(-3deg); }

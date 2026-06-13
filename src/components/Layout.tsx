@@ -17,18 +17,28 @@ const tabs: { id: TabId; label: string; icon: React.ReactNode }[] = [
   { id: 'exam', label: '考试', icon: <FiAward size={22} /> },
 ];
 
-// 背景装饰苹果
+// 背景装饰苹果（大小参差，各有动画）
 const bgApples = [
-  { top: '5%', left: '3%', size: 28, delay: 0, emoji: '🍏', rot: -15 },
-  { top: '12%', right: '5%', size: 22, delay: 2, emoji: '🍎', rot: 20 },
-  { top: '25%', left: '8%', size: 18, delay: 4, emoji: '🍏', rot: 10 },
-  { top: '40%', right: '3%', size: 30, delay: 1, emoji: '🍏', rot: -25 },
-  { top: '55%', left: '2%', size: 24, delay: 3, emoji: '🍎', rot: 15 },
-  { top: '70%', right: '7%', size: 20, delay: 5, emoji: '🍏', rot: -10 },
-  { top: '85%', left: '6%', size: 26, delay: 2, emoji: '🍏', rot: 30 },
-  { top: '15%', left: '45%', size: 16, delay: 6, emoji: '🍎', rot: -5 },
-  { top: '60%', left: '50%', size: 15, delay: 3, emoji: '🍏', rot: 20 },
-  { top: '90%', right: '40%', size: 18, delay: 1, emoji: '🍏', rot: -20 },
+  { top: '2%', left: '2%', size: 55, anim: 'animate-float-slow', emoji: '🍏', op: 0.06 },
+  { top: '8%', right: '8%', size: 18, anim: 'animate-bob', emoji: '🍎', op: 0.10 },
+  { top: '15%', left: '12%', size: 35, anim: 'animate-float-fast', emoji: '🍏', op: 0.08 },
+  { top: '20%', right: '3%', size: 48, anim: 'animate-sway', emoji: '🍏', op: 0.05 },
+  { top: '28%', left: '3%', size: 14, anim: 'animate-float', emoji: '🍎', op: 0.12 },
+  { top: '35%', right: '15%', size: 28, anim: 'animate-bob', emoji: '🍏', op: 0.09 },
+  { top: '40%', left: '55%', size: 12, anim: 'animate-float-fast', emoji: '🍎', op: 0.11 },
+  { top: '48%', left: '2%', size: 60, anim: 'animate-float-slow', emoji: '🍏', op: 0.04 },
+  { top: '52%', right: '5%', size: 22, anim: 'animate-sway', emoji: '🍏', op: 0.10 },
+  { top: '58%', left: '8%', size: 42, anim: 'animate-bob', emoji: '🍎', op: 0.07 },
+  { top: '65%', right: '12%', size: 16, anim: 'animate-float', emoji: '🍏', op: 0.12 },
+  { top: '70%', left: '70%', size: 10, anim: 'animate-float-fast', emoji: '🍎', op: 0.13 },
+  { top: '75%', left: '3%', size: 32, anim: 'animate-sway', emoji: '🍏', op: 0.08 },
+  { top: '82%', right: '3%', size: 25, anim: 'animate-bob', emoji: '🍏', op: 0.09 },
+  { top: '88%', left: '45%', size: 38, anim: 'animate-float-slow', emoji: '🍎', op: 0.06 },
+  { top: '92%', right: '50%', size: 15, anim: 'animate-float', emoji: '🍏', op: 0.11 },
+  { top: '10%', left: '35%', size: 20, anim: 'animate-float-fast', emoji: '🍏', op: 0.10 },
+  { top: '33%', left: '80%', size: 11, anim: 'animate-bob', emoji: '🍎', op: 0.13 },
+  { top: '62%', left: '30%', size: 45, anim: 'animate-float-slow', emoji: '🍏', op: 0.05 },
+  { top: '95%', left: '15%', size: 18, anim: 'animate-sway', emoji: '🍎', op: 0.10 },
 ];
 
 export default function Layout({ activeTab, onTabChange, children }: LayoutProps) {
@@ -108,12 +118,14 @@ export default function Layout({ activeTab, onTabChange, children }: LayoutProps
         {bgApples.map((a, i) => (
           <span
             key={i}
-            className="absolute opacity-[0.12] animate-float select-none"
+            className={`absolute select-none ${a.anim}`}
             style={{
-              top: a.top, left: a.left, right: a.right,
+              top: a.top,
+              left: a.left,
+              right: a.right,
               fontSize: `${a.size}px`,
-              animationDelay: `${a.delay}s`,
-              transform: `rotate(${a.rot}deg)`,
+              opacity: a.op,
+              animationDelay: `${(i * 0.7) % 4}s`,
             }}
           >
             {a.emoji}
