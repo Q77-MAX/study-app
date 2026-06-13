@@ -185,8 +185,8 @@ export default function ExamMode() {
               className="w-full accent-apple-500" />
           </div>
 
-          {/* 智能分配预览 */}
-          {enabledTypes.size > 0 && (
+          {/* 智能分配预览（仅多题型时显示） */}
+          {enabledTypes.size > 1 && (
             <div className="p-4 rounded-2xl" style={{ background: '#fafdf6', border: '2px solid #e8f5e0' }}>
               <div className="flex items-center justify-between mb-2">
                 <p className="text-sm font-medium text-gray-600">📊 智能分配</p>
