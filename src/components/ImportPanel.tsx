@@ -183,9 +183,16 @@ export default function ImportPanel() {
       />
       <PresetBankImport
         label="高电压技术题库"
-        desc="500 道题 · 单选180 多选80 判断228 简答12"
+        desc="500 道题 · 单选176 多选80 判断228 简答16"
         bankName="高电压技术"
         fileName="questions_gaodianya.json"
+        onDone={() => { setImported(false); }}
+      />
+      <PresetBankImport
+        label="高电压技术（期末考试版）"
+        desc="326 道题 · 单选106 多选54 判断156 简答10"
+        bankName="高电压技术（期末）"
+        fileName="questions_gaodianya_final.json"
         onDone={() => { setImported(false); }}
       />
 
