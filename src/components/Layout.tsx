@@ -123,7 +123,7 @@ export default function Layout({ activeTab, onTabChange, children }: LayoutProps
   };
 
   return (
-    <div className="min-h-screen flex flex-col relative" style={{ background: 'linear-gradient(180deg, #d9eec0 0%, #e8f5d0 15%, #f5fae8 35%, #fafdf2 100%)' }}>
+    <div className="min-h-screen flex flex-col relative" style={{ background: 'linear-gradient(180deg, #f2fde4 0%, #fafdf6 15%, #fff 35%, #fff 100%)' }}>
       {/* 🍏🍎🍏 背景装饰苹果 */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
         {/* 大苹果：可交互，到处漂泊 */}

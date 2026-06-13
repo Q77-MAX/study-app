@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
-/* ============ 🍏 青苹果主题变量（深色版）============ */
+/* ============ 🍏 青苹果主题变量 ============ */
 @theme {
-  --color-apple-50: #e8f5d0;
-  --color-apple-100: #d4eda8;
-  --color-apple-200: #b8e580;
-  --color-apple-300: #8fd84e;
-  --color-apple-400: #6dc82a;
-  --color-apple-500: #4ea80e;
-  --color-apple-600: #3d8a0b;
-  --color-apple-700: #2e6b08;
-  --color-apple-800: #25520a;
-  --color-apple-900: #1e3f09;
-  --color-apple-950: #0f2403;
+  --color-apple-50: #f2fde4;
+  --color-apple-100: #dff9c8;
+  --color-apple-200: #c2f39e;
+  --color-apple-300: #9ae869;
+  --color-apple-400: #7ad93f;
+  --color-apple-500: #5cb818;
+  --color-apple-600: #4a9b10;
+  --color-apple-700: #387612;
+  --color-apple-800: #305e15;
+  --color-apple-900: #2a4f17;
+  --color-apple-950: #122b07;
 }
 
 /* 全局样式 */
@@ -31,7 +31,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overscroll-behavior: none;
-  background: linear-gradient(180deg, #d9eec0 0%, #e8f5d0 30%, #f5fae8 100%);
+  background: linear-gradient(180deg, #f2fde4 0%, #fafdf6 30%, #fff 100%);
   background-attachment: fixed;
 }
 
