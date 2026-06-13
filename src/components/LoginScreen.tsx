@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getAllAccounts, createAccount, loginAccount, deleteAccount, getCurrentAccount, exportAccountData, importAccountData, type Account } from '../store/accounts';
+import { getAllAccounts, createAccount, loginAccount, deleteAccount, getCurrentAccount, exportAccountData, importAccountData, getInviteCode, type Account } from '../store/accounts';
 import { setDBAccount } from '../store/db';
 
 interface LoginScreenProps {
@@ -10,16 +10,19 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
   const [mode, setMode] = useState<'login' | 'register'>('login');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
+  const [inviteCode, setInviteCode] = useState('');
   const [accounts, setAccounts] = useState<Account[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [importMode, setImportMode] = useState(false);
+  const [hasAccounts, setHasAccounts] = useState(false);
 
   useEffect(() => { loadAccounts(); }, []);
 
   const loadAccounts = async () => {
     const list = await getAllAccounts();
     setAccounts(list);
+    setHasAccounts(list.length > 0);
     // 自动登录上次账号
     const current = await getCurrentAccount();
     if (current) {
@@ -45,6 +48,12 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
   const handleRegister = async () => {
     if (!name.trim() || !password.trim()) { setError('请填写用户名和密码'); return; }
     if (password.length < 3) { setError('密码至少3位'); return; }
+    // 如果已有账号（非首个），需要邀请码
+    if (hasAccounts) {
+      const code = await getInviteCode();
+      if (!code) { setError('请联系管理员获取邀请码'); return; }
+      if (inviteCode.trim() !== code) { setError('邀请码错误'); return; }
+    }
     setLoading(true); setError(null);
     try {
       const account = await createAccount(name.trim(), password);
@@ -158,8 +167,12 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
             placeholder="用户名" className="input-apple w-full" />
 
           <input value={password} onChange={e => setPassword(e.target.value)}
-            type="password" placeholder="密码" className="input-apple w-full"
-            onKeyDown={e => e.key === 'Enter' && (mode === 'login' ? handleLogin() : handleRegister())} />
+            type="password" placeholder="密码" className="input-apple w-full" />
+
+          {mode === 'register' && hasAccounts && (
+            <input value={inviteCode} onChange={e => setInviteCode(e.target.value)}
+              type="text" placeholder="🔑 邀请码（向管理员索取）" className="input-apple w-full" />
+          )}
 
           {error && <p className="text-sm text-red-500 text-center">🍎 {error}</p>}
 

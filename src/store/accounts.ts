@@ -86,6 +86,23 @@ export async function getCurrentAccount(): Promise<Account | null> {
   return (await accountDB.accounts.get(id)) || null;
 }
 
+// ============ 邀请码 ============
+
+export async function getInviteCode(): Promise<string | null> {
+  const row = await accountDB.currentAccount.get('invite_code');
+  return row?.value || null;
+}
+
+export async function setInviteCode(code: string): Promise<void> {
+  await accountDB.currentAccount.put({ key: 'invite_code', value: code });
+}
+
+// 第一个注册的是管理员
+export async function isAdmin(accountId: string): Promise<boolean> {
+  const all = await accountDB.accounts.orderBy('createdAt').toArray();
+  return all.length > 0 && all[0].id === accountId;
+}
+
 // 导出当前账号数据
 export async function exportAccountData(accountId: string, accountName: string): Promise<void> {
   const dbName = `StudyAppDB_${accountId}`;
