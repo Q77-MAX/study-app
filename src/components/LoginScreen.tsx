@@ -17,6 +17,15 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
 
   useEffect(() => {
     getAllAccounts().then(list => setHasAccounts(list.length > 0));
+    // 自动登录
+    const saved = localStorage.getItem('current_account');
+    if (saved) {
+      try {
+        const acct = JSON.parse(saved);
+        setDBAccount(acct.id);
+        onLogin(acct);
+      } catch {}
+    }
   }, []);
 
   const handleLogin = async () => {
