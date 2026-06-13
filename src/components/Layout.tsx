@@ -34,7 +34,6 @@ const bgApples = [
 export default function Layout({ activeTab, onTabChange, children }: LayoutProps) {
   const [showSettings, setShowSettings] = useState(false);
   const [installPrompt, setInstallPrompt] = useState<any>(null);
-  const [showInstallBanner, setShowInstallBanner] = useState(true);
   const [pwaDebug, setPwaDebug] = useState<string[]>([]);
 
   // PWA 安装事件监听
@@ -71,7 +70,6 @@ export default function Layout({ activeTab, onTabChange, children }: LayoutProps
       logs.push('✅ App 已安装');
       setPwaDebug([...logs]);
       setInstallPrompt(null);
-      setShowInstallBanner(false);
     };
 
     window.addEventListener('beforeinstallprompt', onInstall);
@@ -100,7 +98,6 @@ export default function Layout({ activeTab, onTabChange, children }: LayoutProps
     const result = await installPrompt.userChoice;
     if (result.outcome === 'accepted') {
       setInstallPrompt(null);
-      setShowInstallBanner(false);
     }
   };
 
@@ -153,28 +150,14 @@ export default function Layout({ activeTab, onTabChange, children }: LayoutProps
         </div>
       </header>
 
-      {/* PWA 安装横幅（备用，当 beforeinstallprompt 未触发时显示指引） */}
-      {showInstallBanner && !installPrompt && (
-        <div className="sticky top-14 z-30 px-4 py-2.5 text-center text-sm animate-fadeIn"
-          style={{ background: 'linear-gradient(90deg, #5cb818, #9ae869)', color: 'white' }}>
-          <p className="flex items-center justify-center gap-2 flex-wrap">
-            🍏 点击右上角 <span className="font-bold">⋮</span> → <span className="font-bold">添加到主屏幕</span>
-            <button onClick={() => setShowInstallBanner(false)} className="ml-2 opacity-70 hover:opacity-100 text-lg leading-none">×</button>
-          </p>
-        </div>
-      )}
-
-      {/* PWA 调试信息（开发时可见） */}
-      {pwaDebug.length > 0 && (
-        <div className="sticky top-14 z-30 px-3 py-1.5 text-xs bg-yellow-50 border-b border-yellow-200 text-yellow-800 font-mono">
-          {pwaDebug.map((log, i) => (
-            <div key={i}>{log}</div>
-          ))}
-        </div>
-      )}
-
       {/* 主内容区 */}
       <main className="flex-1 max-w-lg mx-auto w-full px-4 pb-24 pt-4 overflow-y-auto relative z-10">
+        {/* PWA 安装卡片（放在内容区最顶部，确保可见） */}
+        <PwaInstallCard
+          installPrompt={installPrompt}
+          onInstall={handleInstall}
+          debugLines={pwaDebug}
+        />
         {children}
       </main>
 
@@ -382,6 +365,57 @@ function SettingsModal({ onClose }: { onClose: () => void }) {
           className="w-full py-2.5 text-gray-400 text-sm hover:text-gray-600 transition-colors rounded-xl hover:bg-gray-50">
           取消
         </button>
+      </div>
+    </div>
+  );
+}
+
+// ============ 📲 PWA 安装提示卡片 ============
+
+function PwaInstallCard({ installPrompt, onInstall, debugLines }: {
+  installPrompt: any;
+  onInstall: () => void;
+  debugLines: string[];
+}) {
+  return (
+    <div className="mb-4 space-y-3">
+      {/* 有 beforeinstallprompt → 显示安装按钮 */}
+      {installPrompt && (
+        <div className="card-apple p-4 text-center animate-bounceIn">
+          <p className="text-3xl mb-2">🍏</p>
+          <p className="font-bold text-apple-600 mb-1">青苹果刷题可安装！</p>
+          <p className="text-sm text-gray-500 mb-3">添加到桌面，像 App 一样使用</p>
+          <button onClick={onInstall}
+            className="px-6 py-2.5 rounded-full text-white font-bold text-sm animate-pulse"
+            style={{ background: 'linear-gradient(135deg, #5cb818, #387612)' }}>
+            📲 安装到桌面
+          </button>
+        </div>
+      )}
+
+      {/* 没有 beforeinstallprompt → 显示手动指引 */}
+      {!installPrompt && (
+        <div className="card-apple p-4 text-center">
+          <p className="text-2xl mb-1">📱</p>
+          <p className="font-bold text-gray-700 mb-1">添加到主屏幕</p>
+          <p className="text-sm text-gray-500 mb-2">
+            点击 Chrome 地址栏右边的 <span className="font-bold text-apple-600">⋮</span> → 选择 <span className="font-bold text-apple-600">添加到主屏幕</span>
+          </p>
+          <p className="text-xs text-gray-400">
+            (Chrome 图标位置：和网址同一行，最右侧)
+          </p>
+        </div>
+      )}
+
+      {/* 调试信息（始终显示） */}
+      <div className="text-xs p-2 rounded-lg bg-gray-50 border border-gray-200 font-mono text-gray-500">
+        <div>SW支持: {('serviceWorker' in navigator) ? '✅' : '❌'}</div>
+        <div>在线状态: {navigator.onLine ? '✅ 在线' : '❌ 离线'}</div>
+        {debugLines.map((line, i) => (
+          <div key={i}>{line}</div>
+        ))}
+        {debugLines.length === 0 && <div>⏳ 检测中...</div>}
+        <div className="mt-1 text-gray-400">刷新时间: {new Date().toLocaleTimeString()}</div>
       </div>
     </div>
   );
