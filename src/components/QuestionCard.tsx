@@ -158,6 +158,18 @@ export default function QuestionCard({
             <span className="text-sm font-medium" style={{ color: '#387612' }}>
               {questionNumber}/{totalQuestions}
             </span>
+            {state === 'feedback' && (
+              studyMode === 'memorize' && !isCorrect ? (
+                <button onClick={handleNext} className="text-xs px-3 py-1.5 rounded-full font-bold text-white"
+                  style={{ background: 'linear-gradient(135deg, #5cb818, #387612)' }}>
+                  📖 下一题 →
+                </button>
+              ) : (
+                <button onClick={handleNext} className="text-xs px-2 py-1 rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors">
+                  跳过 →
+                </button>
+              )
+            )}
           </div>
           <div className="flex items-center gap-2">
             <button
