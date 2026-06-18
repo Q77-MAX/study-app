@@ -469,6 +469,13 @@ export default function ImportPanel() {
         fileName="questions_gaodianya_final.json"
         onDone={() => { setImported(false); }}
       />
+      <PresetBankImport
+        label="继电保护及其运行与调试"
+        desc="500 道题 · 单选169 多选65 判断156 填空70 简答40"
+        bankName="继电保护及其运行与调试"
+        fileName="questions_jidianbaohu.json"
+        onDone={() => { setImported(false); }}
+      />
 
       {/* 题库管理面板 */}
       {showBanks && (

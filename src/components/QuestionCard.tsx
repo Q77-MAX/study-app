@@ -27,26 +27,75 @@ export default function QuestionCard({
   const [isCorrect, setIsCorrect] = useState(false);
   const [showAI, setShowAI] = useState(false);
   const [timerRunning, setTimerRunning] = useState(true);
+  const multiDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const hasSubmittedRef = useRef(false);
 
-  const handleSubmit = async () => {
-    let answer = question.type === 'fill' || question.type === 'essay' ? fillAnswer : selectedAnswer;
-    if (!answer.trim()) return;
+  // Reset state when question changes
+  useEffect(() => {
+    setState('answering');
+    setSelectedAnswer('');
+    setFillAnswer('');
+    setIsCorrect(false);
+    setTimerRunning(true);
+    hasSubmittedRef.current = false;
+  }, [question.id]);
+
+  const doSubmit = async (answer: string) => {
+    if (hasSubmittedRef.current || !answer.trim()) return;
+    hasSubmittedRef.current = true;
     setTimerRunning(false);
     const result = await onAnswer(answer);
     setIsCorrect(result.isCorrect);
     setState('feedback');
   };
 
-  // 刷题模式：答完0.5秒自动跳下一题（不论对错）
-  // 背题模式：不自动跳转
-  useEffect(() => {
-    if (state === 'feedback' && studyMode === 'practice') {
-      const timer = setTimeout(() => {
-        handleNext();
-      }, 500);
-      return () => clearTimeout(timer);
+  const handleSubmit = () => {
+    const answer = question.type === 'fill' || question.type === 'essay' ? fillAnswer : selectedAnswer;
+    doSubmit(answer);
+  };
+
+  // 自动提交：单选/判断 选中即提交
+  const handleSingleSelect = (letter: string) => {
+    if (state !== 'answering') return;
+    setSelectedAnswer(letter);
+    // 立即自动提交
+    doSubmit(letter);
+  };
+
+  // 自动提交：多选题 选中后延迟提交（等用户选完所有选项）
+  const handleMultiSelect = (letter: string) => {
+    if (state !== 'answering') return;
+    const newAnswer = selectedAnswer.includes(letter)
+      ? selectedAnswer.replace(letter, '')
+      : selectedAnswer + letter;
+    setSelectedAnswer(newAnswer);
+    // 清除旧计时器，启动新的
+    if (multiDebounceRef.current) clearTimeout(multiDebounceRef.current);
+    if (newAnswer.length > 0) {
+      multiDebounceRef.current = setTimeout(() => {
+        doSubmit(newAnswer);
+      }, 1500);
     }
-  }, [state, studyMode]);
+  };
+
+  // Cleanup debounce on unmount
+  useEffect(() => {
+    return () => { if (multiDebounceRef.current) clearTimeout(multiDebounceRef.current); };
+  }, []);
+
+  // 背题模式：答对自动0.5秒跳转，答错手动跳转
+  // 刷题模式：不论对错0.5秒自动跳转
+  useEffect(() => {
+    if (state === 'feedback') {
+      const shouldAutoAdvance = studyMode === 'practice' || (studyMode === 'memorize' && isCorrect);
+      if (shouldAutoAdvance) {
+        const timer = setTimeout(() => {
+          handleNext();
+        }, 500);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [state, studyMode, isCorrect]);
 
   const handleNext = () => {
     if (isLastQuestion) {
@@ -56,15 +105,14 @@ export default function QuestionCard({
       setSelectedAnswer('');
       setFillAnswer('');
       setTimerRunning(true);
+      hasSubmittedRef.current = false;
       onNext();
     }
   };
 
   const handleTimeUp = useCallback(async () => {
-    let answer = selectedAnswer || fillAnswer || '(未作答)';
-    const result = await onAnswer(answer);
-    setIsCorrect(result.isCorrect);
-    setState('feedback');
+    const answer = selectedAnswer || fillAnswer || '(未作答)';
+    doSubmit(answer);
   }, [selectedAnswer, fillAnswer, onAnswer]);
 
   const getTypeLabel = (type: string) => {
@@ -166,9 +214,10 @@ export default function QuestionCard({
                   disabled={state === 'feedback'}
                   onClick={() => {
                     if (question.type === 'multiple') {
-                      setSelectedAnswer(prev => prev.includes(letter) ? prev.replace(letter, '') : prev + letter);
+                      handleMultiSelect(letter);
                     } else {
-                      setSelectedAnswer(letter);
+                      handleSingleSelect(letter);
+                      // 单选题点击后自动提交
                     }
                   }}
                   className="w-full text-left px-4 py-3.5 rounded-2xl transition-all duration-200 disabled:cursor-default hover:shadow-sm"
@@ -198,13 +247,34 @@ export default function QuestionCard({
 
         <div className="px-5 pb-5">
           {state === 'answering' && (
-            <button
-              onClick={handleSubmit}
-              disabled={!selectedAnswer && !fillAnswer}
-              className="w-full py-3.5 btn-apple disabled:opacity-40 disabled:cursor-not-allowed text-base"
-            >
-              🍏 提交答案
-            </button>
+            <>
+              {/* 单选/判断：自动提交，无需按钮 */}
+              {(question.type === 'single' || question.type === 'judge') && (
+                <p className="text-xs text-gray-400 text-center py-2">👆 点击选项自动提交</p>
+              )}
+              {/* 多选题：显示提交按钮（也可等1.5秒自动提交） */}
+              {question.type === 'multiple' && selectedAnswer.length > 0 && (
+                <button
+                  onClick={handleSubmit}
+                  className="w-full py-3 btn-apple text-base"
+                >
+                  🍏 提交答案（{selectedAnswer.length}项已选）
+                </button>
+              )}
+              {question.type === 'multiple' && selectedAnswer.length === 0 && (
+                <p className="text-xs text-gray-400 text-center py-2">👆 点击选项选择，1.5秒后自动提交</p>
+              )}
+              {/* 填空/简答：手动提交 */}
+              {(question.type === 'fill' || question.type === 'essay') && (
+                <button
+                  onClick={handleSubmit}
+                  disabled={!fillAnswer.trim()}
+                  className="w-full py-3.5 btn-apple disabled:opacity-40 disabled:cursor-not-allowed text-base"
+                >
+                  🍏 提交答案
+                </button>
+              )}
+            </>
           )}
 
           {state === 'feedback' && (
@@ -223,18 +293,26 @@ export default function QuestionCard({
                     正确答案：<span className="font-bold text-base">{question.answer}</span>
                   </p>
                 )}
-                {studyMode === 'practice' && (
+                {/* 刷题模式 或 背题模式答对 → 自动跳转提示 */}
+                {(studyMode === 'practice' || (studyMode === 'memorize' && isCorrect)) && (
                   <p className="text-xs text-gray-400 mt-1">⏳ 0.5秒后自动跳下一题...</p>
                 )}
-                {studyMode === 'memorize' && question.explanation && (
+                {/* 背题模式 + 答错 → 显示解析 */}
+                {studyMode === 'memorize' && !isCorrect && question.explanation && (
+                  <p className="text-sm text-gray-600 mt-3 leading-relaxed p-3 rounded-xl" style={{ background: 'rgba(255,255,255,0.6)' }}>
+                    💡 {question.explanation}
+                  </p>
+                )}
+                {/* 背题模式 + 答对 + 有解析也显示 */}
+                {studyMode === 'memorize' && isCorrect && question.explanation && (
                   <p className="text-sm text-gray-600 mt-3 leading-relaxed p-3 rounded-xl" style={{ background: 'rgba(255,255,255,0.6)' }}>
                     💡 {question.explanation}
                   </p>
                 )}
               </div>
 
-              {/* 按钮固定在底部——位置永远不变 */}
-              {studyMode === 'practice' ? (
+              {/* 底部按钮 */}
+              {(studyMode === 'practice' || (studyMode === 'memorize' && isCorrect)) ? (
                 <button
                   onClick={handleNext}
                   className="w-full py-2.5 text-sm text-gray-400 hover:text-gray-600 transition-colors"
