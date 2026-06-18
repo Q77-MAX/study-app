@@ -21,57 +21,279 @@ export default function ImportPanel() {
   useEffect(() => { loadBanks(); }, []);
   const loadBanks = async () => setBanks(await getAllBanks());
 
-  // ============ 本地解析（不用AI）============
+  // ============ 本地解析（智能增强版）============
   const localParse = (text: string): Partial<Question>[] => {
     // 先试试 JSON
     try {
-      const parsed = JSON.parse(text.trim());
-      if (Array.isArray(parsed) && parsed.length > 0 && parsed[0].content) return parsed;
+      const trimmed = text.trim();
+      if (trimmed.startsWith('[') || trimmed.startsWith('{')) {
+        const parsed = JSON.parse(trimmed);
+        if (Array.isArray(parsed) && parsed.length > 0 && parsed[0].content) return parsed;
+        if (parsed.content && Array.isArray(parsed.options)) return [parsed];
+      }
     } catch {}
 
-    // 尝试按行解析常见题库格式
-    const lines = text.split(/\n/).map(l => l.trim()).filter(l => l.length > 5);
+    // 检测 CSV/TSV 格式（逗号或 Tab 分隔的表格数据）
+    const firstLine = text.trim().split('\n')[0] || '';
+    const commas = (firstLine.match(/,/g) || []).length;
+    const tabs = (firstLine.match(/\t/g) || []).length;
+    if ((commas >= 2 || tabs >= 2) && firstLine.length < 500) {
+      const delimiter = tabs > commas ? '\t' : ',';
+      const csvQuestions = parseCSV(text, delimiter);
+      if (csvQuestions.length > 0) return csvQuestions;
+    }
+
+    // 预处理：清理 HTML 标签、PDF 乱码
+    let cleaned = text
+      .replace(/<br\s*\/?>/gi, '\n')
+      .replace(/<[^>]+>/g, '')
+      .replace(/\r\n/g, '\n')
+      .replace(/\r/g, '\n')
+      .replace(/[ \t]+/g, ' ')  // 合并连续空格
+      .replace(/\n{3,}/g, '\n\n'); // 合并过多空行
+
+    const lines = cleaned.split('\n').map(l => l.trim()).filter(l => l.length > 0);
     const questions: Partial<Question>[] = [];
     let current: Partial<Question> | null = null;
+    let currentChapter = '';
 
-    for (const line of lines) {
-      // 匹配题号开头: "1." "1、" "1）" "(1)" 或 "1 " 开头
-      const qMatch = line.match(/^[\s]*(\d+)[\.、）\)\s]\s*(.+)/);
-      if (qMatch) {
-        if (current && current.content) questions.push(current);
+    // 题型关键词映射
+    const typeKeywords: Record<string, string> = {
+      '单选题': 'single', '单选': 'single', '多项选择题': 'multiple', '多选题': 'multiple', '多选': 'multiple',
+      '判断题': 'judge', '判断': 'judge', '对错题': 'judge',
+      '填空题': 'fill', '填空': 'fill',
+      '简答题': 'essay', '简答': 'essay', '论述题': 'essay', '论述': 'essay', '计算题': 'essay', '计算': 'essay',
+      '问答题': 'essay', '问答': 'essay', '名词解释': 'essay',
+    };
+
+    const flushQuestion = () => {
+      if (current && current.content) {
+        // 自动判断题型（如果还没确定）
+        if (!current.type || current.type === 'single') {
+          current.type = detectType(current);
+        }
+        // 自动补全判断题型选项
+        if (current.type === 'judge' && (!current.options || current.options.length === 0)) {
+          current.options = ['对', '错'];
+        }
+        // 清理答案
+        if (current.answer) {
+          current.answer = cleanAnswer(current.answer, current.type || 'single');
+        }
+        questions.push(current);
+      }
+      current = null;
+    };
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+
+      // ---- 检测章节标题 ----
+      const chMatch = line.match(/^第[一二三四五六七八九十\d]+[章编节][\s\.、:：]*(.+)/);
+      if (chMatch) {
+        currentChapter = `第${chMatch[1]}章`;
+        // 章节标题也作为知识点
+        if (current) {
+          if (!current.knowledgePoints) current.knowledgePoints = [];
+          if (!current.knowledgePoints.includes(currentChapter)) {
+            current.knowledgePoints.push(currentChapter);
+          }
+        }
+        continue;
+      }
+
+      // ---- 检测题型标记行：【单选题】等 ----
+      const typeTag = line.match(/[【\[（\(]\s*(单选题|多选题|判断题|填空题|简答题|论述题|计算题|问答题|名词解释|多项选择题|单选|多选|判断|填空|简答|论述|计算|问答)\s*[】\]）\)]/);
+      if (typeTag) {
+        flushQuestion();
+        const typeStr = typeTag[1];
+        current = { type: typeKeywords[typeStr] || 'single', content: '', options: [], answer: '', explanation: '', knowledgePoints: [], difficulty: 1 };
+        // 题型标记后面可能跟着题目内容
+        const afterTag = line.slice(typeTag[0].length).trim();
+        if (afterTag.length > 3) {
+          current.content = afterTag;
+        }
+        continue;
+      }
+
+      // ---- 检测题号开头 ----
+      // 数字编号: "1." "1、" "1）" "(1)" "1 " "1)" "1." 等
+      let qMatch = line.match(/^[\s]*(\d+)[\.、）\)\s]\s*(.+)/);
+      // 中文数字: "一、" "二、" "三、"
+      if (!qMatch) {
+        const cnNumMap: Record<string, number> = { '一':1,'二':2,'三':3,'四':4,'五':5,'六':6,'七':7,'八':8,'九':9,'十':10 };
+        qMatch = line.match(/^[\s]*(一|二|三|四|五|六|七|八|九|十)[\.、）\)\s]\s*(.+)/);
+        if (qMatch) qMatch[1] = String(cnNumMap[qMatch[1]] || 0);
+      }
+      // "第X题" 格式
+      if (!qMatch) {
+        qMatch = line.match(/^第\s*(\d+)\s*题[\.、:：\s]*(.+)/);
+      }
+      // "Question X" / "Q1" 格式
+      if (!qMatch) {
+        qMatch = line.match(/^(?:Question|Q)\s*(\d+)[\.、:：\s]+(.+)/i);
+      }
+
+      if (qMatch && parseInt(qMatch[1]) > 0) {
+        flushQuestion();
         current = { type: 'single', content: qMatch[2], options: [], answer: '', explanation: '', knowledgePoints: [], difficulty: 1 };
+        if (currentChapter) current.knowledgePoints = [currentChapter];
+        // 题目内容中的题型标记
+        for (const [kw, t] of Object.entries(typeKeywords)) {
+          if (qMatch[2].includes(kw)) {
+            current.type = t;
+            current.content = qMatch[2].replace(new RegExp(`[【\\[（\\(]?\\s*${kw}\\s*[】\\]）\\)]?`, 'g'), '').trim();
+            break;
+          }
+        }
         continue;
       }
-      // 匹配选项: "A." "A、" "A）" "A " 开头
-      const optMatch = line.match(/^[\s]*([A-H])[\.、）\)\s]\s*(.+)/);
-      if (optMatch && current) {
-        current.options = [...(current.options || []), optMatch[2]];
+
+      // ---- 无编号题目（空行分隔/长文本行开头）----
+      if (!current && line.length > 8 && !line.match(/^[A-Ha-h][\.、）\)\s]/) && !line.match(/^(答案|正确答案|参考答案|解析|说明|知识点|章节|考点|来源|所属)/)) {
+        // 可能是无编号的题目
+        current = { type: 'single', content: line, options: [], answer: '', explanation: '', knowledgePoints: [], difficulty: 1 };
+        if (currentChapter) current.knowledgePoints = [currentChapter];
+        // 检查是否包含题型关键词
+        for (const [kw, t] of Object.entries(typeKeywords)) {
+          if (line.includes(kw)) {
+            current.type = t;
+            break;
+          }
+        }
         continue;
       }
-      // 匹配答案: "答案：C" "答案:C" "正确答案C"
-      const ansMatch = line.match(/(?:答案|正确答案)[：:\s]*([A-H]+)/i);
-      if (ansMatch && current) {
-        current.answer = ansMatch[1].toUpperCase();
+
+      if (!current) continue;
+
+      // ---- 检测选项 ----
+      // 字母选项: "A." "A、" "A）" "A) " "(A)" 等
+      const optMatch = line.match(/^[\s]*[\(（]?([A-Ha-h])[\)）\.、\s]\s*(.+)/);
+      // 数字选项: "①" "②" 等
+      const numOptMatch = line.match(/^[\s]*(①|②|③|④|⑤|⑥|⑦|⑧)[\.、\s]*(.+)/);
+      if (optMatch || numOptMatch) {
+        const optText = optMatch ? optMatch[2] : numOptMatch![2];
+        current.options = [...(current.options || []), optText.trim()];
+        // 检测判断题型（选项含对/错/正确/错误）
+        if (current.type === 'single') {
+          const allOpts = current.options.map(o => o.replace(/^[对错是]+\s*[.、]?\s*/, '').trim());
+          if (allOpts.length <= 4 && allOpts.some(o => /^(对|错|正确|错误|是|否|√|×|✓|✗)$/.test(o))) {
+            current.type = 'judge';
+          }
+        }
         continue;
       }
-      // 匹配解析
-      const expMatch = line.match(/(?:解析|说明)[：:\s]*(.+)/);
-      if (expMatch && current) {
-        current.explanation = expMatch[1];
-        continue;
+
+      // 选项在同一行用分号分隔（无字母前缀）
+      const inlineOpts = line.match(/^[\s]*(.+[；;].+[；;].+)/);
+      if (inlineOpts && current && (!current.options || current.options.length === 0) && line.length > 10 && line.length < 200) {
+        const parts = line.split(/[；;]/).map(o => o.trim()).filter(o => o.length > 0);
+        if (parts.length >= 3 && parts.length <= 8) {
+          current.options = parts;
+          continue;
+        }
       }
-      // 匹配知识点
-      const kpMatch = line.match(/(?:知识点|章节|考点)[：:\s]*(.+)/);
-      if (kpMatch && current) {
-        current.knowledgePoints = kpMatch[1].split(/[,，、]/).map(k => k.trim()).filter(Boolean);
-        continue;
+
+      // ---- 检测答案 ----
+      const ansPatterns = [
+        /(?:答案|正确答案|参考答案)[：:\s=]*([A-H]+[对错是是否√×✓✗]*)/i,
+        /【答案】[：:\s]*([A-H]+[对错是是否√×✓✗]*)/,
+        /\[答案\][：:\s]*([A-H]+[对错是是否√×✓✗]*)/,
+        /\*\*答案\*\*[：:\s]*([A-H]+[对错是是否√×✓✗]*)/,
+        /答案[：:\s]*选?\s*([A-H]+)/i,
+      ];
+      for (const pat of ansPatterns) {
+        const ansMatch = line.match(pat);
+        if (ansMatch) {
+          current.answer = ansMatch[1].toUpperCase();
+          break;
+        }
+      }
+      // 行内答案标记: "...（C）" 或 "...选C"
+      if (!current.answer) {
+        const inlineAns = line.match(/[（\(]\s*([A-H]+)\s*[）\)]/);
+        if (inlineAns && line.length < 80) {
+          current.answer = inlineAns[1].toUpperCase();
+        }
+      }
+
+      // ---- 检测解析 ----
+      const expPatterns = [
+        /(?:解析|说明|【解析】|【说明】|\[解析\])\s*[：:\s]*(.+)/,
+        /^>\s*解析[：:\s]*(.+)/,
+        /\*\*解析\*\*[：:\s]*(.+)/,
+      ];
+      for (const pat of expPatterns) {
+        const expMatch = line.match(pat);
+        if (expMatch) {
+          current.explanation = (current.explanation ? current.explanation + '\n' : '') + expMatch[1];
+          break;
+        }
+      }
+
+      // ---- 检测知识点 ----
+      const kpPatterns = [
+        /(?:知识点|章节|考点|【知识点】|【考点】|\[知识点\])\s*[：:\s]*(.+)/,
+        /(?:所属章节|来源)[：:\s]*(.+)/,
+      ];
+      for (const pat of kpPatterns) {
+        const kpMatch = line.match(pat);
+        if (kpMatch) {
+          const kps = kpMatch[1].split(/[,，、;；]/).map(k => k.trim()).filter(Boolean);
+          current.knowledgePoints = [...(current.knowledgePoints || []), ...kps];
+          break;
+        }
+      }
+
+      // ---- 检测难度 ----
+      const diffMatch = line.match(/(?:难度|困难度)[：:\s]*(\d+)/);
+      if (diffMatch) {
+        current.difficulty = Math.max(1, Math.min(5, parseInt(diffMatch[1])));
       }
     }
-    if (current && current.content) questions.push(current);
 
-    if (questions.length > 0) return questions;
-    return [];
+    flushQuestion();
+
+    // 后处理：去重、验证
+    return questions.filter(q => q.content && q.content.length > 2);
   };
+
+  /** 自动判断题型 */
+  function detectType(q: Partial<Question>): string {
+    const content = q.content || '';
+    const opts = q.options || [];
+    const ans = (q.answer || '').toUpperCase();
+
+    // 根据答案判断
+    if (ans.length > 1 && /^[A-H]+$/.test(ans)) return 'multiple';
+    if (ans === '对' || ans === '错' || ans === 'A' && opts.length === 2 && /对|错/.test(opts.join(''))) return 'judge';
+    // 根据内容关键词判断
+    if (/多选|多项/.test(content)) return 'multiple';
+    if (/判断|对错/.test(content)) return 'judge';
+    if (/填空|___|__|（\s*）|\(\s*\)/.test(content)) return 'fill';
+    if (/简答|论述|问答|计算|名词解释/.test(content)) return 'essay';
+    // 根据选项判断
+    if (opts.length === 2 && opts.every(o => /^(对|错|正确|错误|是|否|√|×|✓|✗)$/.test(o.replace(/^[A-H][.、]?\s*/, '')))) return 'judge';
+    if (opts.length === 0 && !/[A-H][.、]/.test(content)) return 'essay';
+    return 'single';
+  }
+
+  /** 清理答案格式 */
+  function cleanAnswer(answer: string, type: string): string {
+    let a = answer.trim().toUpperCase();
+    // 判断题型：对/错/√/× → A/B
+    if (type === 'judge') {
+      if (/^(对|正确|是|√|✓|A|T|TRUE)$/i.test(a)) return 'A';
+      if (/^(错|错误|否|×|✗|B|F|FALSE)$/i.test(a)) return 'B';
+      if (a === '对' || a === '正确') return 'A';
+      if (a === '错' || a === '错误') return 'B';
+    }
+    // 多选题：确保答案字母排序
+    if (type === 'multiple' && /^[A-H]+$/.test(a)) {
+      return a.split('').sort().join('');
+    }
+    return a;
+  }
 
   // ============ 核心：智能解析一切内容 ============
   const smartParse = async (rawContent: string, isImage: boolean = false): Promise<Partial<Question>[]> => {
@@ -416,70 +638,258 @@ export default function ImportPanel() {
   );
 }
 
+// ============ CSV/TSV 解析 ============
+
+function parseCSV(text: string, delimiter: string): Partial<Question>[] {
+  const rows = text.trim().split('\n').map(r => {
+    // 处理带引号的字段
+    const result: string[] = [];
+    let current = '';
+    let inQuote = false;
+    for (let i = 0; i < r.length; i++) {
+      const ch = r[i];
+      if (ch === '"') { inQuote = !inQuote; continue; }
+      if (ch === delimiter && !inQuote) { result.push(current.trim()); current = ''; continue; }
+      if (ch === '\t' && delimiter === '\t' && !inQuote) { result.push(current.trim()); current = ''; continue; }
+      current += ch;
+    }
+    result.push(current.trim());
+    return result;
+  });
+
+  if (rows.length < 2) return [];
+
+  const questions: Partial<Question>[] = [];
+  const typeMap: Record<string, string> = {
+    '单选': 'single', '单选题': 'single', '多选': 'multiple', '多选题': 'multiple',
+    '判断': 'judge', '判断题': 'judge', '填空': 'fill', '填空题': 'fill',
+    '简答': 'essay', '简答题': 'essay', '论述': 'essay', '计算': 'essay',
+  };
+
+  // 自动检测列索引
+  const header = rows[0];
+  const colIdx: Record<string, number> = {};
+  header.forEach((h, i) => {
+    const lower = h.toLowerCase().replace(/[【】\[\]（）\(\)\s]/g, '');
+    if (/题目|题干|试题|问题|内容|question/.test(lower)) colIdx.content = i;
+    if (/题型|类型|type/.test(lower)) colIdx.type = i;
+    if (/选项|choices|options/.test(lower)) colIdx.options = i;
+    if (/答案|answer|solution/.test(lower)) colIdx.answer = i;
+    if (/解析|说明|explanation/.test(lower)) colIdx.explanation = i;
+    if (/知识点|章节|考点|knowledge/.test(lower)) colIdx.knowledge = i;
+  });
+
+  // 如果没匹配到表头，用默认顺序
+  if (Object.keys(colIdx).length === 0) {
+    colIdx.content = 0; colIdx.options = 1; colIdx.answer = 2;
+    colIdx.explanation = 3; colIdx.knowledge = 4;
+  }
+
+  for (let r = 1; r < rows.length; r++) {
+    const cells = rows[r];
+    const content = cells[colIdx.content ?? 0] || '';
+    if (!content || content.length < 2) continue;
+    if (/^(合计|总计|备注|说明)/.test(content)) continue;
+
+    let qtype = 'single';
+    const typeStr = cells[colIdx.type ?? -1] || '';
+    for (const [kw, t] of Object.entries(typeMap)) {
+      if (typeStr.includes(kw) || content.includes(kw)) { qtype = t; break; }
+    }
+
+    const optsRaw = cells[colIdx.options ?? 1] || '';
+    let options: string[] = [];
+    if (qtype === 'judge') {
+      options = ['对', '错'];
+    } else if (optsRaw) {
+      options = optsRaw.split(/[；;]/).map(o => o.replace(/^[A-H][\.、）\)\s]*/, '').trim()).filter(Boolean);
+    }
+
+    let answer = cells[colIdx.answer ?? 2] || '';
+    if (qtype === 'judge') {
+      answer = /^[1是A对√✓T]/i.test(answer) ? 'A' : 'B';
+    }
+
+    questions.push({
+      type: qtype as any, content, options, answer: answer.toUpperCase().replace(/[^A-H]/g, ''),
+      explanation: cells[colIdx.explanation ?? 3] || '',
+      knowledgePoints: (cells[colIdx.knowledge ?? 4] || '').split(/[,，、;；]/).filter(Boolean),
+      difficulty: 1,
+    });
+  }
+
+  return questions;
+}
+
 // ============ Excel 直接解析 ============
 
 function parseExcel(wb: XLSX.WorkBook): Partial<Question>[] {
   const questions: Partial<Question>[] = [];
   const sheet = wb.Sheets[wb.SheetNames[0]];
   const rows = XLSX.utils.sheet_to_json<any[]>(sheet, { header: 1, defval: '' });
+  if (!rows || rows.length === 0) return questions;
 
-  // 自动检测表头行和数据起始行
+  // === 列名关键词映射（支持更多变体）===
+  const colPatterns: Record<string, string[]> = {
+    content: ['题目', '题干', '试题', '问题', '内容', '考题', 'question', 'topic', 'content', 'title'],
+    type: ['题型', '类型', '题目类型', '试题类型', 'type', 'category'],
+    options: ['选项', '备选答案', '可选答案', 'choices', 'options', 'selections'],
+    answer: ['答案', '正确答案', '参考答案', '标准答案', 'answer', 'solution', 'key'],
+    explanation: ['解析', '说明', '解释', '解题思路', '讲解', 'analysis', 'explanation', '解析说明'],
+    knowledgePoints: ['知识点', '章节', '考点', '所属章节', '来源', '分类', 'knowledge', 'chapter', 'topic'],
+    difficulty: ['难度', '困难度', 'difficulty', 'level', '等级'],
+  };
+
+  // === 智能表头检测 ===
   let dataStart = 0;
-  for (let r = 0; r < Math.min(10, rows.length); r++) {
-    const row = rows[r];
-    const cells = row.map((c: any) => String(c).trim());
-    const rowStr = cells.join(' ');
-    if (rowStr.includes('题目') || rowStr.includes('内容') || rowStr.includes('题干')) {
+  let colMap: Record<string, number> = {}; // 列名 → 列索引
+
+  for (let r = 0; r < Math.min(15, rows.length); r++) {
+    const cells = rows[r].map((c: any) => String(c).trim());
+    const rowStr = cells.join(' ').toLowerCase();
+
+    // 检查是否匹配多个列关键词
+    let matchCount = 0;
+    const candidateMap: Record<string, number> = {};
+
+    cells.forEach((cell, ci) => {
+      if (!cell) return;
+      const cellLower = cell.toLowerCase().replace(/[【】\[\]（）\(\)\s]/g, '');
+      for (const [field, keywords] of Object.entries(colPatterns)) {
+        for (const kw of keywords) {
+          if (cellLower.includes(kw.toLowerCase())) {
+            candidateMap[field] = ci;
+            matchCount++;
+            break;
+          }
+        }
+      }
+    });
+
+    if (matchCount >= 2) {
+      colMap = candidateMap;
       dataStart = r + 1;
       break;
     }
-    // 第一行数据通常就是题目
-    const firstCell = String(row[0] || '').trim();
-    if (firstCell.length > 5 && r >= 1) { dataStart = r; break; }
+  }
+
+  // 如果没检测到表头，尝试按默认列顺序
+  if (Object.keys(colMap).length === 0) {
+    colMap = { content: 0, options: 1, answer: 2, explanation: 3, knowledgePoints: 4 };
+    // 从第1行开始（跳过可能的标题行）
+    for (let r = 1; r < Math.min(5, rows.length); r++) {
+      const firstCell = String(rows[r]?.[0] || '').trim();
+      if (firstCell.length > 5) { dataStart = r; break; }
+    }
   }
 
   const typeMap: Record<string, string> = {
-    '单选': 'single', '单选题': 'single', '多选': 'multiple', '多选题': 'multiple',
-    '判断': 'judge', '判断题': 'judge', '填空': 'fill', '填空题': 'fill',
+    '单选': 'single', '单选题': 'single',
+    '多选': 'multiple', '多选题': 'multiple', '多项选择题': 'multiple',
+    '判断': 'judge', '判断题': 'judge', '对错题': 'judge',
+    '填空': 'fill', '填空题': 'fill',
     '简答': 'essay', '简答题': 'essay', '论述': 'essay', '论述题': 'essay',
     '问答': 'essay', '问答题': 'essay', '计算': 'essay', '计算题': 'essay',
+    '名词解释': 'essay',
   };
+
+  // === 解析数据行 ===
+  let lastValidRow: any[] | null = null;
 
   for (let r = dataStart; r < rows.length; r++) {
     const row = rows[r];
     if (!row || row.every((c: any) => !String(c).trim())) continue;
 
     const cells = row.map((c: any) => String(c).trim());
-    const firstCell = cells[0] || '';
 
-    // 判断题型
-    let qtype = 'single';
-    for (const [kw, t] of Object.entries(typeMap)) {
-      if (firstCell.includes(kw)) { qtype = t; break; }
+    // 处理合并单元格空值：向下填充
+    for (let ci = 0; ci < Math.min(cells.length, (lastValidRow || []).length); ci++) {
+      if (!cells[ci] && lastValidRow && lastValidRow[ci]) {
+        cells[ci] = lastValidRow[ci];
+      }
     }
+    lastValidRow = [...cells];
 
-    const content = cells[1] || cells[0] || '';
+    // 获取各字段
+    const getCell = (field: string): string => {
+      const idx = colMap[field];
+      return idx !== undefined && idx < cells.length ? cells[idx] : '';
+    };
+
+    let content = getCell('content');
+    // 如果内容列在第一列但没有匹配到表头，用第一列作为内容
+    if (!content && colMap.content === undefined) {
+      content = cells[0] || '';
+    }
     if (!content || content.length < 2) continue;
 
-    // 解析选项（第3列，分号分隔）
-    const optionsRaw = cells[2] || '';
+    // 跳过表尾注释行
+    if (/^(合计|总计|备注|说明|注：|共\d+题|total)/i.test(content)) continue;
+
+    // 判断题型
+    const typeCell = getCell('type');
+    let qtype = 'single';
+    if (typeCell) {
+      for (const [kw, t] of Object.entries(typeMap)) {
+        if (typeCell.includes(kw)) { qtype = t; break; }
+      }
+    }
+    // 从题目内容判断题型
+    if (qtype === 'single') {
+      for (const [kw, t] of Object.entries(typeMap)) {
+        if (content.includes(kw)) { qtype = t; break; }
+      }
+    }
+
+    // 解析选项
+    const optionsRaw = getCell('options');
     let options: string[] = [];
     if (qtype === 'judge') {
       options = ['对', '错'];
     } else if (qtype === 'single' || qtype === 'multiple') {
-      options = optionsRaw.split(/[；;]/).map(o => o.trim()).filter(Boolean);
+      if (optionsRaw) {
+        // 在分号或换行处分割；也处理字母前缀的选项
+        if (/[A-H][\.、）\)]/.test(optionsRaw)) {
+          options = optionsRaw.split(/(?=[A-H][\.、）\)])/).map(o => o.trim()).filter(Boolean);
+        } else {
+          options = optionsRaw.split(/[；;|\n]/).map(o => o.trim()).filter(Boolean);
+        }
+      }
+      // 如果没选项，尝试从后续列收集
+      if (options.length === 0 && !optionsRaw) {
+        // 检查是否有分散在后续列的选项
+        const extraOpts: string[] = [];
+        for (let ci = 2; ci < cells.length && ci < 10; ci++) {
+          const val = cells[ci];
+          if (val && val.length > 0 && val.length < 100 && !/^(答案|解析|知识点)/.test(val)) {
+            extraOpts.push(val.replace(/^[A-H][\.、）\)\s]+/, ''));
+          }
+        }
+        if (extraOpts.length >= 2 || extraOpts.length <= 8) {
+          options = extraOpts;
+        }
+      }
     }
 
     // 答案
-    let answer = cells[3] || '';
+    let answer = getCell('answer');
     if (qtype === 'judge') {
-      answer = answer === '1' || answer === '对' || answer === 'A' ? 'A' : 'B';
+      if (/^[1是A对√✓Ttrue]/i.test(answer) || answer === '对') answer = 'A';
+      else if (/^[0否B错×✗Ffalse]/i.test(answer) || answer === '错') answer = 'B';
+      else answer = 'A'; // 默认
     }
+    answer = answer.toUpperCase().replace(/[^A-H]/g, '');
+
+    // 解析和知识点
+    const explanation = getCell('explanation');
+    const kpRaw = getCell('knowledgePoints');
+    const knowledgePoints = kpRaw ? kpRaw.split(/[,，、;；]/).map(k => k.trim()).filter(Boolean) : [];
+    const diffRaw = getCell('difficulty');
+    const difficulty = diffRaw ? Math.max(1, Math.min(5, parseInt(diffRaw) || 1)) : 1;
 
     questions.push({
-      type: qtype as any, content, options, answer: answer.toUpperCase(),
-      explanation: cells[4] || '', knowledgePoints: [cells[5] || ''].filter(Boolean),
-      difficulty: 1,
+      type: qtype as any, content, options, answer,
+      explanation, knowledgePoints, difficulty,
     });
   }
 

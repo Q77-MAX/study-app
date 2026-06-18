@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { FiSettings } from 'react-icons/fi';
 import WanderingApple from './WanderingApple';
-import { getInviteCode, setInviteCode, getPendingAccounts, approveAccount, rejectAccount, isAdmin } from '../store/accounts';
+import { getInviteCode, setInviteCode, getPendingAccounts, approveAccount, rejectAccount, deleteAccount, isAdmin } from '../store/accounts';
 
 export type TabId = 'practice' | 'import' | 'wrong' | 'stats' | 'exam';
 
@@ -291,6 +291,12 @@ function SettingsModal({ onClose, installPrompt, onInstall, pwaDebug }: {
     loadAdminData();
   };
 
+  const handleDelete = async (id: string, name: string) => {
+    if (!confirm(`确定要删除用户「${name}」吗？\n\n该用户将无法再登录，其本地刷题数据不受影响。`)) return;
+    await deleteAccount(id);
+    loadAdminData();
+  };
+
   const handleSaveInvite = async () => {
     await setInviteCode(invite.trim());
     setInviteSaved(true);
@@ -431,13 +437,25 @@ function SettingsModal({ onClose, installPrompt, onInstall, pwaDebug }: {
               <div className="space-y-1.5 max-h-64 overflow-y-auto">
                 {allUsers.map(u => (
                   <div key={u.id} className="flex items-center justify-between py-1.5 px-2 rounded-lg text-sm bg-white">
-                    <span className="text-gray-700">{u.name}</span>
-                    <span className="text-xs px-2 py-0.5 rounded-full" style={{
-                      background: u.status === 'approved' ? '#f2fde4' : u.status === 'pending' ? '#fff8e1' : '#fff0f0',
-                      color: u.status === 'approved' ? '#387612' : u.status === 'pending' ? '#e67700' : '#cf1322',
-                    }}>
-                      {u.status === 'approved' ? '✅ 已通过' : u.status === 'pending' ? '⏳ 待审核' : '❌ 已拒绝'}
-                    </span>
+                    <span className="text-gray-700">{u.name}{u.is_admin ? ' 👑' : ''}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs px-2 py-0.5 rounded-full" style={{
+                        background: u.status === 'approved' ? '#f2fde4' : u.status === 'pending' ? '#fff8e1' : '#fff0f0',
+                        color: u.status === 'approved' ? '#387612' : u.status === 'pending' ? '#e67700' : '#cf1322',
+                      }}>
+                        {u.status === 'approved' ? '✅ 已通过' : u.status === 'pending' ? '⏳ 待审核' : '❌ 已拒绝'}
+                      </span>
+                      {!u.is_admin && (
+                        <button
+                          onClick={() => handleDelete(u.id, u.name)}
+                          className="text-xs px-2 py-0.5 rounded-full hover:bg-red-50 transition-colors"
+                          style={{ color: '#e03131' }}
+                          title="删除用户"
+                        >
+                          🗑
+                        </button>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>

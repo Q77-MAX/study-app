@@ -13,12 +13,13 @@ interface QuestionCardProps {
   isLastQuestion: boolean;
   timerMinutes: number;
   timerEnabled: boolean;
+  studyMode?: 'practice' | 'memorize';
 }
 
 type CardState = 'answering' | 'feedback' | 'complete';
 
 export default function QuestionCard({
-  question, questionNumber, totalQuestions, onAnswer, onNext, isLastQuestion, timerMinutes, timerEnabled,
+  question, questionNumber, totalQuestions, onAnswer, onNext, isLastQuestion, timerMinutes, timerEnabled, studyMode = 'practice',
 }: QuestionCardProps) {
   const [state, setState] = useState<CardState>('answering');
   const [selectedAnswer, setSelectedAnswer] = useState('');
@@ -36,15 +37,16 @@ export default function QuestionCard({
     setState('feedback');
   };
 
-  // 答完自动跳下一题（不论对错）
+  // 刷题模式：答完0.5秒自动跳下一题（不论对错）
+  // 背题模式：不自动跳转
   useEffect(() => {
-    if (state === 'feedback') {
+    if (state === 'feedback' && studyMode === 'practice') {
       const timer = setTimeout(() => {
         handleNext();
-      }, 1000);
+      }, 500);
       return () => clearTimeout(timer);
     }
-  }, [state]);
+  }, [state, studyMode]);
 
   const handleNext = () => {
     if (isLastQuestion) {
@@ -221,8 +223,10 @@ export default function QuestionCard({
                     正确答案：<span className="font-bold text-base">{question.answer}</span>
                   </p>
                 )}
-                <p className="text-xs text-gray-400 mt-1">⏳ 1秒后自动跳下一题...</p>
-                {question.explanation && (
+                {studyMode === 'practice' && (
+                  <p className="text-xs text-gray-400 mt-1">⏳ 0.5秒后自动跳下一题...</p>
+                )}
+                {studyMode === 'memorize' && question.explanation && (
                   <p className="text-sm text-gray-600 mt-3 leading-relaxed p-3 rounded-xl" style={{ background: 'rgba(255,255,255,0.6)' }}>
                     💡 {question.explanation}
                   </p>
@@ -230,12 +234,21 @@ export default function QuestionCard({
               </div>
 
               {/* 按钮固定在底部——位置永远不变 */}
-              <button
-                onClick={handleNext}
-                className="w-full py-2.5 text-sm text-gray-400 hover:text-gray-600 transition-colors"
-              >
-                跳过等待 →
-              </button>
+              {studyMode === 'practice' ? (
+                <button
+                  onClick={handleNext}
+                  className="w-full py-2.5 text-sm text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  跳过等待 →
+                </button>
+              ) : (
+                <button
+                  onClick={handleNext}
+                  className="w-full py-3.5 btn-apple text-base mt-3"
+                >
+                  📖 下一题
+                </button>
+              )}
             </>
           )}
         </div>

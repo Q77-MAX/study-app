@@ -15,6 +15,7 @@ export default function PracticePanel() {
   const [loading, setLoading] = useState(true);
   const [timerMinutes, setTimerMinutes] = useState(20);
   const [timerEnabled, setTimerEnabled] = useState(false);
+  const [studyMode, setStudyMode] = useState<'practice' | 'memorize'>('practice');
 
   const loadBanks = async () => {
     setLoading(true);
@@ -179,6 +180,37 @@ export default function PracticePanel() {
           )}
         </div>
 
+        {/* 学习模式切换 */}
+        <div className="card-apple p-4 mb-5">
+          <p className="text-sm font-medium text-gray-600 mb-3">📖 学习模式</p>
+          <div className="grid grid-cols-2 gap-3">
+            <button
+              onClick={() => setStudyMode('practice')}
+              className="p-3 rounded-2xl text-center transition-all duration-200"
+              style={{
+                background: studyMode === 'practice' ? '#f2fde4' : '#f5f5f5',
+                border: studyMode === 'practice' ? '2px solid #9ae869' : '2px solid #e5e5e5',
+              }}
+            >
+              <p className="text-xl mb-0.5">🍏</p>
+              <p className="font-bold text-sm" style={{ color: studyMode === 'practice' ? '#387612' : '#999' }}>刷题模式</p>
+              <p className="text-xs text-gray-400 mt-0.5">自动跳转 · 不显示解析</p>
+            </button>
+            <button
+              onClick={() => setStudyMode('memorize')}
+              className="p-3 rounded-2xl text-center transition-all duration-200"
+              style={{
+                background: studyMode === 'memorize' ? '#f2fde4' : '#f5f5f5',
+                border: studyMode === 'memorize' ? '2px solid #9ae869' : '2px solid #e5e5e5',
+              }}
+            >
+              <p className="text-xl mb-0.5">📖</p>
+              <p className="font-bold text-sm" style={{ color: studyMode === 'memorize' ? '#387612' : '#999' }}>背题模式</p>
+              <p className="text-xs text-gray-400 mt-0.5">手动切换 · 显示解析</p>
+            </button>
+          </div>
+        </div>
+
         {/* 题型分类卡片 */}
         <p className="text-sm text-gray-500 mb-3">选择题型开始刷题：</p>
         <div className="space-y-3">
@@ -270,6 +302,7 @@ export default function PracticePanel() {
         isLastQuestion={isLastQuestion}
         timerMinutes={timerMinutes}
         timerEnabled={timerEnabled}
+        studyMode={studyMode}
       />
     </div>
   );
