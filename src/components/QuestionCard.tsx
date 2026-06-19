@@ -133,17 +133,14 @@ export default function QuestionCard({
 
   return (
     <div className="space-y-4 animate-fadeIn">
-      {/* 🍏 计时器（可选）- 紧凑条 */}
+      {/* 🍏 计时器（可选）- 紧凑小方框 */}
       {timerEnabled && (
-        <div className="flex items-center gap-2 mb-1 px-1">
-          <span className={`text-xs ${timerRunning && state === 'answering' ? 'animate-spin' : ''}`}>🍏</span>
-          <div className="flex-1">
-            <Timer
-              totalSeconds={timerMinutes * 60}
-              onTimeUp={handleTimeUp}
-              isRunning={timerRunning && state === 'answering'}
-            />
-          </div>
+        <div className="flex justify-center mb-1">
+          <Timer
+            totalSeconds={timerMinutes * 60}
+            onTimeUp={handleTimeUp}
+            isRunning={timerRunning && state === 'answering'}
+          />
         </div>
       )}
 

@@ -17,7 +17,6 @@ export default function Timer({ totalSeconds, onTimeUp, isRunning }: TimerProps)
 
   useEffect(() => {
     if (!isRunning) return;
-
     const interval = setInterval(() => {
       setRemaining((prev) => {
         if (prev <= 1) {
@@ -31,44 +30,23 @@ export default function Timer({ totalSeconds, onTimeUp, isRunning }: TimerProps)
         return prev - 1;
       });
     }, 1000);
-
     return () => clearInterval(interval);
   }, [isRunning, onTimeUp]);
 
   const minutes = Math.floor(remaining / 60);
   const seconds = remaining % 60;
-  const progress = totalSeconds > 0 ? (remaining / totalSeconds) * 100 : 0;
-
   const isUrgent = remaining < 60;
   const isWarning = remaining < totalSeconds * 0.3;
 
-  return (
-    <div className="flex items-center gap-3">
-      {/* 🍏 进度条 */}
-      <div className="flex-1 h-3 bg-gray-100 rounded-full overflow-hidden" style={{ border: '1px solid #e8f5e0' }}>
-        <div
-          className="h-full rounded-full transition-all duration-1000"
-          style={{
-            width: `${progress}%`,
-            background: isUrgent
-              ? 'linear-gradient(90deg, #ff6b6b, #ff8787)'
-              : isWarning
-                ? 'linear-gradient(90deg, #ffd43b, #fab005)'
-                : 'linear-gradient(90deg, #9ae869, #5cb818)',
-          }}
-        />
-      </div>
+  const bgColor = isUrgent ? '#fee2e2' : isWarning ? '#fff7e0' : '#f2fde4';
+  const textColor = isUrgent ? '#e03131' : isWarning ? '#e67700' : '#387612';
+  const borderColor = isUrgent ? '#ffc9c9' : isWarning ? '#ffd43b' : '#9ae869';
 
-      {/* 时间显示 */}
-      <div className="flex items-center gap-1">
-        <span className="text-sm">🍏</span>
-        <span
-          className="text-sm font-mono font-bold min-w-[4.5rem] text-right"
-          style={{ color: isUrgent ? '#e03131' : isWarning ? '#e67700' : '#387612' }}
-        >
-          {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
-        </span>
-      </div>
+  return (
+    <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-mono font-bold"
+      style={{ background: bgColor, border: `1.5px solid ${borderColor}`, color: textColor }}>
+      <span>⏱</span>
+      <span>{String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}</span>
     </div>
   );
 }
