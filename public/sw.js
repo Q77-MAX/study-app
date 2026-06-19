@@ -16,6 +16,10 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
+  // 不缓存 JSON 数据文件，确保题库总是最新的
+  if (event.request.url.includes('.json')) {
+    return; // 让浏览器正常请求，不拦截
+  }
   event.respondWith(
     fetch(event.request)
       .then((response) => {
