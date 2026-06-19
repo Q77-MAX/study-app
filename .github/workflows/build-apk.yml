@@ -8,24 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-java@v4
         with: { distribution: temurin, java-version: 17 }
-
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
 
-      - name: Setup Android SDK
-        run: |
-          mkdir -p $HOME/android-sdk
-          cd $HOME/android-sdk
-          curl -sLO https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
-          unzip -q commandlinetools-linux-11076708_latest.zip
-          yes | cmdline-tools/bin/sdkmanager --sdk_root=$HOME/android-sdk --licenses > /dev/null 2>&1 || true
-          cmdline-tools/bin/sdkmanager --sdk_root=$HOME/android-sdk "platforms;android-34" "build-tools;34.0.0" "platform-tools" "cmdline-tools;latest"
-          echo "ANDROID_HOME=$HOME/android-sdk" >> $GITHUB_ENV
-
-      - name: Build APK with Capacitor
+      - name: Build APK
+        env:
+          ANDROID_HOME: /usr/local/lib/android/sdk
         run: |
           npm install
           npm run build
