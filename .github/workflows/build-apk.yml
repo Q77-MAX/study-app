@@ -36,19 +36,19 @@ jobs:
           mkdir -p app/src/main/res/values app/src/main/res/mipmap-hdpi
 
           cat > settings.gradle << 'EOF'
+          pluginManagement {
+            repositories { google(); mavenCentral() }
+          }
           rootProject.name='TWA'
           include ':app'
           EOF
 
           cat > build.gradle << 'EOF'
-          buildscript {
-            repositories { google(); mavenCentral() }
-            dependencies { classpath 'com.android.tools.build:gradle:8.1.0' }
-          }
+          // empty - all config in app/build.gradle
           EOF
 
           cat > app/build.gradle << 'EOF'
-          apply plugin: 'com.android.application'
+          plugins { id 'com.android.application' version '8.1.0' }
           android {
             namespace 'com.qp.shuati'
             compileSdk 34
@@ -56,7 +56,6 @@ jobs:
             signingConfigs { release { storeFile file('release.keystore'); storePassword 'apple123'; keyAlias 'release'; keyPassword 'apple123' } }
             buildTypes { release { signingConfig signingConfigs.release; minifyEnabled false } }
           }
-          repositories { google(); mavenCentral() }
           EOF
 
           cat > app/src/main/AndroidManifest.xml << 'EOF'
@@ -103,7 +102,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           echo "sdk.dir=$ANDROID_HOME" > local.properties
-          gradle wrapper --gradle-version 8.2
+          gradle wrapper --gradle-version 8.4
           ./gradlew :app:assembleRelease
 
       - uses: actions/upload-artifact@v4
