@@ -187,13 +187,19 @@ export default function ImportPanel() {
       const numOptMatch = line.match(/^[\s]*(①|②|③|④|⑤|⑥|⑦|⑧)[\.、\s]*(.+)/);
       if (optMatch || numOptMatch) {
         let rawText = optMatch ? optMatch[2] : numOptMatch![2];
-        // 🔧 关键修复：同一行内可能包含多个选项如 "A. xx B. xx C. xx"
-        // 按后续选项字母分割
-        const parts = rawText.split(/(?=[\s]*[\(（]?[B-Hb-h][\)）\.、\s])/);
-        for (const part of parts) {
-          const cleaned = part.trim().replace(/^[\(（]?[A-Ha-h][\)）\.、\s]\s*/, '').trim();
-          if (cleaned) {
-            current.options = [...(current.options || []), cleaned];
+        // 🔧 同一行内多个选项：按字母前缀全拆分
+        const parts = rawText.split(/(?=[A-Ha-h][\.\、）\)])/).filter(s => s.trim());
+        if (parts.length <= 1) {
+          // 尝试按"空格+字母+空格/标点"拆分
+          const parts2 = rawText.split(/(?=\s[A-H][\s\.\、）\)])/);
+          for (const p of parts2) {
+            const cleaned = p.trim().replace(/^[A-Ha-h][\.\、）\)\s]+/, '').trim();
+            if (cleaned) current.options = [...(current.options || []), cleaned];
+          }
+        } else {
+          for (const part of parts) {
+            const cleaned = part.trim().replace(/^[A-Ha-h][\.\、）\)\s]+/, '').trim();
+            if (cleaned) current.options = [...(current.options || []), cleaned];
           }
         }
         // 检测判断题型（选项含对/错/正确/错误）
@@ -917,15 +923,23 @@ function parseExcel(wb: XLSX.WorkBook): Partial<Question>[] {
       options = ['对', '错'];
     } else if (qtype === 'single' || qtype === 'multiple') {
       if (optionsRaw) {
-        // 🔧 智能分割：先按字母前缀分割，再检查每个片段内联选项
+        // 🔧 智能分割：先按字母前缀全拆分（A-H），再二次拆分每个片段
         if (/[A-H][\.、）\)]/.test(optionsRaw)) {
           const rawOptions = optionsRaw.split(/(?=[A-H][\.、）\)])/).map(o => o.trim()).filter(Boolean);
           for (const raw of rawOptions) {
-            // 🔧 进一步分割：如 "A. 断路器  B. 隔离开关" → 两个选项
-            const innerParts = raw.split(/(?=[\s]*[B-H][\.、）\)])/);
-            for (const part of innerParts) {
-              const cleaned = part.trim().replace(/^[A-H][\.、）\)]\s*/, '').trim();
-              if (cleaned) options.push(cleaned);
+            // 🔧 二次分割：如 "A. 断路器  B. 隔离开关" → 两个选项
+            const innerParts = raw.split(/(?=[A-H][\.、）\)])/).filter(s => s.trim());
+            if (innerParts.length <= 1) {
+              const parts2 = raw.split(/(?=\s[A-H][\s\.\、）\)])/);
+              for (const p of parts2) {
+                const cleaned = p.trim().replace(/^[A-H][\.\、）\)\s]+/, '').trim();
+                if (cleaned) options.push(cleaned);
+              }
+            } else {
+              for (const part of innerParts) {
+                const cleaned = part.trim().replace(/^[A-H][\.\、）\)\s]+/, '').trim();
+                if (cleaned) options.push(cleaned);
+              }
             }
           }
         } else {
