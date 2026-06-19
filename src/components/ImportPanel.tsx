@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { getSettings, addQuestions, createBank, getAllBanks, deleteBank, renameBank } from '../store/db';
+import { getSettings, addQuestions, createBank, getAllBanks, deleteBank, renameBank, repairAllQuestions } from '../store/db';
 import { parseQuestions, parseQuestionsFromImage } from '../services/ai';
 import type { Question, QuestionBank, QuestionType } from '../types';
 import mammoth from 'mammoth';
@@ -10,6 +10,8 @@ export default function ImportPanel() {
   const [parsedQuestions, setParsedQuestions] = useState<Partial<Question>[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [repairing, setRepairing] = useState(false);
+  const [repairMsg, setRepairMsg] = useState<string | null>(null);
   const [imported, setImported] = useState(false);
   const [importProgress, setImportProgress] = useState({ current: 0, total: 0 });
   const [banks, setBanks] = useState<QuestionBank[]>([]);
@@ -482,6 +484,31 @@ export default function ImportPanel() {
           📚 我的题库 ({banks.length})
         </button>
       </div>
+
+      {/* 修复已有题库 */}
+      {repairMsg && (
+        <div className={`text-xs p-2 rounded-xl mb-2 ${repairMsg.includes('✅') ? 'bg-green-50 text-green-600' : 'bg-blue-50 text-blue-600'}`}>
+          {repairMsg}
+        </div>
+      )}
+      <button
+        onClick={async () => {
+          setRepairing(true);
+          setRepairMsg(null);
+          try {
+            const n = await repairAllQuestions();
+            setRepairMsg(`✅ 已修复 ${n} 道题目（选项拆分 + 题型修正）`);
+          } catch (e: any) {
+            setRepairMsg(`❌ 修复失败：${e.message}`);
+          }
+          setRepairing(false);
+        }}
+        disabled={repairing}
+        className="w-full py-2 px-3 rounded-xl text-xs font-medium transition-colors mb-3"
+        style={{ background: '#fefce8', border: '1px solid #fde047', color: '#a16207' }}
+      >
+        🔧 {repairing ? '修复中...' : '修复已有题库（拆分合并选项 + 修正题型）'}
+      </button>
 
       {/* 一键导入预置题库 */}
       <PresetBankImport

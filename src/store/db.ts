@@ -181,6 +181,62 @@ export async function getAllQuestions(): Promise<Question[]> {
   return db.questions.toArray();
 }
 
+/** 修复已有题库数据：拆分合并选项、修正题型 */
+export async function repairAllQuestions(): Promise<number> {
+  const all = await db.questions.toArray();
+  let fixed = 0;
+  for (const q of all) {
+    let changed = false;
+
+    // 1. 拆分合并选项（A. xx B. xx 在同一选项内）
+    const newOpts: string[] = [];
+    for (const opt of q.options || []) {
+      const parts = opt.split(/(?=[\s]*[B-H][\.\、）\)])/);
+      for (const part of parts) {
+        const cleaned = part.trim().replace(/^[\s]*[A-H][\.\、）\)]\s*/, '').trim();
+        if (cleaned && !newOpts.includes(cleaned)) {
+          newOpts.push(cleaned);
+        }
+      }
+    }
+    if (newOpts.length !== (q.options || []).length) {
+      q.options = newOpts;
+      changed = true;
+    }
+
+    // 2. 多字母答案 → 多选题
+    const ans = (q.answer || '').toUpperCase().replace(/[,，、;；\s]+/g, '').replace(/[^A-H]/g, '');
+    if (q.type === 'single' && ans.length > 1) {
+      q.type = 'multiple';
+      changed = true;
+    }
+
+    // 3. 判断题答案标准化
+    if (q.type === 'judge') {
+      if (/^(对|正确|是|√|✓|T|TRUE)$/i.test(ans)) {
+        if (q.answer !== 'A') { q.answer = 'A'; changed = true; }
+      } else if (/^(错|错误|否|×|✗|F|FALSE)$/i.test(ans)) {
+        if (q.answer !== 'B') { q.answer = 'B'; changed = true; }
+      }
+    }
+
+    // 4. 多选答案排序
+    if (q.type === 'multiple' && ans.length > 1 && /^[A-H]+$/.test(ans)) {
+      const sorted = ans.split('').sort().join('');
+      if (q.answer !== sorted) { q.answer = sorted; changed = true; }
+    }
+
+    // 5. 没有类型的题补默认值
+    if (!q.type) { q.type = 'single'; changed = true; }
+
+    if (changed) {
+      await db.questions.put(q);
+      fixed++;
+    }
+  }
+  return fixed;
+}
+
 export async function getQuestionsByBank(bankId: string): Promise<Question[]> {
   return db.questions.where('batchId').equals(bankId).toArray();
 }
