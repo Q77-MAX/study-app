@@ -36,17 +36,20 @@ jobs:
           mkdir -p app/src/main/res/values app/src/main/res/mipmap-hdpi
 
           cat > settings.gradle << 'EOF'
-          rootProject.name='TWA'
-          include ':app'
+          pluginManagement {
+            repositories { google(); mavenCentral(); gradlePluginPortal() }
+          }
           dependencyResolutionManagement {
             repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
             repositories { google(); mavenCentral() }
           }
+          rootProject.name='TWA'
+          include ':app'
           EOF
 
           cat > build.gradle << 'EOF'
           plugins {
-            id 'com.android.application' version '8.2.0' apply false
+            id 'com.android.application' version '8.1.0' apply false
           }
           EOF
 
@@ -104,7 +107,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           echo "sdk.dir=$ANDROID_HOME" > local.properties
-          gradle wrapper --gradle-version 8.5
+          gradle wrapper --gradle-version 8.4
           ./gradlew :app:assembleRelease
 
       - uses: actions/upload-artifact@v4
