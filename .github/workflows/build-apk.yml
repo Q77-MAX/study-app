@@ -38,14 +38,16 @@ jobs:
           cat > settings.gradle << 'EOF'
           rootProject.name='TWA'
           include ':app'
+          dependencyResolutionManagement {
+            repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+            repositories { google(); mavenCentral() }
+          }
           EOF
 
           cat > build.gradle << 'EOF'
-          buildscript {
-            repositories { google(); mavenCentral() }
-            dependencies { classpath 'com.android.tools.build:gradle:8.1.0' }
+          plugins {
+            id 'com.android.application' version '8.2.0' apply false
           }
-          allprojects { repositories { google(); mavenCentral() } }
           EOF
 
           cat > app/build.gradle << 'EOF'
@@ -102,7 +104,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           echo "sdk.dir=$ANDROID_HOME" > local.properties
-          gradle wrapper --gradle-version 8.4
+          gradle wrapper --gradle-version 8.5
           ./gradlew :app:assembleRelease
 
       - uses: actions/upload-artifact@v4
