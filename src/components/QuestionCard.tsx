@@ -83,19 +83,18 @@ export default function QuestionCard({
     return () => { if (multiDebounceRef.current) clearTimeout(multiDebounceRef.current); };
   }, []);
 
-  // 背题模式：答对自动0.5秒跳转，答错手动跳转
+  // 背题模式：不论对错，都需要手动切换下一题
   // 刷题模式：不论对错0.5秒自动跳转
   useEffect(() => {
     if (state === 'feedback') {
-      const shouldAutoAdvance = studyMode === 'practice' || (studyMode === 'memorize' && isCorrect);
-      if (shouldAutoAdvance) {
+      if (studyMode === 'practice') {
         const timer = setTimeout(() => {
           handleNext();
         }, 500);
         return () => clearTimeout(timer);
       }
     }
-  }, [state, studyMode, isCorrect]);
+  }, [state, studyMode]);
 
   const handleNext = () => {
     if (isLastQuestion) {
@@ -134,12 +133,10 @@ export default function QuestionCard({
 
   return (
     <div className="space-y-4 animate-fadeIn">
-      {/* 🍏 计时器（可选） */}
+      {/* 🍏 计时器（可选）- 紧凑条 */}
       {timerEnabled && (
-        <div className="card-apple p-3 flex items-center gap-3">
-          <span className={`text-2xl ${timerRunning && state === 'answering' ? 'animate-spin' : 'animate-float'}`}>
-            🍏
-          </span>
+        <div className="flex items-center gap-2 mb-1 px-1">
+          <span className={`text-xs ${timerRunning && state === 'answering' ? 'animate-spin' : ''}`}>🍏</span>
           <div className="flex-1">
             <Timer
               totalSeconds={timerMinutes * 60}
@@ -159,7 +156,7 @@ export default function QuestionCard({
               {questionNumber}/{totalQuestions}
             </span>
             {state === 'feedback' && (
-              studyMode === 'memorize' && !isCorrect ? (
+              studyMode === 'memorize' ? (
                 <button onClick={handleNext} className="text-xs px-3 py-1.5 rounded-full font-bold text-white"
                   style={{ background: 'linear-gradient(135deg, #5cb818, #387612)' }}>
                   📖 下一题 →
@@ -305,8 +302,8 @@ export default function QuestionCard({
                     正确答案：<span className="font-bold text-base">{question.answer}</span>
                   </p>
                 )}
-                {/* 刷题模式 或 背题模式答对 → 自动跳转提示 */}
-                {(studyMode === 'practice' || (studyMode === 'memorize' && isCorrect)) && (
+                {/* 刷题模式 → 自动跳转提示 */}
+                {studyMode === 'practice' && (
                   <p className="text-xs text-gray-400 mt-1">⏳ 0.5秒后自动跳下一题...</p>
                 )}
                 {/* 背题模式 + 答错 → 显示解析 */}
@@ -324,7 +321,7 @@ export default function QuestionCard({
               </div>
 
               {/* 底部按钮 */}
-              {(studyMode === 'practice' || (studyMode === 'memorize' && isCorrect)) ? (
+              {studyMode === 'practice' ? (
                 <button
                   onClick={handleNext}
                   className="w-full py-2.5 text-sm text-gray-400 hover:text-gray-600 transition-colors"

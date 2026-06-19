@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { getSettings, addQuestions, createBank, getAllBanks, deleteBank, renameBank } from '../store/db';
 import { parseQuestions, parseQuestionsFromImage } from '../services/ai';
-import type { Question, QuestionBank } from '../types';
+import type { Question, QuestionBank, QuestionType } from '../types';
 import mammoth from 'mammoth';
 import * as XLSX from 'xlsx';
 
@@ -58,7 +58,7 @@ export default function ImportPanel() {
     let currentChapter = '';
 
     // 题型关键词映射
-    const typeKeywords: Record<string, string> = {
+    const typeKeywords: Record<string, QuestionType> = {
       '单选题': 'single', '单选': 'single', '多项选择题': 'multiple', '多选题': 'multiple', '多选': 'multiple',
       '判断题': 'judge', '判断': 'judge', '对错题': 'judge',
       '填空题': 'fill', '填空': 'fill',
@@ -107,10 +107,10 @@ export default function ImportPanel() {
       if (typeTag) {
         flushQuestion();
         const typeStr = typeTag[1];
-        current = { type: typeKeywords[typeStr] || 'single', content: '', options: [], answer: '', explanation: '', knowledgePoints: [], difficulty: 1 };
+        current = { type: typeKeywords[typeStr] || 'single' as QuestionType, content: '', options: [], answer: '', explanation: '', knowledgePoints: [], difficulty: 1 };
         // 题型标记后面可能跟着题目内容
         const afterTag = line.slice(typeTag[0].length).trim();
-        if (afterTag.length > 3) {
+        if (afterTag.length > 3 && current) {
           current.content = afterTag;
         }
         continue;
@@ -259,7 +259,7 @@ export default function ImportPanel() {
   };
 
   /** 自动判断题型 */
-  function detectType(q: Partial<Question>): string {
+  function detectType(q: Partial<Question>): QuestionType {
     const content = q.content || '';
     const opts = q.options || [];
     const ans = (q.answer || '').toUpperCase();
@@ -753,7 +753,6 @@ function parseExcel(wb: XLSX.WorkBook): Partial<Question>[] {
 
   for (let r = 0; r < Math.min(15, rows.length); r++) {
     const cells = rows[r].map((c: any) => String(c).trim());
-    const rowStr = cells.join(' ').toLowerCase();
 
     // 检查是否匹配多个列关键词
     let matchCount = 0;
