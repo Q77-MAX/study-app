@@ -188,26 +188,24 @@ export async function repairAllQuestions(): Promise<number> {
   for (const q of all) {
     let changed = false;
 
-    // 1. 拆分合并选项（A. xx B. xx 在同一选项内）
+    // 1. 拆分合并选项：支持 A. A、A) A）B. B、等所有格式
     const newOpts: string[] = [];
     for (const opt of q.options || []) {
-      // 🔧 按任意字母选项分隔符拆分：A. A、A) A） B. B、等
-      const parts = opt.split(/(?=[A-Ha-h][\.\、）\)])/).filter(s => s.trim());
-      if (parts.length <= 1) {
-        // 再试：按大写字母+空格分隔 "A断路器 B隔离开关"
-        const parts2 = opt.split(/(?=\s[A-H][\s\.\、）\)])/);
-        for (const p of parts2) {
-          const cleaned = p.trim().replace(/^[A-Ha-h][\.\、）\)\s]+/, '').trim();
-          if (cleaned && !newOpts.includes(cleaned)) newOpts.push(cleaned);
-        }
-      } else {
-        for (const part of parts) {
-          const cleaned = part.trim().replace(/^[A-Ha-h][\.\、）\)\s]+/, '').trim();
-          if (cleaned && !newOpts.includes(cleaned)) newOpts.push(cleaned);
-        }
+      if (!opt || opt.length < 2) continue;
+      // 策略1: 按 [字母][.、）)] 拆分
+      let parts = opt.split(/(?=[A-Ha-h][\.\、）\)])/).filter(s => s.trim());
+      // 策略2: 按 [空格/开头][字母][空格/标点] 拆分
+      if (parts.length <= 1) parts = opt.split(/(?=\s[A-Ha-h][\s\.\、）\)])/);
+      // 策略3: 按 [字母]直接跟中文 拆分（无分隔符情况 "A断路器B隔离开关"）
+      if (parts.length <= 1) parts = opt.split(/(?=[A-Ha-h][一-龥])/);
+      if (parts.length <= 1) parts = opt.split(/(?<=[一-龥])[A-Ha-h]/);
+      // 策略4: 分号分隔
+      if (parts.length <= 1) parts = opt.split(/[；;]/);
+      for (const p of parts) {
+        const cleaned = p.trim().replace(/^[A-Ha-h][\.\、）\)\s]+/, '').trim();
+        if (cleaned) newOpts.push(cleaned);
       }
     }
-    // 去重但保持顺序
     const seen = new Set<string>();
     const deduped: string[] = [];
     for (const o of newOpts) { if (!seen.has(o)) { seen.add(o); deduped.push(o); } }

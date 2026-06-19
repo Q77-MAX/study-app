@@ -187,20 +187,14 @@ export default function ImportPanel() {
       const numOptMatch = line.match(/^[\s]*(①|②|③|④|⑤|⑥|⑦|⑧)[\.、\s]*(.+)/);
       if (optMatch || numOptMatch) {
         let rawText = optMatch ? optMatch[2] : numOptMatch![2];
-        // 🔧 同一行内多个选项：按字母前缀全拆分
-        const parts = rawText.split(/(?=[A-Ha-h][\.\、）\)])/).filter(s => s.trim());
-        if (parts.length <= 1) {
-          // 尝试按"空格+字母+空格/标点"拆分
-          const parts2 = rawText.split(/(?=\s[A-H][\s\.\、）\)])/);
-          for (const p of parts2) {
-            const cleaned = p.trim().replace(/^[A-Ha-h][\.\、）\)\s]+/, '').trim();
-            if (cleaned) current.options = [...(current.options || []), cleaned];
-          }
-        } else {
-          for (const part of parts) {
-            const cleaned = part.trim().replace(/^[A-Ha-h][\.\、）\)\s]+/, '').trim();
-            if (cleaned) current.options = [...(current.options || []), cleaned];
-          }
+        // 🔧 同一行多选项：多策略拆分
+        let parts = rawText.split(/(?=[A-Ha-h][\.\、）\)])/).filter(s => s.trim());
+        if (parts.length <= 1) parts = rawText.split(/(?=\s[A-Ha-h][\s\.\、）\)])/);
+        if (parts.length <= 1) parts = rawText.split(/(?=[A-Ha-h][一-龥])/);
+        if (parts.length <= 1) parts = rawText.split(/[；;]/);
+        for (const p of parts) {
+          const cleaned = p.trim().replace(/^[A-Ha-h][\.\、）\)\s]+/, '').trim();
+          if (cleaned) current.options = [...(current.options || []), cleaned];
         }
         // 检测判断题型（选项含对/错/正确/错误）
         if (current.type === 'single' && current.options) {
@@ -222,14 +216,15 @@ export default function ImportPanel() {
         }
       }
 
-      // 🔧 如果当前行不是以字母开头但已有题目且没有选项，尝试检测内联选项
-      // 如 "A. 断路器  B. 隔离开关  C. 熔断器"（逗号/空格分隔的多选项）
-      if (current && (!current.options || current.options.length === 0) && line.length > 8 && line.length < 300) {
-        const inlineMulti = line.match(/([A-H])[\.、）\)]\s*/g);
-        if (inlineMulti && inlineMulti.length >= 2) {
-          const splitOpts = line.split(/(?=[A-H][\.、）\)])/).map(o => o.trim()).filter(Boolean);
-          if (splitOpts.length >= 2 && splitOpts.length <= 8) {
-            current.options = splitOpts.map(o => o.replace(/^[A-H][\.、）\)]\s*/, '').trim());
+      // 🔧 如果当前行有多个内联选项标记，拆分
+      if (current && (!current.options || current.options.length === 0) && line.length > 8 && line.length < 500) {
+        const markers = [...line.matchAll(/([A-Ha-h])[\.\、）\)]/g)];
+        if (markers.length >= 2 && markers.length <= 10) {
+          let parts = line.split(/(?=[A-Ha-h][\.\、）\)])/).filter(s => s.trim());
+          if (parts.length <= 1) parts = line.split(/(?=\s[A-Ha-h][\s\.\、）\)])/);
+          if (parts.length <= 1) parts = line.split(/[；;]/);
+          if (parts.length >= 2) {
+            current.options = parts.map(o => o.trim().replace(/^[A-Ha-h][\.\、）\)\s]+/, '').trim()).filter(Boolean);
             continue;
           }
         }
@@ -923,27 +918,22 @@ function parseExcel(wb: XLSX.WorkBook): Partial<Question>[] {
       options = ['对', '错'];
     } else if (qtype === 'single' || qtype === 'multiple') {
       if (optionsRaw) {
-        // 🔧 智能分割：先按字母前缀全拆分（A-H），再二次拆分每个片段
-        if (/[A-H][\.、）\)]/.test(optionsRaw)) {
-          const rawOptions = optionsRaw.split(/(?=[A-H][\.、）\)])/).map(o => o.trim()).filter(Boolean);
-          for (const raw of rawOptions) {
-            // 🔧 二次分割：如 "A. 断路器  B. 隔离开关" → 两个选项
-            const innerParts = raw.split(/(?=[A-H][\.、）\)])/).filter(s => s.trim());
-            if (innerParts.length <= 1) {
-              const parts2 = raw.split(/(?=\s[A-H][\s\.\、）\)])/);
-              for (const p of parts2) {
-                const cleaned = p.trim().replace(/^[A-H][\.\、）\)\s]+/, '').trim();
-                if (cleaned) options.push(cleaned);
-              }
-            } else {
-              for (const part of innerParts) {
-                const cleaned = part.trim().replace(/^[A-H][\.\、）\)\s]+/, '').trim();
-                if (cleaned) options.push(cleaned);
-              }
-            }
-          }
+        // 🔧 多策略逐层拆分
+        let rawParts: string[] = [];
+        if (/[A-Ha-h][\.\、）\)]/.test(optionsRaw)) {
+          rawParts = optionsRaw.split(/(?=[A-Ha-h][\.\、）\)])/).map(o => o.trim()).filter(Boolean);
         } else {
-          options = optionsRaw.split(/[；;|\n]/).map(o => o.trim()).filter(Boolean);
+          rawParts = [optionsRaw];
+        }
+        for (const raw of rawParts) {
+          let inner = raw.split(/(?=[A-Ha-h][\.\、）\)])/).filter(s => s.trim());
+          if (inner.length <= 1) inner = raw.split(/(?=\s[A-Ha-h][\s\.\、）\)])/);
+          if (inner.length <= 1) inner = raw.split(/(?=[A-Ha-h][一-龥])/);
+          if (inner.length <= 1) inner = raw.split(/[；;]/);
+          for (const p of inner) {
+            const cleaned = p.trim().replace(/^[A-Ha-h][\.\、）\)\s]+/, '').trim();
+            if (cleaned) options.push(cleaned);
+          }
         }
       }
       // 如果没选项，尝试从后续列收集
