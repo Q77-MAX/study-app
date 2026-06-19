@@ -188,22 +188,31 @@ export async function repairAllQuestions(): Promise<number> {
   for (const q of all) {
     let changed = false;
 
-    // 1. 拆分合并选项：支持 A. A、A) A）B. B、等所有格式
+    // 1. 拆分合并选项：多策略层层尝试
     const newOpts: string[] = [];
     for (const opt of q.options || []) {
       if (!opt || opt.length < 2) continue;
-      // 策略1: 按 [字母][.、）)] 拆分
-      let parts = opt.split(/(?=[A-Ha-h][\.\、）\)])/).filter(s => s.trim());
-      // 策略2: 按 [空格/开头][字母][空格/标点] 拆分
-      if (parts.length <= 1) parts = opt.split(/(?=\s[A-Ha-h][\s\.\、）\)])/);
-      // 策略3: 按 [字母]直接跟中文 拆分（无分隔符情况 "A断路器B隔离开关"）
+      let parts: string[] = [opt];
+      // 策略1: [字母][.、）)] — A. B、C)
+      if (parts.length <= 1) parts = opt.split(/(?=[A-Ha-h][\.\、）\)])/);
+      // 策略2: 空格+字母 — "断路器  A. 隔离开关"
+      if (parts.length <= 1) parts = opt.split(/(?=\s{1,4}[A-Ha-h][\s\.\、）\)])/);
+      // 策略3: 字母+中文 — "A断路器B隔离开关"
+      if (parts.length <= 1) parts = opt.split(/(?<=[\)）.\.\、\s])(?=[A-Ha-h][一-龥])/);
       if (parts.length <= 1) parts = opt.split(/(?=[A-Ha-h][一-龥])/);
-      if (parts.length <= 1) parts = opt.split(/(?<=[一-龥])[A-Ha-h]/);
-      // 策略4: 分号分隔
+      // 策略4: 2个以上空格分隔 — "断路器  隔离开关  熔断器"
+      if (parts.length <= 1 && /\s{2,}/.test(opt)) parts = opt.split(/\s{2,}/);
+      // 策略5: 分号
       if (parts.length <= 1) parts = opt.split(/[；;]/);
-      for (const p of parts) {
-        const cleaned = p.trim().replace(/^[A-Ha-h][\.\、）\)\s]+/, '').trim();
-        if (cleaned) newOpts.push(cleaned);
+      // 过滤清理
+      parts = parts.filter(s => s.trim().length > 0);
+      if (parts.length > 1) {
+        for (const p of parts) {
+          const cleaned = p.trim().replace(/^[A-Ha-h][\.\、）\)\s]+/, '').trim();
+          if (cleaned) newOpts.push(cleaned);
+        }
+      } else {
+        newOpts.push(opt);
       }
     }
     const seen = new Set<string>();

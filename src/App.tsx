@@ -13,12 +13,9 @@ import type { Account } from './store/accounts';
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabId>('practice');
   const [account, setAccount] = useState<Account | null>(null);
-  const repairRan = useRef(false);
-
-  // 🔧 登录后自动修复题库数据（拆分合并选项 + 修正题型）
+  // 🔧 每次登录自动检查并修复题库数据
   useEffect(() => {
-    if (account && !repairRan.current) {
-      repairRan.current = true;
+    if (account) {
       repairAllQuestions().then(n => {
         if (n > 0) console.log(`🔧 自动修复了 ${n} 道题目`);
       }).catch(() => {});
