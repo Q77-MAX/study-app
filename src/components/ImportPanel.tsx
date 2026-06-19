@@ -1016,8 +1016,8 @@ function PresetBankImport({ label, desc, bankName, fileName, onDone }: {
     setLoading(true);
     setError(null);
     try {
-      const url = import.meta.env.BASE_URL + fileName;
-      const res = await fetch(url);
+      const url = import.meta.env.BASE_URL + fileName + '?v=3';
+      const res = await fetch(url, { cache: 'no-cache' });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const questions = await res.json();
       if (!Array.isArray(questions) || questions.length === 0) {
