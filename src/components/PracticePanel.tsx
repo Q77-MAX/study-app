@@ -16,6 +16,7 @@ export default function PracticePanel() {
   const [timerMinutes, setTimerMinutes] = useState(20);
   const [timerEnabled, setTimerEnabled] = useState(false);
   const [studyMode, setStudyMode] = useState<'practice' | 'memorize'>('practice');
+  const [startFrom, setStartFrom] = useState(1);
 
   const loadBanks = async () => {
     setLoading(true);
@@ -45,8 +46,9 @@ export default function PracticePanel() {
     const filtered = allQuestions
       .filter(q => q.type === type)
       .sort((a, b) => a.mastery - b.mastery || a.lastPracticed - b.lastPracticed);
+    const idx = Math.max(0, Math.min(startFrom - 1, filtered.length - 1));
     setQuestions(filtered);
-    setCurrentIndex(0);
+    setCurrentIndex(idx);
     setView('practice');
   };
 
@@ -54,8 +56,9 @@ export default function PracticePanel() {
   const startAll = () => {
     const sorted = [...allQuestions]
       .sort((a, b) => a.mastery - b.mastery || a.lastPracticed - b.lastPracticed);
+    const idx = Math.max(0, Math.min(startFrom - 1, sorted.length - 1));
     setQuestions(sorted);
-    setCurrentIndex(0);
+    setCurrentIndex(idx);
     setView('practice');
   };
 
@@ -209,6 +212,30 @@ export default function PracticePanel() {
               <p className="text-xs text-gray-400 mt-0.5">手动切换 · 显示解析</p>
             </button>
           </div>
+        </div>
+
+        {/* 起始题号 */}
+        <div className="card-apple p-4 mb-5">
+          <p className="text-sm font-medium text-gray-600 mb-3">🔢 从第几题开始</p>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setStartFrom(s => Math.max(1, s - 10))}
+              className="w-10 h-10 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold text-lg transition-colors"
+            >−</button>
+            <input
+              type="number"
+              min="1"
+              value={startFrom}
+              onChange={(e) => setStartFrom(Math.max(1, parseInt(e.target.value) || 1))}
+              className="flex-1 text-center text-xl font-bold py-2 rounded-xl border-2 border-gray-200 focus:border-apple-400 outline-none transition-colors"
+              style={{ color: '#387612' }}
+            />
+            <button
+              onClick={() => setStartFrom(s => s + 10)}
+              className="w-10 h-10 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold text-lg transition-colors"
+            >+</button>
+          </div>
+          <p className="text-xs text-gray-400 mt-2 text-center">调整后点击下方题型即可从该题开始</p>
         </div>
 
         {/* 题型分类卡片 */}
