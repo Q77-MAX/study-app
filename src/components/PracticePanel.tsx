@@ -156,38 +156,39 @@ export default function PracticePanel() {
           <h2 className="text-base font-bold truncate" style={{ color: '#387612' }}>{selectedBank.name}</h2>
         </div>
 
-        {/* 计时器 + 学习模式 → 紧凑一行 */}
-        <div className="card-apple p-3 mb-3 flex items-center gap-3">
-          <div className="flex items-center gap-1.5 flex-shrink-0">
-            <span className="text-sm">⏱</span>
+        {/* 计时器设置 */}
+        <div className="card-apple p-3 mb-3">
+          <div className="flex items-center gap-2">
+            <span className="text-sm">⏱ 倒计时</span>
             <button
               onClick={() => setTimerEnabled(!timerEnabled)}
-              className={`relative w-10 h-5 rounded-full transition-colors duration-200 ${timerEnabled ? 'bg-apple-500' : 'bg-gray-300'}`}
+              className={`relative w-10 h-5 rounded-full transition-colors duration-200 flex-shrink-0 ${timerEnabled ? 'bg-apple-500' : 'bg-gray-300'}`}
             >
               <span className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform duration-200 ${timerEnabled ? 'left-5' : 'left-0.5'}`} />
             </button>
+            {timerEnabled && (
+              <div className="flex items-center gap-2 flex-1 min-w-0">
+                <input type="range" min="1" max="120" value={timerMinutes}
+                  onChange={e => setTimerMinutes(Number(e.target.value))}
+                  className="flex-1 accent-apple-500 h-1.5" />
+                <span className="text-xs font-bold flex-shrink-0 text-right" style={{ color: '#387612', minWidth: '2.8rem' }}>{timerMinutes}分</span>
+              </div>
+            )}
           </div>
-          {timerEnabled && (
-            <div className="flex items-center gap-2 flex-1 min-w-0">
-              <input type="range" min="1" max="120" value={timerMinutes}
-                onChange={e => setTimerMinutes(Number(e.target.value))}
-                className="flex-1 accent-apple-500 h-1" />
-              <span className="text-xs font-bold flex-shrink-0 w-12 text-right" style={{ color: '#387612' }}>{timerMinutes}分</span>
-            </div>
-          )}
-          <div className="h-4 w-px bg-gray-200 flex-shrink-0" />
-          <div className="flex rounded-lg overflow-hidden flex-shrink-0 text-xs" style={{ border: '1px solid #e5e5e5' }}>
-            <button onClick={() => setStudyMode('practice')}
-              className="px-2.5 py-1 transition-colors"
-              style={{ background: studyMode==='practice'?'#f2fde4':'white', color: studyMode==='practice'?'#387612':'#999' }}>
-              🍏 刷题
-            </button>
-            <button onClick={() => setStudyMode('memorize')}
-              className="px-2.5 py-1 transition-colors"
-              style={{ background: studyMode==='memorize'?'#f2fde4':'white', color: studyMode==='memorize'?'#387612':'#999' }}>
-              📖 背题
-            </button>
-          </div>
+        </div>
+
+        {/* 学习模式 */}
+        <div className="flex rounded-xl overflow-hidden mb-3 text-sm" style={{ border: '1px solid #e5e5e5' }}>
+          <button onClick={() => setStudyMode('practice')}
+            className="flex-1 py-2 text-center transition-colors"
+            style={{ background: studyMode==='practice'?'#f2fde4':'white', color: studyMode==='practice'?'#387612':'#999' }}>
+            🍏 刷题模式
+          </button>
+          <button onClick={() => setStudyMode('memorize')}
+            className="flex-1 py-2 text-center transition-colors"
+            style={{ background: studyMode==='memorize'?'#f2fde4':'white', color: studyMode==='memorize'?'#387612':'#999' }}>
+            📖 背题模式
+          </button>
         </div>
 
         {/* 题型卡片 */}
