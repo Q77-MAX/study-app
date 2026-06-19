@@ -1,0 +1,12 @@
+{
+  "appId": "com.qingpingguo.shuati",
+  "appName": "青苹果刷题",
+  "webDir": "dist",
+  "server": {
+    "url": "https://q77-max.github.io/study-app/",
+    "cleartext": true
+  },
+  "android": {
+    "allowMixedContent": true
+  }
+}

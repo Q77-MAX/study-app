@@ -31,27 +31,6 @@ jobs:
           npm run build
           npx cap add android
           npx cap sync
-          # Replace MainActivity to load deployed PWA directly
-          cat > android/app/src/main/java/com/study/app/MainActivity.java << 'JEOF'
-          package com.study.app;
-          import android.os.Bundle;
-          import android.webkit.*;
-          import com.getcapacitor.BridgeActivity;
-          public class MainActivity extends BridgeActivity {
-            @Override
-            public void onCreate(Bundle s) {
-              super.onCreate(s);
-              WebView wv = this.bridge.getWebView();
-              WebSettings ws = wv.getSettings();
-              ws.setJavaScriptEnabled(true);
-              ws.setDomStorageEnabled(true);
-              ws.setDatabaseEnabled(true);
-              ws.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-              wv.setWebViewClient(new WebViewClient());
-              wv.loadUrl("https://q77-max.github.io/study-app/");
-            }
-          }
-          JEOF
           cd android && ./gradlew assembleRelease
 
       - uses: actions/upload-artifact@v4
