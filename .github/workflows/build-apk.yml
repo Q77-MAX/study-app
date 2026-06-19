@@ -9,60 +9,56 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Java 17
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 17
+          java-version: 11
 
-      - name: Setup Android SDK
+      - name: Build APK
         run: |
-          mkdir -p $HOME/android-sdk/cmdline-tools
-          cd $HOME/android-sdk/cmdline-tools
-          curl -sL https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -o tools.zip
+          # Install Android SDK cmdline tools
+          mkdir -p $HOME/android-sdk
+          cd $HOME/android-sdk
+          curl -sL https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -o tools.zip
           unzip -q tools.zip
-          mv cmdline-tools latest
-          echo "ANDROID_HOME=$HOME/android-sdk" >> $GITHUB_ENV
-          echo "$HOME/android-sdk/cmdline-tools/latest/bin" >> $GITHUB_PATH
-          echo "$HOME/android-sdk/platform-tools" >> $GITHUB_PATH
-          yes | $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses > /dev/null 2>&1 || true
-          $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager "platforms;android-30" "build-tools;30.0.3" "platform-tools" > /dev/null 2>&1
+          export ANDROID_HOME=$HOME/android-sdk
+          yes | $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_HOME --licenses > /dev/null 2>&1 || true
+          $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_HOME "platforms;android-30" "build-tools;30.0.3" "platform-tools"
 
-      - name: Build App
-        run: |
-          set -e
-          PKG=com.qingpingguo.shuati
+          # Create project
+          cd $GITHUB_WORKSPACE
           mkdir -p app/src/main/java/com/qp/shuati app/src/main/res/values app/src/main/res/mipmap-hdpi
 
-          cat > settings.gradle << 'EOF'
-          rootProject.name='TWA'
-          include ':app'
-          EOF
+          # Use ONLY a single build.gradle + settings.gradle (rootless)
+          echo 'rootProject.name="TWA"' > settings.gradle
+          echo 'include ":app"' >> settings.gradle
 
-          cat > build.gradle << 'EOF'
+          cat > build.gradle << 'BEOF'
           buildscript {
             repositories { google(); mavenCentral() }
-            dependencies { classpath 'com.android.tools.build:gradle:4.2.2' }
+            dependencies { classpath "com.android.tools.build:gradle:4.0.2" }
           }
-          EOF
+          BEOF
 
-          cat > app/build.gradle << 'EOF'
-          apply plugin: 'com.android.application'
+          cat > app/build.gradle << 'AEOF'
+          apply plugin: "com.android.application"
           android {
             compileSdkVersion 30
+            buildToolsVersion "30.0.3"
             defaultConfig {
-              applicationId 'com.qingpingguo.shuati'
+              applicationId "com.qp.shuati"
               minSdkVersion 21
               targetSdkVersion 30
               versionCode 1
-              versionName '1.0'
+              versionName "1.0"
             }
             signingConfigs {
               release {
-                storeFile file('release.keystore')
-                storePassword 'apple123'
-                keyAlias 'release'
-                keyPassword 'apple123'
+                storeFile file("release.keystore")
+                storePassword "apple123"
+                keyAlias "release"
+                keyPassword "apple123"
               }
             }
             buildTypes {
@@ -72,49 +68,40 @@ jobs:
               }
             }
           }
-          EOF
+          AEOF
 
-          cat > app/src/main/AndroidManifest.xml << 'EOF'
+          cat > app/src/main/AndroidManifest.xml << 'MFEOF'
           <?xml version="1.0" encoding="utf-8"?>
           <manifest xmlns:android="http://schemas.android.com/apk/res/android">
             <uses-permission android:name="android.permission.INTERNET"/>
             <application android:label="青苹果刷题" android:icon="@mipmap/ic_launcher" android:usesCleartextTraffic="true">
               <activity android:name=".MainActivity" android:exported="true" android:configChanges="orientation|screenSize">
-                <intent-filter>
-                  <action android:name="android.intent.action.MAIN"/>
-                  <category android:name="android.intent.category.LAUNCHER"/>
-                </intent-filter>
+                <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
               </activity>
             </application>
           </manifest>
-          EOF
+          MFEOF
 
-          cat > app/src/main/java/com/qp/shuati/MainActivity.java << 'JAVAEOF'
+          cat > app/src/main/java/com/qp/shuati/MainActivity.java << 'JEOF'
           package com.qp.shuati;
-          import android.app.Activity;
-          import android.os.Bundle;
-          import android.webkit.*;
+          import android.app.Activity; import android.os.Bundle; import android.webkit.*;
           public class MainActivity extends Activity {
             protected void onCreate(Bundle s) {
               super.onCreate(s);
-              WebView wv = new WebView(this);
-              WebSettings ws = wv.getSettings();
-              ws.setJavaScriptEnabled(true);
-              ws.setDomStorageEnabled(true);
-              ws.setDatabaseEnabled(true);
+              WebView wv=new WebView(this); WebSettings ws=wv.getSettings();
+              ws.setJavaScriptEnabled(true); ws.setDomStorageEnabled(true); ws.setDatabaseEnabled(true);
               ws.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
               wv.setWebViewClient(new WebViewClient());
-              wv.loadUrl("https://q77-max.github.io/study-app/");
-              setContentView(wv);
+              wv.loadUrl("https://q77-max.github.io/study-app/"); setContentView(wv);
             }
           }
-          JAVAEOF
+          JEOF
 
-          echo '<?xml version="1.0" encoding="utf-8"?><resources><style name="Theme" parent="android:Theme.NoTitleBar"/></resources>' > app/src/main/res/values/styles.xml
+          echo '<resources><style name="Theme" parent="android:Theme.NoTitleBar"/></resources>' > app/src/main/res/values/styles.xml
           curl -sL https://q77-max.github.io/study-app/icon-192.png -o app/src/main/res/mipmap-hdpi/ic_launcher.png
           keytool -genkey -v -keystore app/release.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000 -storepass apple123 -keypass apple123 -dname "CN=QP" -noprompt
           echo "sdk.dir=$ANDROID_HOME" > local.properties
-          gradle wrapper --gradle-version 6.9
+          gradle wrapper --gradle-version 6.5
           ./gradlew :app:assembleRelease
 
       - uses: actions/upload-artifact@v4
