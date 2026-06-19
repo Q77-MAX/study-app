@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Layout, { type TabId } from './components/Layout';
 import PracticePanel from './components/PracticePanel';
 import ImportPanel from './components/ImportPanel';
@@ -7,12 +7,23 @@ import StatsPanel from './components/StatsPanel';
 import ExamMode from './components/ExamMode';
 import LoginScreen from './components/LoginScreen';
 import { clearCurrentAccount } from './store/accounts';
-import { setDBAccount } from './store/db';
+import { setDBAccount, repairAllQuestions } from './store/db';
 import type { Account } from './store/accounts';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabId>('practice');
   const [account, setAccount] = useState<Account | null>(null);
+  const repairRan = useRef(false);
+
+  // 🔧 登录后自动修复题库数据（拆分合并选项 + 修正题型）
+  useEffect(() => {
+    if (account && !repairRan.current) {
+      repairRan.current = true;
+      repairAllQuestions().then(n => {
+        if (n > 0) console.log(`🔧 自动修复了 ${n} 道题目`);
+      }).catch(() => {});
+    }
+  }, [account]);
 
   const handleLogin = (acct: Account) => {
     setAccount(acct);
