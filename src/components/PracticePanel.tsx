@@ -77,6 +77,10 @@ export default function PracticePanel() {
     return { isCorrect };
   }, [currentQuestion]);
 
+  const prevQuestion = useCallback(() => {
+    if (currentIndex > 0) setCurrentIndex(i => i - 1);
+  }, [currentIndex]);
+
   const nextQuestion = useCallback(() => {
     if (!isLastQuestion) {
       setCurrentIndex(i => i + 1);
@@ -286,6 +290,8 @@ export default function PracticePanel() {
         totalQuestions={questions.length}
         onAnswer={answerQuestion}
         onNext={nextQuestion}
+        onPrev={prevQuestion}
+        isFirstQuestion={currentIndex === 0}
         isLastQuestion={isLastQuestion}
         timerMinutes={timerMinutes}
         timerEnabled={timerEnabled}

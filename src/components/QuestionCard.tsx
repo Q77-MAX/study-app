@@ -10,6 +10,8 @@ interface QuestionCardProps {
   totalQuestions: number;
   onAnswer: (userAnswer: string) => Promise<{ isCorrect: boolean }>;
   onNext: () => void;
+  onPrev?: () => void;
+  isFirstQuestion?: boolean;
   isLastQuestion: boolean;
   timerMinutes: number;
   timerEnabled: boolean;
@@ -19,7 +21,7 @@ interface QuestionCardProps {
 type CardState = 'answering' | 'feedback' | 'complete';
 
 export default function QuestionCard({
-  question, questionNumber, totalQuestions, onAnswer, onNext, isLastQuestion, timerMinutes, timerEnabled, studyMode = 'practice',
+  question, questionNumber, totalQuestions, onAnswer, onNext, onPrev, isFirstQuestion, isLastQuestion, timerMinutes, timerEnabled, studyMode = 'practice',
 }: QuestionCardProps) {
   const [state, setState] = useState<CardState>('answering');
   const [selectedAnswer, setSelectedAnswer] = useState('');
@@ -148,6 +150,11 @@ export default function QuestionCard({
       <div className="card-apple overflow-hidden">
         <div className="px-4 py-3 flex items-center justify-between" style={{ borderBottom: '2px solid #f2fde4' }}>
           <div className="flex items-center gap-2">
+            {onPrev && !isFirstQuestion && (
+              <button onClick={onPrev} className="text-xs px-2 py-1 rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors">
+                ← 上一题
+              </button>
+            )}
             <span className="badge-apple text-xs font-bold">{getTypeLabel(question.type)}</span>
             <span className="text-sm font-medium" style={{ color: '#387612' }}>
               {questionNumber}/{totalQuestions}
