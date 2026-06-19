@@ -1,5 +1,5 @@
 // 青苹果刷题 Service Worker
-const CACHE_NAME = 'qingpingguo-v3';
+const CACHE_NAME = 'qingpingguo-v4';
 
 self.addEventListener('install', () => {
   self.skipWaiting();
