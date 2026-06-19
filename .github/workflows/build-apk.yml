@@ -9,102 +9,52 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 11
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: 17 }
 
-      - name: Build APK
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+
+      - name: Setup Android SDK
         run: |
-          # Install Android SDK cmdline tools
           mkdir -p $HOME/android-sdk
           cd $HOME/android-sdk
-          curl -sL https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -o tools.zip
-          unzip -q tools.zip
-          export ANDROID_HOME=$HOME/android-sdk
-          yes | $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_HOME --licenses > /dev/null 2>&1 || true
-          $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_HOME "platforms;android-30" "build-tools;30.0.3" "platform-tools"
+          curl -sLO https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
+          unzip -q commandlinetools-linux-11076708_latest.zip
+          yes | cmdline-tools/bin/sdkmanager --sdk_root=$HOME/android-sdk --licenses > /dev/null 2>&1 || true
+          cmdline-tools/bin/sdkmanager --sdk_root=$HOME/android-sdk "platforms;android-34" "build-tools;34.0.0" "platform-tools" "cmdline-tools;latest"
+          echo "ANDROID_HOME=$HOME/android-sdk" >> $GITHUB_ENV
 
-          # Create project
-          cd $GITHUB_WORKSPACE
-          mkdir -p app/src/main/java/com/qp/shuati app/src/main/res/values app/src/main/res/mipmap-hdpi
-
-          # Use ONLY a single build.gradle + settings.gradle (rootless)
-          echo 'rootProject.name="TWA"' > settings.gradle
-          echo 'include ":app"' >> settings.gradle
-
-          cat > build.gradle << 'BEOF'
-          buildscript {
-            repositories { google(); mavenCentral() }
-            dependencies { classpath "com.android.tools.build:gradle:4.0.2" }
-          }
-          BEOF
-
-          cat > app/build.gradle << 'AEOF'
-          apply plugin: "com.android.application"
-          android {
-            compileSdkVersion 30
-            buildToolsVersion "30.0.3"
-            defaultConfig {
-              applicationId "com.qp.shuati"
-              minSdkVersion 21
-              targetSdkVersion 30
-              versionCode 1
-              versionName "1.0"
-            }
-            signingConfigs {
-              release {
-                storeFile file("release.keystore")
-                storePassword "apple123"
-                keyAlias "release"
-                keyPassword "apple123"
-              }
-            }
-            buildTypes {
-              release {
-                signingConfig signingConfigs.release
-                minifyEnabled false
-              }
-            }
-          }
-          AEOF
-
-          cat > app/src/main/AndroidManifest.xml << 'MFEOF'
-          <?xml version="1.0" encoding="utf-8"?>
-          <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-            <uses-permission android:name="android.permission.INTERNET"/>
-            <application android:label="青苹果刷题" android:icon="@mipmap/ic_launcher" android:usesCleartextTraffic="true">
-              <activity android:name=".MainActivity" android:exported="true" android:configChanges="orientation|screenSize">
-                <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
-              </activity>
-            </application>
-          </manifest>
-          MFEOF
-
-          cat > app/src/main/java/com/qp/shuati/MainActivity.java << 'JEOF'
-          package com.qp.shuati;
-          import android.app.Activity; import android.os.Bundle; import android.webkit.*;
-          public class MainActivity extends Activity {
-            protected void onCreate(Bundle s) {
+      - name: Build APK with Capacitor
+        run: |
+          npm install
+          npm run build
+          npx cap add android
+          npx cap sync
+          # Replace MainActivity to load deployed PWA directly
+          cat > android/app/src/main/java/com/study/app/MainActivity.java << 'JEOF'
+          package com.study.app;
+          import android.os.Bundle;
+          import android.webkit.*;
+          import com.getcapacitor.BridgeActivity;
+          public class MainActivity extends BridgeActivity {
+            @Override
+            public void onCreate(Bundle s) {
               super.onCreate(s);
-              WebView wv=new WebView(this); WebSettings ws=wv.getSettings();
-              ws.setJavaScriptEnabled(true); ws.setDomStorageEnabled(true); ws.setDatabaseEnabled(true);
+              WebView wv = this.bridge.getWebView();
+              WebSettings ws = wv.getSettings();
+              ws.setJavaScriptEnabled(true);
+              ws.setDomStorageEnabled(true);
+              ws.setDatabaseEnabled(true);
               ws.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
               wv.setWebViewClient(new WebViewClient());
-              wv.loadUrl("https://q77-max.github.io/study-app/"); setContentView(wv);
+              wv.loadUrl("https://q77-max.github.io/study-app/");
             }
           }
           JEOF
-
-          echo '<resources><style name="Theme" parent="android:Theme.NoTitleBar"/></resources>' > app/src/main/res/values/styles.xml
-          curl -sL https://q77-max.github.io/study-app/icon-192.png -o app/src/main/res/mipmap-hdpi/ic_launcher.png
-          keytool -genkey -v -keystore app/release.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000 -storepass apple123 -keypass apple123 -dname "CN=QP" -noprompt
-          echo "sdk.dir=$ANDROID_HOME" > local.properties
-          gradle wrapper --gradle-version 6.5
-          ./gradlew :app:assembleRelease
+          cd android && ./gradlew assembleRelease
 
       - uses: actions/upload-artifact@v4
         with:
           name: 青苹果刷题APK
-          path: app/build/outputs/apk/release/*.apk
+          path: android/app/build/outputs/apk/release/*.apk
