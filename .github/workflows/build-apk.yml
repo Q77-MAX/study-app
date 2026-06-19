@@ -21,6 +21,31 @@ jobs:
           npm run build
           npx cap add android
           npx cap sync
+          # Generate keystore for release signing
+          keytool -genkey -v -keystore android/app/release.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000 -storepass apple123 -keypass apple123 -dname "CN=QP" -noprompt
+          # Create keystore.properties for signing
+          echo "storeFile=release.keystore" > android/keystore.properties
+          echo "storePassword=apple123" >> android/keystore.properties
+          echo "keyAlias=release" >> android/keystore.properties
+          echo "keyPassword=apple123" >> android/keystore.properties
+          # Configure signing in app build.gradle
+          cat >> android/app/build.gradle << 'SIGNEOF'
+          android {
+            signingConfigs {
+              release {
+                storeFile file('release.keystore')
+                storePassword 'apple123'
+                keyAlias 'release'
+                keyPassword 'apple123'
+              }
+            }
+            buildTypes {
+              release {
+                signingConfig signingConfigs.release
+              }
+            }
+          }
+          SIGNEOF
           cd android && ./gradlew assembleRelease
 
       - uses: actions/upload-artifact@v4
