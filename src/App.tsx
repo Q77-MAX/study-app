@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Layout, { type TabId } from './components/Layout';
 import PracticePanel from './components/PracticePanel';
 import ImportPanel from './components/ImportPanel';
