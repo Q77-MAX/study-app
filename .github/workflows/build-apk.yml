@@ -45,15 +45,15 @@ jobs:
             repositories { google(); mavenCentral() }
             dependencies { classpath 'com.android.tools.build:gradle:7.4.2' }
           }
-          allprojects { repositories { google(); mavenCentral() } }
           EOF
 
           cat > app/build.gradle << 'EOF'
           apply plugin: 'com.android.application'
+          repositories { google(); mavenCentral() }
           android {
             namespace 'com.qp.shuati'
-            compileSdk 33
-            defaultConfig { applicationId 'com.qp.shuati'; minSdk 21; targetSdk 33; versionCode 1; versionName '1.0' }
+            compileSdk 34
+            defaultConfig { applicationId 'com.qp.shuati'; minSdk 21; targetSdk 34; versionCode 1; versionName '1.0' }
             signingConfigs { release { storeFile file('release.keystore'); storePassword 'apple123'; keyAlias 'release'; keyPassword 'apple123' } }
             buildTypes { release { signingConfig signingConfigs.release; minifyEnabled false } }
           }
