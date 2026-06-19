@@ -68,13 +68,25 @@ export default function ImportPanel() {
 
     const flushQuestion = () => {
       if (current && current.content) {
-        // 自动判断题型（如果还没确定）
+        // 🔧 先用答案修正题型
+        const ans = (current.answer || '').toUpperCase().replace(/[^A-H对错是是否√×✓✗TF正确错误]/g, '');
+        if (ans.length > 1 && /^[A-H]+$/.test(ans)) {
+          // 答案有多个字母 → 一定是多选题
+          current.type = 'multiple';
+        } else if (/^[对错是是否√×✓✗TF正确错误]$/.test(ans) || (ans === 'A' && current.options && current.options.length === 2 && /对|错/.test(current.options.join('')))) {
+          current.type = 'judge';
+        }
+        // 再用 detectType 兜底
         if (!current.type || current.type === 'single') {
           current.type = detectType(current);
         }
         // 自动补全判断题型选项
         if (current.type === 'judge' && (!current.options || current.options.length === 0)) {
           current.options = ['对', '错'];
+        }
+        // 🔧 如果答案多字母但类型还是 single，修正为 multiple
+        if (current.type === 'single' && current.answer && /^[A-H]{2,}$/i.test(current.answer.replace(/[,，\s]/g, ''))) {
+          current.type = 'multiple';
         }
         // 清理答案
         if (current.answer) {
@@ -172,10 +184,18 @@ export default function ImportPanel() {
       // 数字选项: "①" "②" 等
       const numOptMatch = line.match(/^[\s]*(①|②|③|④|⑤|⑥|⑦|⑧)[\.、\s]*(.+)/);
       if (optMatch || numOptMatch) {
-        const optText = optMatch ? optMatch[2] : numOptMatch![2];
-        current.options = [...(current.options || []), optText.trim()];
+        let rawText = optMatch ? optMatch[2] : numOptMatch![2];
+        // 🔧 关键修复：同一行内可能包含多个选项如 "A. xx B. xx C. xx"
+        // 按后续选项字母分割
+        const parts = rawText.split(/(?=[\s]*[\(（]?[B-Hb-h][\)）\.、\s])/);
+        for (const part of parts) {
+          const cleaned = part.trim().replace(/^[\(（]?[A-Ha-h][\)）\.、\s]\s*/, '').trim();
+          if (cleaned) {
+            current.options = [...(current.options || []), cleaned];
+          }
+        }
         // 检测判断题型（选项含对/错/正确/错误）
-        if (current.type === 'single') {
+        if (current.type === 'single' && current.options) {
           const allOpts = current.options.map(o => o.replace(/^[对错是]+\s*[.、]?\s*/, '').trim());
           if (allOpts.length <= 4 && allOpts.some(o => /^(对|错|正确|错误|是|否|√|×|✓|✗)$/.test(o))) {
             current.type = 'judge';
@@ -191,6 +211,19 @@ export default function ImportPanel() {
         if (parts.length >= 3 && parts.length <= 8) {
           current.options = parts;
           continue;
+        }
+      }
+
+      // 🔧 如果当前行不是以字母开头但已有题目且没有选项，尝试检测内联选项
+      // 如 "A. 断路器  B. 隔离开关  C. 熔断器"（逗号/空格分隔的多选项）
+      if (current && (!current.options || current.options.length === 0) && line.length > 8 && line.length < 300) {
+        const inlineMulti = line.match(/([A-H])[\.、）\)]\s*/g);
+        if (inlineMulti && inlineMulti.length >= 2) {
+          const splitOpts = line.split(/(?=[A-H][\.、）\)])/).map(o => o.trim()).filter(Boolean);
+          if (splitOpts.length >= 2 && splitOpts.length <= 8) {
+            current.options = splitOpts.map(o => o.replace(/^[A-H][\.、）\)]\s*/, '').trim());
+            continue;
+          }
         }
       }
 
@@ -262,34 +295,37 @@ export default function ImportPanel() {
   function detectType(q: Partial<Question>): QuestionType {
     const content = q.content || '';
     const opts = q.options || [];
-    const ans = (q.answer || '').toUpperCase();
+    const ans = (q.answer || '').toUpperCase().replace(/[,，、;；\s]+/g, '').replace(/[^A-H]/g, '');
 
-    // 根据答案判断
-    if (ans.length > 1 && /^[A-H]+$/.test(ans)) return 'multiple';
-    if (ans === '对' || ans === '错' || ans === 'A' && opts.length === 2 && /对|错/.test(opts.join(''))) return 'judge';
+    // 🔧 根据答案判断（最可靠）
+    if (ans.length > 1) return 'multiple';
+    // 判断题型：答案是对/错 或 只有两个对错选项
+    if (/^[对错是是否√×✓✗TF正确错误]$/.test(ans)) return 'judge';
+    if (ans === 'A' && opts.length === 2 && /对|错/.test(opts.join(''))) return 'judge';
+    // 根据选项判断
+    if (opts.length === 2 && opts.every(o => /^(对|错|正确|错误|是|否|√|×|✓|✗)$/.test(o.replace(/^[A-H][.、]?\s*/, '').trim()))) return 'judge';
     // 根据内容关键词判断
     if (/多选|多项/.test(content)) return 'multiple';
     if (/判断|对错/.test(content)) return 'judge';
     if (/填空|___|__|（\s*）|\(\s*\)/.test(content)) return 'fill';
     if (/简答|论述|问答|计算|名词解释/.test(content)) return 'essay';
-    // 根据选项判断
-    if (opts.length === 2 && opts.every(o => /^(对|错|正确|错误|是|否|√|×|✓|✗)$/.test(o.replace(/^[A-H][.、]?\s*/, '')))) return 'judge';
     if (opts.length === 0 && !/[A-H][.、]/.test(content)) return 'essay';
     return 'single';
   }
 
   /** 清理答案格式 */
   function cleanAnswer(answer: string, type: string): string {
-    let a = answer.trim().toUpperCase();
+    // 🔧 先去除逗号、空格、分号等分隔符
+    let a = answer.trim().toUpperCase().replace(/[,，、;；\s]+/g, '');
     // 判断题型：对/错/√/× → A/B
     if (type === 'judge') {
       if (/^(对|正确|是|√|✓|A|T|TRUE)$/i.test(a)) return 'A';
       if (/^(错|错误|否|×|✗|B|F|FALSE)$/i.test(a)) return 'B';
-      if (a === '对' || a === '正确') return 'A';
-      if (a === '错' || a === '错误') return 'B';
     }
+    // 只保留字母
+    a = a.replace(/[^A-H]/g, '');
     // 多选题：确保答案字母排序
-    if (type === 'multiple' && /^[A-H]+$/.test(a)) {
+    if (type === 'multiple' && a.length > 1) {
       return a.split('').sort().join('');
     }
     return a;
@@ -854,37 +890,56 @@ function parseExcel(wb: XLSX.WorkBook): Partial<Question>[] {
       options = ['对', '错'];
     } else if (qtype === 'single' || qtype === 'multiple') {
       if (optionsRaw) {
-        // 在分号或换行处分割；也处理字母前缀的选项
+        // 🔧 智能分割：先按字母前缀分割，再检查每个片段内联选项
         if (/[A-H][\.、）\)]/.test(optionsRaw)) {
-          options = optionsRaw.split(/(?=[A-H][\.、）\)])/).map(o => o.trim()).filter(Boolean);
+          const rawOptions = optionsRaw.split(/(?=[A-H][\.、）\)])/).map(o => o.trim()).filter(Boolean);
+          for (const raw of rawOptions) {
+            // 🔧 进一步分割：如 "A. 断路器  B. 隔离开关" → 两个选项
+            const innerParts = raw.split(/(?=[\s]*[B-H][\.、）\)])/);
+            for (const part of innerParts) {
+              const cleaned = part.trim().replace(/^[A-H][\.、）\)]\s*/, '').trim();
+              if (cleaned) options.push(cleaned);
+            }
+          }
         } else {
           options = optionsRaw.split(/[；;|\n]/).map(o => o.trim()).filter(Boolean);
         }
       }
       // 如果没选项，尝试从后续列收集
       if (options.length === 0 && !optionsRaw) {
-        // 检查是否有分散在后续列的选项
         const extraOpts: string[] = [];
         for (let ci = 2; ci < cells.length && ci < 10; ci++) {
           const val = cells[ci];
-          if (val && val.length > 0 && val.length < 100 && !/^(答案|解析|知识点)/.test(val)) {
+          if (val && val.length > 0 && val.length < 300 && !/^(答案|解析|知识点|题型)/.test(val)) {
             extraOpts.push(val.replace(/^[A-H][\.、）\)\s]+/, ''));
           }
         }
-        if (extraOpts.length >= 2 || extraOpts.length <= 8) {
+        if (extraOpts.length >= 2 && extraOpts.length <= 8) {
           options = extraOpts;
         }
       }
     }
 
+    // 🔧 如果选项看起来是判断题（对/错），自动修正类型
+    if (options.length === 2 && options.every(o => /^(对|错|正确|错误|是|否|√|×|✓|✗)$/.test(o.replace(/^[A-H][.、]?\s*/, '').trim()))) {
+      qtype = 'judge';
+    }
+
     // 答案
     let answer = getCell('answer');
+    const answerClean = answer.toUpperCase().replace(/[,，、\s]+/g, '');
     if (qtype === 'judge') {
-      if (/^[1是A对√✓Ttrue]/i.test(answer) || answer === '对') answer = 'A';
-      else if (/^[0否B错×✗Ffalse]/i.test(answer) || answer === '错') answer = 'B';
-      else answer = 'A'; // 默认
+      if (/^[1是A对√✓Ttrue]/i.test(answerClean) || answer === '对') answer = 'A';
+      else if (/^[0否B错×✗Ffalse]/i.test(answerClean) || answer === '错') answer = 'B';
+      else answer = 'A';
+    } else {
+      answer = answerClean.replace(/[^A-H]/g, '');
     }
-    answer = answer.toUpperCase().replace(/[^A-H]/g, '');
+
+    // 🔧 根据答案修正题型：多字母答案 → 多选题
+    if (answer.length > 1 && qtype === 'single') {
+      qtype = 'multiple';
+    }
 
     // 解析和知识点
     const explanation = getCell('explanation');
