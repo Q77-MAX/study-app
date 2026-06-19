@@ -182,186 +182,112 @@ export default function ExamMode() {
   if (screen === 'config') {
     return (
       <div className="animate-fadeIn">
-        <div className="flex items-center gap-3 mb-5">
-          <span className="text-2xl animate-float">🏆</span>
-          <h2 className="text-lg font-bold" style={{ color: '#387612' }}>考试</h2>
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-xl">🏆</span>
+          <h2 className="text-base font-bold" style={{ color: '#387612' }}>考试</h2>
         </div>
 
         {/* 题库选择 */}
-        <div className="mb-4">
-          <select
-            value={selectedBankId}
-            onChange={(e) => {
-              const id = e.target.value;
-              setSelectedBankId(id);
-              loadAvailableCounts(id);
-            }}
-            className="input-apple w-full"
-          >
-            <option value="all">📚 全部题库</option>
-            {banks.map(b => (
-              <option key={b.id} value={b.id}>{b.name} ({b.questionCount}题)</option>
-            ))}
-          </select>
-        </div>
+        <select value={selectedBankId}
+          onChange={(e) => { setSelectedBankId(e.target.value); loadAvailableCounts(e.target.value); }}
+          className="input-apple w-full mb-3 text-sm py-2">
+          <option value="all">📚 全部题库</option>
+          {banks.map(b => <option key={b.id} value={b.id}>{b.name} ({b.questionCount}题)</option>)}
+        </select>
 
-        {/* 模式选择：专项练习 vs 模拟考试 */}
-        <div className="grid grid-cols-2 gap-3 mb-5">
-          <button
-            onClick={() => setExamMode('type-practice')}
-            className="p-4 rounded-2xl text-center transition-all duration-200"
-            style={{
-              background: examMode === 'type-practice' ? '#f2fde4' : 'white',
-              border: examMode === 'type-practice' ? '2px solid #9ae869' : '2px solid #e5e5e5',
-            }}
-          >
-            <p className="text-2xl mb-1">🎯</p>
-            <p className="font-bold text-sm" style={{ color: examMode === 'type-practice' ? '#387612' : '#999' }}>专项练习</p>
-            <p className="text-xs text-gray-400 mt-0.5">单题型刷题</p>
+        {/* 模式选择 */}
+        <div className="grid grid-cols-2 gap-2 mb-3">
+          <button onClick={() => setExamMode('type-practice')}
+            className="py-2.5 rounded-xl text-center transition-all duration-200"
+            style={{ background: examMode==='type-practice'?'#f2fde4':'white', border: examMode==='type-practice'?'2px solid #9ae869':'2px solid #e5e5e5' }}>
+            <span className="text-lg">🎯</span>
+            <p className="font-bold text-xs" style={{ color: examMode==='type-practice'?'#387612':'#999' }}>专项练习</p>
           </button>
-          <button
-            onClick={() => setExamMode('simulation')}
-            className="p-4 rounded-2xl text-center transition-all duration-200"
-            style={{
-              background: examMode === 'simulation' ? '#f2fde4' : 'white',
-              border: examMode === 'simulation' ? '2px solid #9ae869' : '2px solid #e5e5e5',
-            }}
-          >
-            <p className="text-2xl mb-1">🏅</p>
-            <p className="font-bold text-sm" style={{ color: examMode === 'simulation' ? '#387612' : '#999' }}>模拟考试</p>
-            <p className="text-xs text-gray-400 mt-0.5">多题型综合</p>
+          <button onClick={() => setExamMode('simulation')}
+            className="py-2.5 rounded-xl text-center transition-all duration-200"
+            style={{ background: examMode==='simulation'?'#f2fde4':'white', border: examMode==='simulation'?'2px solid #9ae869':'2px solid #e5e5e5' }}>
+            <span className="text-lg">🏅</span>
+            <p className="font-bold text-xs" style={{ color: examMode==='simulation'?'#387612':'#999' }}>模拟考试</p>
           </button>
         </div>
 
-        {/* ===== 专项练习配置 ===== */}
+        {/* 专项练习配置 */}
         {examMode === 'type-practice' && (
-          <div className="card-apple p-5 space-y-5">
+          <div className="card-apple p-3.5 space-y-3">
             <div>
-              <p className="text-sm font-medium text-gray-600 mb-3">📋 选择题型</p>
-              <div className="flex flex-wrap gap-2">
+              <p className="text-xs font-medium text-gray-500 mb-2">📋 选择题型</p>
+              <div className="flex flex-wrap gap-1.5">
                 {TYPE_ORDER.map(type => (
-                  <button
-                    key={type}
-                    onClick={() => setSingleType(type)}
-                    className="px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200"
-                    style={{
-                      background: singleType === type ? '#f2fde4' : '#f5f5f5',
-                      border: singleType === type ? '2px solid #9ae869' : '2px solid #e5e5e5',
-                      color: singleType === type ? '#387612' : '#999',
-                    }}
-                  >
-                    {TYPE_ICONS[type]} {TYPE_LABELS[type]}
-                    <span className="ml-1 text-xs opacity-60">({availableCounts[type] || 0})</span>
+                  <button key={type} onClick={() => setSingleType(type)}
+                    className="px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all duration-200"
+                    style={{ background: singleType===type?'#f2fde4':'#f5f5f5', border: singleType===type?'2px solid #9ae869':'2px solid #e5e5e5', color: singleType===type?'#387612':'#999' }}>
+                    {TYPE_ICONS[type]} {TYPE_LABELS[type]} <span className="opacity-50">({availableCounts[type]||0})</span>
                   </button>
                 ))}
               </div>
             </div>
-
             <div>
-              <label className="block text-sm font-medium text-gray-600 mb-2">
-                📝 题目数量：<span className="text-apple-600 font-bold text-lg">{Math.min(questionCount, availableCounts[singleType] || 0)} 题</span>
-              </label>
-              <input type="range" min="5" max={Math.min(100, availableCounts[singleType] || 100)} step="5"
-                value={questionCount} onChange={(e) => setQuestionCount(Number(e.target.value))}
-                className="w-full accent-apple-500" />
+              <label className="block text-xs font-medium text-gray-500 mb-1">📝 题目数量：<span className="text-apple-600 font-bold">{Math.min(questionCount, availableCounts[singleType]||0)} 题</span></label>
+              <input type="range" min="5" max={Math.min(100, availableCounts[singleType]||100)} step="5" value={questionCount} onChange={e => setQuestionCount(Number(e.target.value))} className="w-full accent-apple-500 h-1.5" />
             </div>
-
             <div>
-              <label className="block text-sm font-medium text-gray-600 mb-2">
-                ⏱ 时间：<span className="text-apple-600 font-bold text-lg">{timeMinutes} 分钟</span>
-              </label>
-              <input type="range" min="10" max="180" step="5" value={timeMinutes}
-                onChange={(e) => setTimeMinutes(Number(e.target.value))}
-                className="w-full accent-apple-500" />
+              <label className="block text-xs font-medium text-gray-500 mb-1">⏱ 时间：<span className="text-apple-600 font-bold">{timeMinutes} 分钟</span></label>
+              <input type="range" min="10" max="180" step="5" value={timeMinutes} onChange={e => setTimeMinutes(Number(e.target.value))} className="w-full accent-apple-500 h-1.5" />
             </div>
-
-            <button onClick={startExam} disabled={loading}
-              className="w-full py-4 btn-apple text-lg font-bold disabled:opacity-50">
+            <button onClick={startExam} disabled={loading} className="w-full py-3 btn-apple text-sm font-bold disabled:opacity-50">
               {loading ? '🍏 准备中...' : `🎯 开始${TYPE_LABELS[singleType]}练习 (${totalEnabled}题)`}
             </button>
           </div>
         )}
 
-        {/* ===== 模拟考试配置 ===== */}
+        {/* 模拟考试配置 */}
         {examMode === 'simulation' && (
-          <div className="card-apple p-5 space-y-5">
+          <div className="card-apple p-3.5 space-y-3">
             <div>
-              <p className="text-sm font-medium text-gray-600 mb-3">📋 选择考试题型</p>
-              <div className="flex flex-wrap gap-2">
+              <p className="text-xs font-medium text-gray-500 mb-2">📋 选择考试题型</p>
+              <div className="flex flex-wrap gap-1.5">
                 {TYPE_ORDER.map(type => (
                   <button key={type} onClick={() => toggleSimType(type)}
-                    className="px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200"
-                    style={{
-                      background: enabledTypes.has(type) ? '#f2fde4' : '#f5f5f5',
-                      border: enabledTypes.has(type) ? '2px solid #9ae869' : '2px solid #e5e5e5',
-                      color: enabledTypes.has(type) ? '#387612' : '#999',
-                    }}
-                  >
-                    {TYPE_ICONS[type]} {TYPE_LABELS[type]}
-                    <span className="ml-1 text-xs opacity-60">({availableCounts[type] || 0})</span>
+                    className="px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all duration-200"
+                    style={{ background: enabledTypes.has(type)?'#f2fde4':'#f5f5f5', border: enabledTypes.has(type)?'2px solid #9ae869':'2px solid #e5e5e5', color: enabledTypes.has(type)?'#387612':'#999' }}>
+                    {TYPE_ICONS[type]} {TYPE_LABELS[type]} <span className="opacity-50">({availableCounts[type]||0})</span>
                   </button>
                 ))}
               </div>
             </div>
-
             <div>
-              <label className="block text-sm font-medium text-gray-600 mb-2">
-                📝 题目总量：<span className="text-apple-600 font-bold text-lg">{totalEnabled} 题</span>
-              </label>
-              <input type="range" min="5"
-                max={TYPE_ORDER.reduce((s, t) => s + (enabledTypes.has(t) ? (availableCounts[t] || 0) : 0), 0)}
-                step="1" value={totalEnabled}
-                onChange={(e) => { const v = Number(e.target.value); setQuestionCount(v); distributeTypes(enabledTypes, v); }}
-                className="w-full accent-apple-500" />
+              <label className="block text-xs font-medium text-gray-500 mb-1">📝 题目总量：<span className="text-apple-600 font-bold">{totalEnabled} 题</span></label>
+              <input type="range" min="5" max={TYPE_ORDER.reduce((s,t)=>s+(enabledTypes.has(t)?(availableCounts[t]||0):0),0)} step="1" value={totalEnabled}
+                onChange={e=>{const v=Number(e.target.value); setQuestionCount(v); distributeTypes(enabledTypes,v);}} className="w-full accent-apple-500 h-1.5" />
             </div>
-
-            <div className="p-4 rounded-2xl" style={{ background: '#fafdf6', border: '2px solid #e8f5e0' }}>
+            <div className="p-3 rounded-xl text-xs" style={{ background:'#fafdf6', border:'2px solid #e8f5e0' }}>
               <div className="flex items-center justify-between mb-2">
-                <p className="text-sm font-medium text-gray-600">📊 题型分配（单选{Math.round(BASE_COUNTS.single/BASE_TOTAL*totalEnabled)} 多选{Math.round(BASE_COUNTS.multiple/BASE_TOTAL*totalEnabled)} 判断{Math.round(BASE_COUNTS.judge/BASE_TOTAL*totalEnabled)}）</p>
-                <button onClick={() => { distributeTypes(enabledTypes, totalEnabled || questionCount); setManualCounts(false); }}
-                  className="text-xs px-2 py-1 rounded-lg bg-white border border-gray-200 text-gray-500 hover:text-apple-600">
-                  🔄 重置比例
-                </button>
+                <span className="text-gray-500">📊 题型分配</span>
+                <button onClick={()=>{distributeTypes(enabledTypes,totalEnabled||questionCount);setManualCounts(false);}}
+                  className="text-xs px-2 py-0.5 rounded bg-white border border-gray-200 text-gray-500">🔄 重置</button>
               </div>
-              <div className="space-y-1.5">
-                {TYPE_ORDER.filter(t => enabledTypes.has(t)).map(type => (
-                  <div key={type} className="flex items-center justify-between text-sm">
-                    <span className="text-gray-500 w-14">{TYPE_LABELS[type]}</span>
-                    <input type="range" min="0" max={availableCounts[type] || 0}
-                      value={typeCounts[type] || 0}
-                      onChange={(e) => {
-                        setManualCounts(true);
-                        const newCounts = { ...typeCounts, [type]: Number(e.target.value) };
-                        setTypeCounts(newCounts);
-                        setQuestionCount(Object.values(newCounts).reduce((a, b) => a + b, 0));
-                      }}
-                      className="flex-1 mx-2 accent-apple-500" />
-                    <span className="text-apple-600 font-bold w-14 text-right">{typeCounts[type] || 0}<span className="text-xs text-gray-400">/{availableCounts[type] || 0}</span></span>
+              <div className="space-y-1">
+                {TYPE_ORDER.filter(t=>enabledTypes.has(t)).map(type=>(
+                  <div key={type} className="flex items-center gap-1 text-xs">
+                    <span className="text-gray-500 w-12">{TYPE_LABELS[type]}</span>
+                    <input type="range" min="0" max={availableCounts[type]||0} value={typeCounts[type]||0}
+                      onChange={e=>{setManualCounts(true);const nc={...typeCounts,[type]:Number(e.target.value)};setTypeCounts(nc);setQuestionCount(Object.values(nc).reduce((a,b)=>a+b,0));}}
+                      className="flex-1 accent-apple-500 h-1" />
+                    <span className="text-apple-600 font-bold w-16 text-right">{typeCounts[type]||0}<span className="text-gray-400">/{availableCounts[type]||0}</span></span>
                   </div>
                 ))}
               </div>
-              <p className="text-xs text-gray-400 mt-3">
-                合计 <span className="font-bold text-apple-600">{totalEnabled} 题</span>
-                <span className="ml-2">（{Math.round(BASE_COUNTS.single/BASE_TOTAL*100)}% : {Math.round(BASE_COUNTS.multiple/BASE_TOTAL*100)}% : {Math.round(BASE_COUNTS.judge/BASE_TOTAL*100)}% : {Math.round(BASE_COUNTS.essay/BASE_TOTAL*100)}%）</span>
-              </p>
+              <p className="text-gray-400 mt-2">合计 <span className="font-bold text-apple-600">{totalEnabled} 题</span></p>
             </div>
-
             <div>
-              <label className="block text-sm font-medium text-gray-600 mb-2">
-                ⏱ 考试时间：<span className="text-apple-600 font-bold text-lg">{timeMinutes} 分钟</span>
-              </label>
-              <input type="range" min="10" max="180" step="5" value={timeMinutes}
-                onChange={(e) => setTimeMinutes(Number(e.target.value))}
-                className="w-full accent-apple-500" />
+              <label className="block text-xs font-medium text-gray-500 mb-1">⏱ 考试时间：<span className="text-apple-600 font-bold">{timeMinutes} 分钟</span></label>
+              <input type="range" min="10" max="180" step="5" value={timeMinutes} onChange={e=>setTimeMinutes(Number(e.target.value))} className="w-full accent-apple-500 h-1.5" />
             </div>
-
-            <div className="p-4 rounded-2xl text-sm" style={{ background: '#fff8e1', border: '2px solid #ffe082', color: '#e67700' }}>
-              ⚠️ 题目按题型分组排列（单选→多选→判断→填空→简答）。计时到自动交卷。
+            <div className="p-3 rounded-xl text-xs" style={{ background:'#fff8e1', border:'2px solid #ffe082', color:'#e67700' }}>
+              ⚠️ 题目按题型分组排列，计时到自动交卷。
             </div>
-
-            <button onClick={startExam} disabled={loading || totalEnabled === 0}
-              className="w-full py-4 btn-apple text-lg font-bold disabled:opacity-50">
-              {loading ? '🍏 准备中...' : `🏅 开始模拟考试 (${totalEnabled}题)`}
+            <button onClick={startExam} disabled={loading||totalEnabled===0} className="w-full py-3 btn-apple text-sm font-bold disabled:opacity-50">
+              {loading?'🍏 准备中...':`🏅 开始模拟考试 (${totalEnabled}题)`}
             </button>
           </div>
         )}
@@ -373,20 +299,18 @@ export default function ExamMode() {
   if (screen === 'exam' && currentQuestion) {
     return (
       <div className="animate-fadeIn">
-        <div className="flex items-center gap-3 mb-4">
-          <span className="text-2xl">{examMode === 'type-practice' ? '🎯' : '🏆'}</span>
-          <h2 className="text-lg font-bold" style={{ color: '#387612' }}>
-            {examMode === 'type-practice' ? TYPE_LABELS[singleType] + '练习' : '模拟考试'}
-          </h2>
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-lg">{examMode==='type-practice'?'🎯':'🏆'}</span>
+          <h2 className="text-sm font-bold" style={{color:'#387612'}}>{examMode==='type-practice'?TYPE_LABELS[singleType]+'练习':'模拟考试'}</h2>
           <span className="badge-apple text-xs ml-auto">{TYPE_LABELS[currentQuestion.type]}</span>
         </div>
-        <div className="space-y-4">
-          <div className="card-apple p-3">
-            <Timer totalSeconds={timeMinutes * 60} onTimeUp={handleTimeUp} isRunning={true} />
+        <div className="space-y-3">
+          <div className="flex justify-center">
+            <Timer totalSeconds={timeMinutes*60} onTimeUp={handleTimeUp} isRunning={true} />
           </div>
-          <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-500">第 {currentIndex + 1}/{questions.length} 题</span>
-            <span className="text-gray-400">已答：{Object.keys(answers).length + Object.keys(fillAnswers).length} 题</span>
+          <div className="flex items-center justify-between text-xs">
+            <span className="text-gray-500">第 {currentIndex+1}/{questions.length} 题</span>
+            <span className="text-gray-400">已答：{Object.keys(answers).length+Object.keys(fillAnswers).length} 题</span>
           </div>
 
           {examMode === 'simulation' && (currentIndex === 0 || questions[currentIndex].type !== questions[currentIndex - 1]?.type) && (
@@ -428,26 +352,22 @@ export default function ExamMode() {
             )}
           </div>
 
-          <div className="card-apple p-4">
-            <div className="flex flex-wrap gap-1.5 mb-4">
-              {questions.map((q, i) => {
-                const answered = answers[q.id] || fillAnswers[q.id];
+          <div className="card-apple p-3">
+            <div className="flex flex-wrap gap-1 mb-3">
+              {questions.map((q,i)=>{
+                const answered=answers[q.id]||fillAnswers[q.id];
                 return (
-                  <button key={q.id} onClick={() => setCurrentIndex(i)}
-                    className="w-8 h-8 rounded-lg text-xs font-medium transition-all duration-200"
-                    style={{
-                      background: i === currentIndex ? '#7ad93f' : answered ? '#f2fde4' : '#f5f5f5',
-                      color: i === currentIndex ? 'white' : answered ? '#387612' : '#999',
-                      border: i === currentIndex ? '2px solid #5cb818' : answered ? '2px solid #9ae869' : '2px solid #e5e5e5',
-                    }}>
-                    {i + 1}
+                  <button key={q.id} onClick={()=>setCurrentIndex(i)}
+                    className="w-7 h-7 rounded-md text-xs font-medium transition-all duration-200"
+                    style={{ background:i===currentIndex?'#7ad93f':answered?'#f2fde4':'#f5f5f5', color:i===currentIndex?'white':answered?'#387612':'#999', border:i===currentIndex?'2px solid #5cb818':answered?'2px solid #9ae869':'2px solid #e5e5e5' }}>
+                    {i+1}
                   </button>
                 );
               })}
             </div>
             <button onClick={submitExam}
-              className="w-full py-3.5 rounded-2xl font-bold text-white text-base transition-all duration-200"
-              style={{ background: 'linear-gradient(135deg, #ff8787, #e03131)', boxShadow: '0 4px 14px rgba(224,49,49,0.3)' }}>
+              className="w-full py-3 rounded-xl font-bold text-white text-sm"
+              style={{ background:'linear-gradient(135deg, #ff8787, #e03131)', boxShadow:'0 4px 14px rgba(224,49,49,0.3)' }}>
               📝 交卷
             </button>
           </div>
@@ -465,71 +385,54 @@ export default function ExamMode() {
 
     return (
       <div className="animate-fadeIn">
-        <div className="flex items-center gap-3 mb-5">
-          <span className="text-2xl">{examMode === 'type-practice' ? '🎯' : '🏆'}</span>
-          <h2 className="text-lg font-bold" style={{ color: '#387612' }}>
-            {examMode === 'type-practice' ? TYPE_LABELS[singleType] + '练习结果' : '考试结果'}
-          </h2>
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-lg">{examMode==='type-practice'?'🎯':'🏆'}</span>
+          <h2 className="text-sm font-bold" style={{color:'#387612'}}>{examMode==='type-practice'?TYPE_LABELS[singleType]+'练习结果':'考试结果'}</h2>
         </div>
-
-        <div className="card-apple p-8 text-center mb-4">
-          <div className="text-6xl mb-4 animate-bounceIn">
-            {result.score >= 90 ? '🏅' : result.score >= 70 ? '🍏' : result.score >= 60 ? '😅' : '💪'}
-          </div>
-          <p className="text-4xl font-bold mb-2" style={{ color: result.score >= 60 ? '#387612' : '#e03131' }}>{result.score} 分</p>
-          <p className="text-gray-400">正确 {result.details.filter((d) => d.isCorrect).length}/{result.total} 题</p>
+        <div className="card-apple p-5 text-center mb-3">
+          <div className="text-4xl mb-2 animate-bounceIn">{result.score>=90?'🏅':result.score>=70?'🍏':result.score>=60?'😅':'💪'}</div>
+          <p className="text-3xl font-bold mb-1" style={{color:result.score>=60?'#387612':'#e03131'}}>{result.score} 分</p>
+          <p className="text-xs text-gray-400">正确 {result.details.filter(d=>d.isCorrect).length}/{result.total} 题</p>
         </div>
-
-        {grouped.length > 1 && (
-          <div className="card-apple p-4 mb-5">
-            <p className="text-sm font-medium text-gray-600 mb-3">📊 各题型正确率</p>
-            <div className="space-y-2">
-              {grouped.map(g => {
-                const correct = g.details.filter(d => d.isCorrect).length;
-                const pct = Math.round((correct / g.details.length) * 100);
+        {grouped.length>1&&(
+          <div className="card-apple p-3 mb-3">
+            <p className="text-xs font-medium text-gray-500 mb-2">📊 各题型正确率</p>
+            <div className="space-y-1.5">
+              {grouped.map(g=>{
+                const correct=g.details.filter(d=>d.isCorrect).length;
+                const pct=Math.round((correct/g.details.length)*100);
                 return (
-                  <div key={g.type} className="flex items-center gap-2 text-sm">
-                    <span className="w-16 text-gray-500">{g.label}</span>
-                    <div className="flex-1 h-3 rounded-full bg-gray-100 overflow-hidden">
-                      <div className="h-full rounded-full transition-all duration-500"
-                        style={{ width: `${pct}%`, background: pct >= 80 ? '#9ae869' : pct >= 60 ? '#ffe082' : '#ff8787' }} />
+                  <div key={g.type} className="flex items-center gap-2 text-xs">
+                    <span className="w-12 text-gray-500">{g.label}</span>
+                    <div className="flex-1 h-2 rounded-full bg-gray-100 overflow-hidden">
+                      <div className="h-full rounded-full" style={{width:`${pct}%`,background:pct>=80?'#9ae869':pct>=60?'#ffe082':'#ff8787'}}/>
                     </div>
-                    <span className="w-16 text-right text-xs text-gray-400">{correct}/{g.details.length} ({pct}%)</span>
+                    <span className="w-14 text-right text-gray-400">{correct}/{g.details.length} ({pct}%)</span>
                   </div>
                 );
               })}
             </div>
           </div>
         )}
-
-        <button onClick={() => setScreen('config')}
-          className="w-full py-3.5 btn-apple text-base mb-5">
-          🍏 再来一次
-        </button>
-
+        <button onClick={()=>setScreen('config')} className="w-full py-3 btn-apple text-sm mb-4">🍏 再来一次</button>
         <details className="mb-4">
-          <summary className="text-sm font-medium text-gray-500 cursor-pointer hover:text-apple-600 transition-colors">
-            📋 查看答题详情 ↓
-          </summary>
-          <div className="mt-3 space-y-4">
-            {grouped.map(g => (
-              <div key={g.type} className="mb-4">
-                <h3 className="font-medium text-sm mb-2" style={{ color: '#387612' }}>{g.label} ({g.details.length}题)</h3>
-                <div className="space-y-3">
-                  {g.details.map((detail, i) => (
-                    <div key={detail.question.id} className="card-apple p-4"
-                      style={{ borderLeft: `4px solid ${detail.isCorrect ? '#9ae869' : '#ff8787'}` }}>
-                      <div className="flex items-start gap-2">
-                        <span className="text-lg">{detail.isCorrect ? '✅' : '❌'}</span>
+          <summary className="text-xs font-medium text-gray-500 cursor-pointer">📋 查看答题详情 ↓</summary>
+          <div className="mt-2 space-y-3">
+            {grouped.map(g=>(
+              <div key={g.type}>
+                <h3 className="font-medium text-xs mb-1.5" style={{color:'#387612'}}>{g.label} ({g.details.length}题)</h3>
+                <div className="space-y-2">
+                  {g.details.map((detail,i)=>(
+                    <div key={detail.question.id} className="card-apple p-2.5" style={{borderLeft:`3px solid ${detail.isCorrect?'#9ae869':'#ff8787'}`}}>
+                      <div className="flex items-start gap-1.5">
+                        <span className="text-sm">{detail.isCorrect?'✅':'❌'}</span>
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm text-gray-800">{i + 1}. {detail.question.content}</p>
-                          <div className="flex gap-4 mt-2 text-xs">
-                            {!detail.isCorrect && <span className="text-red-400">你的：{detail.userAnswer}</span>}
-                            <span style={{ color: '#4a9b10' }}>正确：{detail.question.answer}</span>
+                          <p className="text-xs text-gray-800">{i+1}. {detail.question.content}</p>
+                          <div className="flex gap-3 mt-1 text-xs">
+                            {!detail.isCorrect&&<span className="text-red-400">你的：{detail.userAnswer}</span>}
+                            <span style={{color:'#4a9b10'}}>正确：{detail.question.answer}</span>
                           </div>
-                          {detail.question.explanation && (
-                            <p className="text-xs text-gray-500 mt-1">💡 {detail.question.explanation}</p>
-                          )}
+                          {detail.question.explanation&&<p className="text-xs text-gray-500 mt-0.5">💡 {detail.question.explanation}</p>}
                         </div>
                       </div>
                     </div>
