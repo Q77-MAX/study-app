@@ -21,6 +21,16 @@ jobs:
           npm run build
           npx cap add android
           npx cap sync
+          # Replace default Capacitor icon with 青苹果 icon
+          curl -sL https://q77-max.github.io/study-app/icon-192.png -o android/app/src/main/res/mipmap-hdpi/ic_launcher.png
+          curl -sL https://q77-max.github.io/study-app/icon-192.png -o android/app/src/main/res/mipmap-mdpi/ic_launcher.png
+          curl -sL https://q77-max.github.io/study-app/icon-192.png -o android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
+          curl -sL https://q77-max.github.io/study-app/icon-192.png -o android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+          curl -sL https://q77-max.github.io/study-app/icon-512.png -o android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+          # Also set round icon
+          for d in mipmap-hdpi mipmap-mdpi mipmap-xhdpi mipmap-xxhdpi mipmap-xxxhdpi; do
+            cp android/app/src/main/res/$d/ic_launcher.png android/app/src/main/res/$d/ic_launcher_round.png 2>/dev/null || true
+          done
           # Generate keystore for release signing
           keytool -genkey -v -keystore android/app/release.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000 -storepass apple123 -keypass apple123 -dname "CN=QP" -noprompt
           # Create keystore.properties for signing
