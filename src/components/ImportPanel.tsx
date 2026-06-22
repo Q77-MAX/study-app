@@ -540,6 +540,13 @@ export default function ImportPanel() {
         fileName="questions_jidianbaohu.json"
         onDone={() => { setImported(false); }}
       />
+      <PresetBankImport
+        label="发电厂和变电站电气设备题库"
+        desc="500 道题 · 单选252 多选68 判断127 填空53"
+        bankName="发电厂和变电站电气设备"
+        fileName="questions_fadianchang.json"
+        onDone={() => { setImported(false); }}
+      />
 
       {/* 题库管理面板 */}
       {showBanks && (

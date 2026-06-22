@@ -1,0 +1,6483 @@
+[
+  {
+    "type": "single",
+    "content": "下列不属于电力系统组成部分的是？",
+    "options": [
+      "发电厂",
+      "输电线路",
+      "动力装置",
+      "电力用户"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "热电厂与凝汽式火电厂相比，主要特点是？",
+    "options": [
+      "仅发电，效率低",
+      "既发电又供热，效率高",
+      "建在燃料产地",
+      "不需要凝汽器"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "抽水蓄能电站在用电低谷时段的工作方式是？",
+    "options": [
+      "水轮机带动发电机发电",
+      "水泵将下水库的水抽至上水库储存",
+      "机组完全停机备用",
+      "仅进行调相运行"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "核电厂与火力发电厂相比，燃料用量的显著特点是？",
+    "options": [
+      "用量极大",
+      "用量极少",
+      "与火电基本相当",
+      "依赖煤炭作为燃料"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "地区变电站全站停电后将造成什么影响？",
+    "options": [
+      "大面积停电或系统瓦解",
+      "区域电网解列",
+      "该地区或城市供电紊乱",
+      "企业生产中断"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电力系统运行的核心特点之一是？",
+    "options": [
+      "电能可大量储存",
+      "生产、输送、使用不同步",
+      "电能难以储存",
+      "故障过程缓慢"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "对I类用户的供电要求是？",
+    "options": [
+      "单回路供电",
+      "两路以上相互独立的电源",
+      "仅需优先供电",
+      "可短时停电"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "闭式电力网的定义是？",
+    "options": [
+      "用户只能从单方向得到供电",
+      "用户可从两个或以上方向得到供电",
+      "仅指低压配电网",
+      "仅指区域电力网"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电力系统的优越性不包括以下哪项？",
+    "options": [
+      "提高供电可靠性",
+      "提高发电经济性",
+      "减小总装机容量",
+      "增加用户电费支出"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "下列关于电力系统一次设备的定义，正确的是？",
+    "options": [
+      "直接生产、转换和输配电能的设备",
+      "对一次设备进行监察、测量的辅助设备",
+      "用于防御过电压的防雷设备",
+      "支持载流导体的绝缘设备"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "断路器的主要功能不包括以下哪项？",
+    "options": [
+      "接通正常工作电流",
+      "断开短路电流",
+      "检修时隔离电源",
+      "断开过负荷电流"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电流互感器的作用是将交流大电流转换为标准小电流，其标准值通常为？",
+    "options": [
+      "5A或1A",
+      "100V或100/√3V",
+      "220V或380V",
+      "10kV或35kV"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "下列设备中属于二次设备的是？",
+    "options": [
+      "同步发电机",
+      "继电保护装置",
+      "母线",
+      "电压互感器"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "配电装置按安装地点分类，不包括以下哪种类型？",
+    "options": [
+      "屋内型配电装置",
+      "屋外型配电装置",
+      "装配式配电装置",
+      "以上都不是"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "断路器的文字符号是？",
+    "options": [
+      "QS",
+      "QF",
+      "FU",
+      "TA"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "消弧线圈的主要作用是？",
+    "options": [
+      "限制短路电流",
+      "补偿小接地电流系统的单相接地电容电流",
+      "吸收过剩无功功率",
+      "发出感性无功功率"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电气主接线图是指？",
+    "options": [
+      "二次设备的连接图",
+      "一次设备按预期生产流程连成的单线图",
+      "配电装置的布置图",
+      "防雷装置的接线图"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "限流电器主要包括以下哪类设备？",
+    "options": [
+      "普通电抗器和分裂电抗器",
+      "电力电容器和调相机",
+      "避雷器和避雷针",
+      "电流互感器和电压互感器"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "高压隔离开关不能用来开断负荷电流和短路电流的主要原因是？",
+    "options": [
+      "没有专门的灭弧装置",
+      "额定电流太小",
+      "绝缘强度不足",
+      "操作机构不灵活"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "型号GN19-10/630中的\"N\"表示该隔离开关的安装地点是？",
+    "options": [
+      "户外式",
+      "户内式",
+      "高原型",
+      "防污型"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "GN19-10型户内隔离开关采用的结构形式是？",
+    "options": [
+      "双柱旋转式",
+      "插入式",
+      "单柱偏折式",
+      "三柱双断口式"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "GW4-110(D)型户外隔离开关的结构类型是？",
+    "options": [
+      "双柱单断口水平旋转式",
+      "单柱折叠式",
+      "三柱水平双断口式",
+      "单柱偏折式"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "GW5型隔离开关主要应用于哪些电压等级的变电站？",
+    "options": [
+      "35kV和110kV",
+      "10kV和35kV",
+      "110kV和220kV",
+      "220kV和500kV"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "GW6型户外隔离开关的典型结构形式是？",
+    "options": [
+      "单柱偏折式",
+      "双柱旋转式",
+      "三柱双断口式",
+      "单柱折叠式"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "GW7系列隔离开关的结构特点是？",
+    "options": [
+      "三柱式水平双断口",
+      "双柱单断口",
+      "单柱偏折式",
+      "单柱折叠式"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "GW16/GW22型户外隔离开关的结构类型是？",
+    "options": [
+      "单柱折叠式",
+      "双柱旋转式",
+      "三柱双断口式",
+      "单柱偏折式"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "高压隔离开关的核心组成部分不包括以下哪项？",
+    "options": [
+      "灭弧室",
+      "导电部分",
+      "绝缘部分",
+      "操作机构"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "GN19-10型隔离开关的磁锁连接片主要作用是？",
+    "options": [
+      "增加短路时的接触压力",
+      "提高绝缘强度",
+      "减少操作力",
+      "防止误操作"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "GW4-110(D)型隔离开关接地开关的正确操作顺序是？",
+    "options": [
+      "主闸刀分闸后才能合上接地开关",
+      "主闸刀合闸后才能合上接地开关",
+      "接地开关可直接合闸",
+      "接地开关与主闸刀操作无顺序要求"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "隔离开关用于隔离电源时，主要依靠什么保证安全？",
+    "options": [
+      "明显的断开点",
+      "高绝缘强度",
+      "大额定电流",
+      "快速操作"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "隔离开关可断合的小电流电路不包括以下哪项？",
+    "options": [
+      "负荷电流",
+      "电压互感器",
+      "避雷器",
+      "空载母线"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "GW6型隔离开关因动作原理被俗称为？",
+    "options": [
+      "剪刀式隔离开关",
+      "折叠式隔离开关",
+      "旋转式隔离开关",
+      "双断口隔离开关"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "隔离开关操动机构的核心作用是？",
+    "options": [
+      "开断负荷电流",
+      "操作隔离开关主闸刀和接地闸刀",
+      "保护设备免受过载",
+      "调节系统电压"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "以下哪项不是手动操动机构的优点？",
+    "options": [
+      "结构简单",
+      "价格低廉",
+      "可远方遥控操作",
+      "维护工作量少"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "杠杆式手动操动机构一般适用于额定电流小于多少的隔离开关？",
+    "options": [
+      "2000A",
+      "3000A",
+      "4000A",
+      "5000A"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "CJ6型电动操动机构的机械减速传动系统不包括以下哪个部件？",
+    "options": [
+      "齿轮",
+      "蜗杆",
+      "液压缸",
+      "蜗轮"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "我国液压操动机构自20世纪80年代逐渐被淘汰的主要原因是？",
+    "options": [
+      "价格过高",
+      "结构复杂且易渗漏油",
+      "操作速度慢",
+      "维护困难"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "压缩空气操动机构目前很少使用，其主要适用场景是？",
+    "options": [
+      "所有变电站",
+      "选用压缩空气断路器的变电站",
+      "小型变电站",
+      "农村变电站"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "手动操作隔离开关时，手柄离地面的高度不应大于多少？",
+    "options": [
+      "1.0m",
+      "1.1m",
+      "1.2m",
+      "1.3m"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "隔离开关辅助触点的开断能力通常为直流110V、5A或220V、多少A？",
+    "options": [
+      "1.5",
+      "2",
+      "2.5",
+      "3"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "CJ6型电动操动机构中，供手动摇柄进行手动操作的部件是？",
+    "options": [
+      "电动机轴",
+      "蜗杆端部的方轴",
+      "蜗轮轴",
+      "输出转轴"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "高压隔离开关的小修周期一般不应超过多少年？",
+    "options": [
+      "1年",
+      "2年",
+      "3年",
+      "5年"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "经过完善化改造且符合国家技术规定的隔离开关，推荐的大修周期是多少年？",
+    "options": [
+      "3-5年",
+      "5-7年",
+      "8-10年",
+      "10-12年"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "隔离开关导电回路发热的主要原因不包括以下哪项？",
+    "options": [
+      "静触指压紧弹簧松弛",
+      "合闸不到位",
+      "绝缘子表面脏污",
+      "触头氧化锈蚀"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "隔离开关小修中，导电回路部件清洗应使用哪种溶剂？",
+    "options": [
+      "酒精或丙酮",
+      "清水",
+      "柴油",
+      "汽油"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "GN19-10型隔离开关单极开距的最小要求是多少？",
+    "options": [
+      "100mm",
+      "150mm",
+      "200mm",
+      "250mm"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "GW4-110型隔离开关接触电阻试验的电流要求是？",
+    "options": [
+      "AC 50A",
+      "AC 100A",
+      "DC 50A",
+      "DC 100A"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "隔离开关交接验收中，三相不同期值应符合以下哪项要求？",
+    "options": [
+      "产品技术规定",
+      "≤5mm",
+      "≤10mm",
+      "≤15mm"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "隔离开关运行检查中，触头和接头的最高允许温度是多少？",
+    "options": [
+      "60℃",
+      "70℃",
+      "80℃",
+      "90℃"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "隔离开关机构卡涩的主要原因不包括以下哪项？",
+    "options": [
+      "机构箱进水凝露",
+      "轴承锈死",
+      "触头氧化",
+      "润滑不良"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "GN19-10型隔离开关三相同期的最大允许值是多少？",
+    "options": [
+      "3mm",
+      "5mm",
+      "8mm",
+      "10mm"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "高压断路器在电网中主要起什么作用？",
+    "options": [
+      "仅控制电力设备投退",
+      "仅保护电网故障部分切除",
+      "控制和保护双重作用",
+      "无实际作用"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "以下哪种不是按灭弧介质分类的断路器类型？",
+    "options": [
+      "油断路器",
+      "SF₆断路器",
+      "真空断路器",
+      "电磁操动机构断路器"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "SF₆断路器常见的结构类型包括？",
+    "options": [
+      "瓷柱式",
+      "落地罐式",
+      "瓷柱式和落地罐式",
+      "以上都不是"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "哪种SF₆断路器便于加装电流互感器？",
+    "options": [
+      "瓷柱式",
+      "落地罐式",
+      "两者都可以",
+      "两者都不可以"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "户内型真空断路器的基本结构型式包括？",
+    "options": [
+      "悬臂式",
+      "落地式",
+      "悬臂式和落地式",
+      "以上都不是"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "ZN28-12系列户内型真空断路器的总体结构是？",
+    "options": [
+      "落地式",
+      "悬臂式",
+      "两者都是",
+      "两者都不是"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "SF₆断路器的弧灭弧介质是？",
+    "options": [
+      "SF₆气体",
+      "真空",
+      "变压器油",
+      "压缩空气"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "E2级断路器的主要特点是？",
+    "options": [
+      "主回路灭弧元件使用期内无需维护",
+      "具有基本电寿命",
+      "维护工作量大",
+      "以上都不是"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "户外型真空断路器通常采用哪种结构？",
+    "options": [
+      "落地式",
+      "悬臂式",
+      "两者都是",
+      "两者都不是"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "断路器能关合、承载和开断的电流不包括以下哪种？",
+    "options": [
+      "正常运行电流",
+      "短路电流",
+      "过负荷电流",
+      "超高压电流"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "当开关电器切断有电流的电路时，产生电弧的条件是触头间电压和电流分别大于（）",
+    "options": [
+      "5~10V，50~70mA",
+      "10~20V，80~100mA",
+      "20~30V，100~120mA",
+      "30~40V，120~140mA"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电弧的去游离方式不包括以下哪种？",
+    "options": [
+      "复合",
+      "扩散",
+      "热游离",
+      "表面复合"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "SF₆气体的灭弧能力约为空气的多少倍？",
+    "options": [
+      "10倍",
+      "50倍",
+      "100倍",
+      "200倍"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "真空断路器中电弧的运动主要依靠什么力？",
+    "options": [
+      "电场力",
+      "磁场力",
+      "重力",
+      "气流力"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "单压式SF₆断路器可分为以下哪两种类型？",
+    "options": [
+      "定开距和变开距",
+      "高压和低压",
+      "直流和交流",
+      "油浸和干式"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电弧形成的初始阶段，阴极提供起始自由电子的方式是？",
+    "options": [
+      "碰撞游离",
+      "热游离",
+      "热电子发射和强电场发射",
+      "扩散"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "以下哪项不是影响电弧去游离的主要因素？",
+    "options": [
+      "介质特性",
+      "冷却电弧",
+      "气体介质的压力",
+      "电路的功率因数"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "真空断路器灭弧室的屏蔽罩不具有以下哪种功能？",
+    "options": [
+      "冷凝金属蒸汽",
+      "改善电场分布",
+      "产生磁场",
+      "防止电弧生成物污染绝缘外壳"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "单压式SF₆断路器灭弧时主要利用什么介质熄灭电弧？",
+    "options": [
+      "压缩空气",
+      "压缩SF₆气体",
+      "真空",
+      "绝缘油"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "维持电弧稳定燃烧的主要过程是？",
+    "options": [
+      "碰撞游离",
+      "热游离",
+      "复合",
+      "扩散"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "断路器操动机构型号中，第二位字母\"T\"代表的操动方式是？",
+    "options": [
+      "电磁",
+      "弹簧",
+      "气动",
+      "液压"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "下列不属于断路器操动机构组成部分的是？",
+    "options": [
+      "合闸机构",
+      "保持机构",
+      "提升机构",
+      "输出装置"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "断路器操动机构的基本要求不包括以下哪项？",
+    "options": [
+      "足够的合闸功能",
+      "保持合闸功能",
+      "较长的分闸时间",
+      "防跳功能"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "弹簧储能电动操动机构的优点是？",
+    "options": [
+      "合闸线圈消耗功率大",
+      "分、合闸速度快，电动机功率小，可交直流两用",
+      "结构简单，制造成本低",
+      "短时失去电源仍能操作若干次"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "CT19型弹簧操动机构的储能方式有？",
+    "options": [
+      "仅电动储能",
+      "仅手动储能",
+      "电动储能和手动储能",
+      "气动储能"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "液压操动机构的主要缺点是？",
+    "options": [
+      "合闸时间长",
+      "结构复杂，加工精度要求高，维护工作量大",
+      "分闸速度慢",
+      "动作不平稳"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "弹簧储能电动操动机构适用于？",
+    "options": [
+      "高压断路器",
+      "中压断路器，特别适用于小容量配电系统",
+      "超高压断路器",
+      "以上都适用"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "断路器操动机构的辅助设备主要由以下哪些元件组成？",
+    "options": [
+      "辅助开关、中间继电器、接触器",
+      "合闸线圈、分闸线圈",
+      "储能弹簧、凸轮",
+      "棘爪、棘轮"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "CT19型弹簧操动机构的合闸操作方式有？",
+    "options": [
+      "仅合闸线圈操作",
+      "仅手按钮操作",
+      "合闸线圈操作和手按钮操作",
+      "气动操作"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "CYA3型液压弹簧操动机构的机芯模块不包括以下哪项？",
+    "options": [
+      "充能模块",
+      "储能模块",
+      "工作模块",
+      "冷却模块"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "断路器合闸线圈的最低动作电压应不大于额定电压的（）",
+    "options": [
+      "80%",
+      "65%",
+      "30%",
+      "120%"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "断路器分闸线圈的最低动作电压应在额定电压的哪个范围？（）",
+    "options": [
+      "30%～65%",
+      "80%～110%",
+      "20%～50%",
+      "65%～120%"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "下列哪项是防止触电、仪器损坏的控制措施？（）",
+    "options": [
+      "使用前将机械特性测试仪接上接地线",
+      "断开断路器控制电源",
+      "工作人员走指定通道",
+      "确认测试项目并选择正确挡位"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "断路器机械特性试验前不需要查阅的资料是（）",
+    "options": [
+      "被试断路器历年试验报告",
+      "相关交接预试规程",
+      "断路器用户手册",
+      "断路器运行记录和缺陷记录"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "三相合闸时间中的最大值与最小值之差称为（）",
+    "options": [
+      "合闸不同期",
+      "分闸不同期",
+      "动作速度差",
+      "时间偏差"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "测试线接入断路器控制回路时，应断开断路器的（）以防止触电和损坏二次设备",
+    "options": [
+      "控制电源",
+      "试验电源",
+      "主电源",
+      "备用电源"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "断路器机械特性测试仪的输出电源严禁（）",
+    "options": [
+      "短路",
+      "过载",
+      "接地",
+      "空载"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "下列哪项属于防止误入、误登带电间隔的控制措施？（）",
+    "options": [
+      "工作人员走指定通道",
+      "使用前接接地线",
+      "断开控制电源",
+      "选择正确操作电压"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "测试时确认测试项目、选择正确挡位和操作电压，是为了防止（）",
+    "options": [
+      "误操作损坏仪器设备",
+      "触电和仪器损坏",
+      "误入带电间隔",
+      "损坏断路器二次设备"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "断路器机械特性试验不包括以下哪项测试？（）",
+    "options": [
+      "绝缘电阻测试",
+      "低电压动作特性测试",
+      "动作时间测试",
+      "动作速度测试"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电力系统的基本组成不包括以下哪项？",
+    "options": [
+      "发电厂",
+      "变电站",
+      "输电线路",
+      "通信基站"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "火力发电厂的主要能源来源是？",
+    "options": [
+      "水能",
+      "煤、石油、天然气",
+      "核能",
+      "风能"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "枢纽变电站的电压等级通常为？",
+    "options": [
+      "110kV及以下",
+      "220kV",
+      "330kV及以上",
+      "10kV"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "超高压电力网的电压范围是？",
+    "options": [
+      "1~330kV",
+      "330~1000kV",
+      "1000kV以上",
+      "1kV及以下"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "隔离开关不能开断以下哪种电流？",
+    "options": [
+      "空载母线电流",
+      "电压互感器电流",
+      "负荷电流",
+      "避雷器电流"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "GN系列隔离开关属于哪种类型？",
+    "options": [
+      "户外式",
+      "户内式",
+      "罐式",
+      "柱式"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "SF6断路器的灭弧介质是？",
+    "options": [
+      "真空",
+      "六氟化硫气体",
+      "变压器油",
+      "压缩空气"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "真空断路器的主要特点是？",
+    "options": [
+      "灭弧室需要频繁维护",
+      "灭弧能力强，维护工作量小",
+      "适用于高电压大容量",
+      "灭弧介质易泄漏"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "弹簧操动机构的优点是？",
+    "options": [
+      "分合闸速度快",
+      "操作功率大",
+      "结构复杂",
+      "需要高压气源"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "CT19型弹簧操动机构的储能方式有？",
+    "options": [
+      "电机储能和手动储能",
+      "液压储能和气动储能",
+      "电磁储能和弹簧储能",
+      "永磁储能和手动储能"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "液压操动机构的优点是？",
+    "options": [
+      "暂时失电时仍能操作几次",
+      "结构简单，维护方便",
+      "操作速度慢",
+      "需要大容量直流电源"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电弧熄灭的根本条件是？",
+    "options": [
+      "游离作用大于去游离作用",
+      "去游离作用大于游离作用",
+      "电弧温度升高",
+      "电弧电流增大"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "单压式SF6断路器的灭弧原理是？",
+    "options": [
+      "分闸时压缩SF6气体吹弧",
+      "利用电弧自身能量加热SF6气体吹弧",
+      "真空环境中灭弧",
+      "油中灭弧"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "真空断路器灭弧时，电弧的运动方式是？",
+    "options": [
+      "在磁场作用下沿触头表面切线方向运动",
+      "在气流作用下被吹向外侧",
+      "在油中冷却熄灭",
+      "在SF6气体中被压缩吹灭"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "GN19-10型号中，\"10\"代表什么？",
+    "options": [
+      "额定电压10kV",
+      "额定电流10A",
+      "设计序号10",
+      "安装地点编号10"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "ZN28-12型号中，\"Z\"代表什么？",
+    "options": [
+      "真空断路器",
+      "SF6断路器",
+      "油断路器",
+      "空气断路器"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电力系统运行的显著特点之一是？",
+    "options": [
+      "电能可以大量储存",
+      "电能生产、输送、使用同时进行",
+      "故障过程缓慢",
+      "与国民经济关系不大"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "I类用户的供电要求是？",
+    "options": [
+      "单电源供电",
+      "两路以上独立电源供电",
+      "专用线路供电",
+      "可暂时停电"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "配电装置按安装地点可分为？",
+    "options": [
+      "屋内和屋外配电装置",
+      "高压和低压配电装置",
+      "装配式和成套式配电装置",
+      "开式和闭式配电装置"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "以下哪项不属于电力系统中重点掌握的三种发电厂类型？",
+    "options": [
+      "火力发电厂",
+      "水力发电厂",
+      "核电厂",
+      "风力发电厂"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "枢纽变电站的电压等级一般为？",
+    "options": [
+      "110kV及以下",
+      "220~330kV",
+      "330kV及以上",
+      "35~110kV"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "超高压电力网的电压范围是？",
+    "options": [
+      "1kV及以下",
+      "1~330kV",
+      "330~1000kV",
+      "1000kV以上"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电力系统运行的哪个特点决定了电能生产、输送、使用必须同时完成？",
+    "options": [
+      "电能难以储存",
+      "故障过程迅速",
+      "地区性强",
+      "与国民经济密切相关"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "I类用户的定义是？",
+    "options": [
+      "停止供电会带来人身危险、设备损坏或重大经济损失",
+      "停止供电会造成大量减产",
+      "短时停电无严重后果",
+      "以上都不是"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "枢纽变电站的主要作用是？",
+    "options": [
+      "联系多个电源，出线回路多",
+      "汇集2-3个电源",
+      "为地区用户供电",
+      "企业专用"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "闭式电力网的定义是？",
+    "options": [
+      "用户只能从单方向得到供电",
+      "用户可从两个或以上方向得到供电",
+      "电压等级10kV及以下",
+      "供电范围小"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12型高压开关柜的额定电压是多少？",
+    "options": [
+      "10kV",
+      "12kV",
+      "20kV",
+      "35kV"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12型高压开关柜按安装方式分类属于哪类？",
+    "options": [
+      "固定式（G）",
+      "移开式（Y）",
+      "户外型（W）",
+      "敞开式"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12型高压开关柜按柜体结构分类属于哪类？",
+    "options": [
+      "金属封闭铠装式（K）",
+      "金属封闭间隔式（J）",
+      "金属封闭箱式（X）",
+      "敞开式"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12型高压开关柜外壳的防护等级是多少？",
+    "options": [
+      "IP2X",
+      "IP3X",
+      "IP4X",
+      "IP5X"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "以下哪项属于高压开关柜的五防功能之一？",
+    "options": [
+      "防止过电压",
+      "防止带负荷操作隔离开关",
+      "防止设备过热",
+      "防止电流过大"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12型高压开关柜中，手车从试验位置移向工作位置的前提条件是？",
+    "options": [
+      "断路器处于合闸状态",
+      "断路器处于分闸状态",
+      "接地开关处于合闸状态",
+      "任意状态均可"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12型高压开关柜的额定频率是多少？",
+    "options": [
+      "50Hz",
+      "60Hz",
+      "50/60Hz",
+      "60Hz专用"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "以下哪项不属于高压开关柜的五防功能？",
+    "options": [
+      "防止误分、合断路器",
+      "防止带负荷操作隔离开关",
+      "防止过电压",
+      "防止误入带电间隔"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12型高压开关柜断路器门打开时的防护等级是多少？",
+    "options": [
+      "IP2X",
+      "IP3X",
+      "IP4X",
+      "IP5X"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12型号中的字母N表示什么含义？",
+    "options": [
+      "户外型",
+      "户内型",
+      "移开式",
+      "固定式"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "高压开关柜的主要作用是什么？",
+    "options": [
+      "发电",
+      "接受与分配电能",
+      "储存电能",
+      "交直流转换"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "当接地开关处于合闸状态时，KYN28A-12型高压开关柜的手车能否移入工作位置？",
+    "options": [
+      "能",
+      "不能",
+      "视情况而定",
+      "仅断路器合闸时能"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12型高压开关柜中，防止误入带电间隔的功能主要通过什么实现？",
+    "options": [
+      "控制开关加锁",
+      "带电指示器",
+      "手车拉出后活门自动关闭",
+      "接地开关连锁"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12型高压开关柜的4s热稳定电流选项中不包括以下哪项？",
+    "options": [
+      "16kA",
+      "25kA",
+      "35kA",
+      "40kA"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "XGN2-12型高压开关柜按柜体结构分类属于哪类？",
+    "options": [
+      "金属封闭铠装式（K）",
+      "金属封闭间隔式（J）",
+      "金属封闭箱式（X）",
+      "敞开式"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12型高压开关柜的二次插头何时可以插拔？",
+    "options": [
+      "手车在工作位置",
+      "手车在试验位置",
+      "断路器合闸时",
+      "接地开关合闸时"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12型高压开关柜的额定动稳定电流选项中包括以下哪项？",
+    "options": [
+      "30kA",
+      "40kA",
+      "55kA",
+      "90kA"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12型高压开关柜中，接地开关合闸的前提条件不包括以下哪项？",
+    "options": [
+      "手车在试验位置",
+      "线路无电",
+      "断路器合闸",
+      "带电指示器无指示"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12型高压开关柜的主母线额定电流选项中包括以下哪项？",
+    "options": [
+      "500A",
+      "630A",
+      "1500A",
+      "2200A"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12型高压开关柜中，防止误分合断路器的措施是什么？",
+    "options": [
+      "控制开关加锁",
+      "手车连锁",
+      "接地开关连锁",
+      "活门关闭"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12型号中的字母K表示什么含义？",
+    "options": [
+      "金属封闭铠装式",
+      "金属封闭间隔式",
+      "金属封闭箱式",
+      "敞开式"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "10kV高压开关柜拒动、误动故障的原因可分为哪两类？",
+    "options": [
+      "仅操动机构及传动系统的机械故障",
+      "仅电气控制和辅助回路故障",
+      "机械故障和电气故障两类",
+      "以上都不是"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "真空断路器本体故障不包括以下哪项？",
+    "options": [
+      "灭弧室及波纹管漏气",
+      "真空度降低",
+      "隔离插头接触不良",
+      "陶瓷管破裂"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "以下哪项不属于10kV高压开关柜的绝缘故障？",
+    "options": [
+      "外绝缘对地闪络击穿",
+      "相间绝缘闪络击穿",
+      "隔离插头接触不良导致触头烧熔",
+      "电流互感器闪络、击穿、爆炸"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "7.2～12kV电压等级高压开关柜发生载流故障的主要原因是？",
+    "options": [
+      "开关柜隔离插头接触不良导致触头烧熔",
+      "分合闸线圈烧损",
+      "二次接线接触不良",
+      "真空灭弧室真空度降低"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "10kV高压开关柜中发生概率最高的故障类型是？",
+    "options": [
+      "机械故障",
+      "电气故障",
+      "绝缘故障",
+      "载流故障"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "工厂制造的新真空灭弧室真空度应达到？",
+    "options": [
+      "6.6×10⁻²Pa",
+      "7.5×10⁻⁴Pa",
+      "1.33×10⁻¹Pa",
+      "以上都不是"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "以下哪种真空度检测方法仅适用于玻璃外壳的真空灭弧室？",
+    "options": [
+      "火花计法",
+      "工频耐压法",
+      "真空度测试仪法",
+      "以上都不是"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "真空灭弧室触头电磨损值达到多少时必须更换？",
+    "options": [
+      "≥1mm",
+      "≥2mm",
+      "≥3mm",
+      "≥4mm"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "10kV高压开关柜断路器不能合闸，以下哪项不是故障原因？",
+    "options": [
+      "断路器手车未到确定位置",
+      "二次控制回路接线松动",
+      "接地开关处于合闸状态",
+      "合闸电压过低"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "接地开关无法操作合闸，以下哪项是正常连锁情况？",
+    "options": [
+      "电缆侧带电",
+      "闭锁电磁铁不动作",
+      "传动机构故障",
+      "电缆室门未关好"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "国产电流互感器型号LZZBJ9-12中，第三个字母Z代表什么含义？",
+    "options": [
+      "支柱式",
+      "浇注绝缘",
+      "瓷绝缘",
+      "单匝贯穿式"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电压互感器型号JDZF7-10中，字母F代表什么？",
+    "options": [
+      "带剩余电压绕组",
+      "油浸式",
+      "三相",
+      "瓷绝缘"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电流互感器正常运行时，二次绕组处于什么状态？",
+    "options": [
+      "开路",
+      "短路",
+      "空载",
+      "不确定"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电容式电压互感器通常用于哪个电压等级？",
+    "options": [
+      "10kV及以下",
+      "35kV",
+      "110kV及以上",
+      "所有电压等级"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "穿心式电流互感器的特点是？",
+    "options": [
+      "有多个一次绕组",
+      "没有一次绕组，导体穿过铁芯",
+      "二次绕组开路运行",
+      "主要用于低压系统"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "为防止电磁式电压互感器二次侧短路损坏，应采取什么措施？",
+    "options": [
+      "二次侧接熔断器并接地",
+      "仅接地",
+      "仅接熔断器",
+      "无需措施"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电压互感器型号JDR-110中，字母R表示什么绝缘类型？",
+    "options": [
+      "油浸式",
+      "电容式",
+      "浇注绝缘",
+      "干式"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电流互感器型号中，字母B代表保护级时，通常出现在哪个位置？",
+    "options": [
+      "第一个字母",
+      "第二个字母",
+      "第四个或第五个字母",
+      "后缀字母"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电容式电压互感器的核心组成部分不包括以下哪项？",
+    "options": [
+      "电容分压器",
+      "电磁式电压互感器",
+      "阻尼电阻",
+      "多抽头一次绕组"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电压互感器的单相接线方式可用于测量以下哪种电压？",
+    "options": [
+      "35kV及以下中性点不接地系统的相对地电压",
+      "35kV及以下中性点不接地系统的相间电压",
+      "20kV及以下中性点不接地系统的相对地电压",
+      "所有系统的相间电压"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电压互感器采用V/v（不完全星形）接法时，以下哪种说法正确？",
+    "options": [
+      "可测量相对地电压",
+      "适用于20kV及以下中性点直接接地系统",
+      "广泛应用于20kV及以下中性点不接地系统",
+      "需要三台单相电压互感器"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电压互感器Y/yn接法的缺点不包括以下哪项？",
+    "options": [
+      "三相负载不平衡时误差较大",
+      "一次侧单相接地时中性点允许接地",
+      "不能测量对地电压",
+      "高压侧中性点无引出线"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电压互感器YN/yn/d接法中，辅助二次绕组的作用是？",
+    "options": [
+      "测量相间电压",
+      "测量相对地电压",
+      "供给单相接地保护使用",
+      "平衡三相负载"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电压互感器二次侧严禁短路的主要原因是？",
+    "options": [
+      "短路会导致二次电压过高",
+      "短路会产生巨大电流烧坏互感器",
+      "短路会使一次侧电压异常",
+      "短路会导致极性反转"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电压互感器开口三角绕组两端是否需要加装熔断器？",
+    "options": [
+      "必须加装",
+      "不需要加装",
+      "根据系统电压决定",
+      "加装更好"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电压互感器二次回路接线应采用截面积不小于多少的绝缘铜线？",
+    "options": [
+      "1.0mm²",
+      "1.5mm²",
+      "2.0mm²",
+      "2.5mm²"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电流互感器二次侧开路会导致以下哪种后果？",
+    "options": [
+      "二次电压过低",
+      "铁芯过热并感应高电压",
+      "一次侧电流增大",
+      "互感器极性反转"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "高压电流互感器二次侧应如何接地？",
+    "options": [
+      "不接地",
+      "必须一点接地",
+      "多点接地",
+      "根据系统决定"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电流互感器测量级和保护级接错会导致？",
+    "options": [
+      "计量准确但保护不灵敏",
+      "计量不准且保护不灵敏",
+      "计量准确且保护灵敏",
+      "无影响"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电流互感器不用的绕组应如何处理？",
+    "options": [
+      "开路放置",
+      "短接起来",
+      "接地",
+      "剪断"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "三相完全星形接线的电流互感器适用于哪种系统？",
+    "options": [
+      "大电流接地系统",
+      "小电流接地系统",
+      "所有系统",
+      "低压系统"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "两相两继电器不完全星形接线适用于哪种系统？",
+    "options": [
+      "110kV直接接地系统",
+      "6～10kV中性点不接地系统",
+      "220kV直接接地系统",
+      "所有高压系统"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电流互感器单相接线主要用于？",
+    "options": [
+      "保护回路",
+      "测量回路（三相平衡时）",
+      "所有回路",
+      "单相接地保护"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电流互感器的接线必须采用不小于多少的铜芯绝缘导线？",
+    "options": [
+      "1.5mm²",
+      "2.0mm²",
+      "2.5mm²",
+      "3.0mm²"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "并联电容器在电力系统中的主要作用是？",
+    "options": [
+      "提高功率因数，补偿感性负载的无功功率",
+      "限制短路电流大小",
+      "用于高压输电线路的载波通信系统",
+      "作为冲击电压发生器的储能元件"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "限流电抗器的主要作用是？",
+    "options": [
+      "限制短路电流大小",
+      "补偿电力系统的无功功率",
+      "使断路器断口电压分布均匀",
+      "用于冲击电流发生器的储能"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电容器型号中第一位字母为'B'表示该电容器的用途是？",
+    "options": [
+      "并联电容器",
+      "串联电容器",
+      "断路器电容器",
+      "耦合电容器"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "空心电抗器的磁路特点是？",
+    "options": [
+      "磁路为非导磁体，电感值恒定",
+      "磁路带气隙，电感值非线性",
+      "磁阻小，电感值大",
+      "铁芯饱和时电感值增大"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "耦合电容器主要用于高压输电线路的哪个系统？",
+    "options": [
+      "载波通信系统",
+      "无功补偿系统",
+      "短路限流系统",
+      "电压均压系统"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "串接在电缆馈线上，用于限制短路电流并维持母线剩余电压的电抗器是？",
+    "options": [
+      "线路电抗器",
+      "母线电抗器",
+      "变压器回路电抗器",
+      "滤波电抗器"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "高压并联电容器内部每个电容元件上串联的保护元件是？",
+    "options": [
+      "熔丝",
+      "放电电阻",
+      "避雷器",
+      "接地开关"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "并联电抗器的作用不包括以下哪项？",
+    "options": [
+      "提高线路末端电压水平",
+      "降低工频暂态过电压",
+      "限制短路电流大小",
+      "改善无功分布"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电容器型号中第四位数字为'3'表示该电容器的相数是？",
+    "options": [
+      "单相",
+      "三相",
+      "两相",
+      "四相"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "心式电抗器的铁芯必须带有气隙，其主要目的是？",
+    "options": [
+      "使电感值保持线性",
+      "增大磁阻",
+      "提高磁导率",
+      "减小电感值"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "避雷器的主要作用是保护电力系统中的电气设备免受以下哪种危害？",
+    "options": [
+      "雷电过电压、操作过电压及工频暂态过电压的冲击",
+      "短路电流的冲击",
+      "功率因数过低的影响",
+      "频率波动的影响"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "下列哪种避雷器常用于变电站和发电厂的保护？",
+    "options": [
+      "管型避雷器",
+      "阀型避雷器",
+      "氧化锌避雷器",
+      "阀型和氧化锌避雷器"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "氧化锌避雷器的核心元件是什么？",
+    "options": [
+      "火花间隙",
+      "碳化硅阀片",
+      "氧化锌压敏电阻",
+      "气体放电管"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "避雷器型号中的“Z”代表什么含义？",
+    "options": [
+      "配电型",
+      "电站型",
+      "保护电容器组",
+      "线路型"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "避雷器的残压是指什么？",
+    "options": [
+      "放电电流通过避雷器时两端的电压峰值",
+      "避雷器允许的最大工频电压有效值",
+      "避雷器持续运行的最大电压有效值",
+      "通过1mA直流电流时的电压"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "压比的定义是什么？",
+    "options": [
+      "标称冲击电流下的残压与参考电压之比",
+      "最大持续运行电压与额定电压之比",
+      "荷电率与保护比之比",
+      "通流容量与残压之比"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "氧化锌避雷器相比传统阀型避雷器的显著优点是什么？",
+    "options": [
+      "有续流现象",
+      "无续流现象",
+      "残压高",
+      "反应时间长"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "管型避雷器主要用于以下哪个场合？",
+    "options": [
+      "配电系统",
+      "500kV变电站",
+      "发电厂主设备",
+      "超高压系统内部过电压保护"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "我国目前避雷器的通流容量通常用什么来表征？",
+    "options": [
+      "2ms方波电流值",
+      "8/20μs冲击电流值",
+      "1mA直流电流值",
+      "工频电压有效值"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "避雷器的荷电率是指什么？",
+    "options": [
+      "最大持续运行电压峰值与直流参考电压之比",
+      "残压与参考电压之比",
+      "保护比与压比之比",
+      "通流容量与额定电压之比"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "避雷器通常与被保护设备的连接方式是？",
+    "options": [
+      "串联",
+      "并联",
+      "混联",
+      "不确定"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "避雷器型号中的“TL”代表什么附加特征？",
+    "options": [
+      "高原型",
+      "抗震型",
+      "带脱离器型",
+      "直流型"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "下列关于无分段单母线接线的描述正确的是？",
+    "options": [
+      "仅有一组工作母线，每回进出线经一台断路器和隔离开关接于该母线上",
+      "有两组工作母线，每回线路通过隔离开关连接到两组母线上",
+      "用断路器将母线分段，提高供电可靠性",
+      "每回线路连接到两台断路器，形成环形供电"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "无分段单母线接线的主要优点不包括以下哪项？",
+    "options": [
+      "接线简单清晰，设备少",
+      "操作方便，投资少",
+      "可靠性和灵活性高",
+      "便于扩建"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "无分段单母线接线适用于以下哪种场景？",
+    "options": [
+      "6~220kV系统中出线回路较少、对供电可靠性要求不高的场合",
+      "220kV系统中出线回路多、重要用户供电场合",
+      "需要频繁切换变压器运行方式的场合",
+      "大容量发电厂的主接线"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "单母线分段接线的关键特征是？",
+    "options": [
+      "用隔离开关将母线分段",
+      "用断路器将母线分段，可提高供电可靠性",
+      "仅有一组工作母线",
+      "所有线路必须同时连接到两段母线"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "内桥接线适用于以下哪种情况？",
+    "options": [
+      "线路较短、变压器需要经常切换的场合",
+      "线路较长、故障可能性大且变压器不需经常切换的场合",
+      "出线回路数多的场合",
+      "大容量发电厂的主接线"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "外桥接线适用于以下哪种情况？",
+    "options": [
+      "线路较长、故障可能性大的场合",
+      "线路较短、故障可能性小且变压器需要经常切换的场合",
+      "重要用户供电场合",
+      "所有电压等级的变电站"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "发电机-变压器单元接线的主要特征是？",
+    "options": [
+      "设有发电机电压母线",
+      "发电机与变压器直接连接，中间不设断路器",
+      "需要大量隔离开关",
+      "适用于带近区负荷的发电厂"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "扩大单元接线是指？",
+    "options": [
+      "一台发电机与一台变压器组成单元",
+      "两台发电机与一台变压器组成单元",
+      "一台发电机与两台变压器组成单元",
+      "三台发电机与一台变压器组成单元"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "一台半断路器接线的特征是？",
+    "options": [
+      "每回线路连接到一台断路器",
+      "每两回线路共用三台断路器，形成一串",
+      "仅有一组工作母线",
+      "操作复杂，可靠性低"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "角形接线通常适用于以下哪种场合？",
+    "options": [
+      "最终容量和出线数已确定的110kV及以上水电厂",
+      "需要频繁扩建的变电站",
+      "带近区负荷的火电厂",
+      "所有电压等级的配电装置"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "双母线接线的核心特征是？",
+    "options": [
+      "仅有一组工作母线",
+      "有两组工作母线，每回线路通过隔离开关连接到两组母线上",
+      "用断路器将母线分段",
+      "所有线路必须同时运行在一组母线上"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "双母线带旁路母线接线一般用于以下哪种情况？",
+    "options": [
+      "220kV线路4回及以上或110kV线路6回及以上",
+      "出线回路少的低压系统",
+      "不需要旁路功能的场合",
+      "所有电压等级的变电站"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "单元接线适用于以下哪种发电厂？",
+    "options": [
+      "机组台数不多、不带近区负荷的区域发电厂",
+      "带大量近区负荷的小型发电厂",
+      "需要频繁切换发电机的场合",
+      "所有类型的发电厂"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "在一台半断路器接线中，若一组母线发生故障，将导致？",
+    "options": [
+      "所有线路停运",
+      "仅故障母线侧线路停运",
+      "不影响任何线路供电",
+      "一半线路停运"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "桥形接线（内桥或外桥）通常使用多少台断路器？",
+    "options": [
+      "2台",
+      "3台",
+      "4台",
+      "5台"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "10kV高压开关柜按断路器安装方式分类，移开式（手车式）的符号是？",
+    "options": [
+      "Y",
+      "G",
+      "K",
+      "N"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12型号中字母K代表的含义是？",
+    "options": [
+      "金属封闭铠装式",
+      "金属封闭间隔式",
+      "金属封闭箱式",
+      "敞开式"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "高压开关柜五防功能中，防止带____操作隔离开关或手车？",
+    "options": [
+      "负荷",
+      "空载",
+      "接地",
+      "短路"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电流互感器二次侧严禁____？",
+    "options": [
+      "开路",
+      "短路",
+      "接地",
+      "接负载"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电压互感器二次侧严禁____？",
+    "options": [
+      "开路",
+      "短路",
+      "接地",
+      "接负载"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "并联电容器的主要作用是？",
+    "options": [
+      "提高功率因数",
+      "提高系统电压",
+      "限制短路电流",
+      "保护电气设备"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "限流电抗器的主要作用是？",
+    "options": [
+      "限制短路电流",
+      "补偿无功功率",
+      "滤波",
+      "消弧"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "氧化锌避雷器的显著优点是？",
+    "options": [
+      "无续流",
+      "残压高",
+      "反应时间慢",
+      "漏电流大"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "单母线分段接线的主要优点是？",
+    "options": [
+      "母线故障时仅一段停电",
+      "接线复杂",
+      "投资大",
+      "灵活性差"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "双母线接线的核心特点是？",
+    "options": [
+      "有两组工作母线",
+      "仅有一组工作母线",
+      "无母线",
+      "每串三台断路器"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "内桥接线适用于？",
+    "options": [
+      "线路较长且故障可能性大",
+      "变压器需要经常切换",
+      "线路较短",
+      "变压器故障频繁"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "外桥接线适用于？",
+    "options": [
+      "变压器需要经常切换",
+      "线路较长",
+      "线路故障可能性大",
+      "变压器故障少"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "发电机-变压器单元接线的主要特点是？",
+    "options": [
+      "接线简单清晰",
+      "灵活性高",
+      "投资大",
+      "占地面积大"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "扩大单元接线是指？",
+    "options": [
+      "两台发电机接一台变压器",
+      "一台发电机接一台变压器",
+      "三台发电机接一台变压器",
+      "一台发电机接两台变压器"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "一台半断路器接线中每串包含多少台断路器？",
+    "options": [
+      "3台",
+      "2台",
+      "1台",
+      "4台"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "互感器型号中字母L代表？",
+    "options": [
+      "电流互感器",
+      "电压互感器",
+      "并联电容器",
+      "限流电抗器"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电压互感器型号中字母J代表？",
+    "options": [
+      "电压互感器",
+      "电流互感器",
+      "并联电容器",
+      "限流电抗器"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "并联电抗器的主要作用是？",
+    "options": [
+      "补偿线路电容性充电电流",
+      "限制短路电流",
+      "滤波",
+      "消弧"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "避雷器的主要作用是？",
+    "options": [
+      "保护设备免受过电压危害",
+      "提高功率因数",
+      "限制短路电流",
+      "滤波"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12型高压开关柜属于以下哪种类型？",
+    "options": [
+      "户外固定式金属封闭开关柜",
+      "户内金属铠装抽出式开关柜",
+      "间隔式金属封闭开关柜",
+      "箱式金属封闭开关柜"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "以下哪项不属于高压开关柜的\"五防\"功能？",
+    "options": [
+      "防止误分、合断路器",
+      "防止带负荷拉合隔离开关",
+      "防止带电合接地开关",
+      "防止操作人员误碰设备"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电流互感器正常运行时，二次侧应处于什么状态？",
+    "options": [
+      "开路",
+      "短路",
+      "接地",
+      "悬浮"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "电压互感器正常运行时，二次侧应处于什么状态？",
+    "options": [
+      "短路",
+      "开路",
+      "接地",
+      "悬浮"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "并联电抗器的主要作用不包括以下哪项？",
+    "options": [
+      "降低工频暂态过电压",
+      "改善沿线电压分布",
+      "限制短路电流",
+      "减少线路无功损耗"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "高压开关柜按断路器安装方式分为移开式和固定式，其中移开式用哪个字母表示？",
+    "options": [
+      "Y",
+      "G",
+      "K",
+      "J"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12型号中的K代表什么含义？",
+    "options": [
+      "铠装式",
+      "间隔式",
+      "箱式",
+      "敞开式"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "高压开关柜“五防”功能中，防止带负荷操作隔离开关的核心措施是？",
+    "options": [
+      "控制开关加锁",
+      "手车必须在分闸位置才能移动",
+      "接地开关连锁",
+      "活门自动关闭"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12的额定电压等级是多少？",
+    "options": [
+      "10kV",
+      "12kV",
+      "20kV",
+      "35kV"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12型高压开关柜外壳的防护等级是？",
+    "options": [
+      "IP2X",
+      "IP3X",
+      "IP4X",
+      "IP5X"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "高压开关柜“五防”功能不包括以下哪项？",
+    "options": [
+      "防止误分合断路器",
+      "防止过电压",
+      "防止带电合接地开关",
+      "防止误入带电间隔"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12型高压开关柜的功能隔室不包括以下哪项？",
+    "options": [
+      "母线室",
+      "断路器室",
+      "电容器室",
+      "仪表室"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "防止误入带电间隔的主要措施是？",
+    "options": [
+      "活门自动关闭",
+      "控制开关加锁",
+      "接地开关连锁",
+      "手车分闸"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "按柜体结构分类，金属封闭间隔式开关柜用哪个字母表示？",
+    "options": [
+      "K",
+      "J",
+      "X",
+      "W"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "送电操作中，手车推入柜内前必须处于什么状态？",
+    "options": [
+      "合闸",
+      "分闸",
+      "接地",
+      "任意"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "接地开关无法操作的原因不包括以下哪项？",
+    "options": [
+      "电缆侧带电",
+      "闭锁电磁铁不动作",
+      "电缆室门未关好",
+      "手车在试验位置"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "高压开关柜的主要作用不包括以下哪项？",
+    "options": [
+      "接受和分配电能",
+      "控制电力设备投退",
+      "保护设备安全",
+      "产生电能"
+    ],
+    "answer": "D",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "金属封闭箱式开关柜用哪个字母表示？",
+    "options": [
+      "K",
+      "J",
+      "X",
+      "N"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "防止接地开关合上时送电的措施是？",
+    "options": [
+      "挡板挡住手车路线",
+      "控制开关加锁",
+      "活门关闭",
+      "带电指示器闭锁"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12中的N代表什么含义？",
+    "options": [
+      "户内",
+      "户外",
+      "铠装",
+      "移开"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "防护等级IP4X中的数字4表示什么等级？",
+    "options": [
+      "防尘等级",
+      "防水等级",
+      "防触电等级",
+      "防火等级"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "高压开关柜拒动故障的原因不包括以下哪项？",
+    "options": [
+      "机构卡涩",
+      "二次接线接触不良",
+      "操作电源正常",
+      "分合闸线圈烧损"
+    ],
+    "answer": "C",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "按安装地点分类，户内型开关柜用哪个字母表示？",
+    "options": [
+      "N",
+      "W",
+      "Y",
+      "G"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "single",
+    "content": "KYN28A-12型开关柜的额定频率是多少？",
+    "options": [
+      "50Hz",
+      "60Hz",
+      "50/60Hz",
+      "不确定"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "下列哪些属于电力系统的组成部分？",
+    "options": [
+      "发电厂",
+      "变电站",
+      "输电线路",
+      "电力用户"
+    ],
+    "answer": "ABCD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "变电站的主要功能包括哪些？",
+    "options": [
+      "电压变换",
+      "电能分配",
+      "保护控制",
+      "以上都是"
+    ],
+    "answer": "ABCD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "下列哪些属于一次电气设备？",
+    "options": [
+      "断路器",
+      "隔离开关",
+      "电流互感器",
+      "电压互感器"
+    ],
+    "answer": "ABCD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "SF6断路器灭弧的主要原理是利用？",
+    "options": [
+      "SF6气体的绝缘性能",
+      "SF6气体的灭弧性能",
+      "真空环境",
+      "油介质"
+    ],
+    "answer": "AB",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "隔离开关的主要功能包括？",
+    "options": [
+      "隔离电源",
+      "倒闸操作",
+      "切断负荷电流",
+      "切断短路电流"
+    ],
+    "answer": "AB",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "下列哪些属于二次电气设备？",
+    "options": [
+      "继电器",
+      "测量仪表",
+      "控制开关",
+      "以上都是"
+    ],
+    "answer": "ABCD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "常见的高压断路器类型有哪些？",
+    "options": [
+      "SF6断路器",
+      "真空断路器",
+      "油断路器",
+      "以上都是"
+    ],
+    "answer": "ABCD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "下列关于电力系统、动力系统和电力网的描述中，正确的有哪些？",
+    "options": [
+      "动力系统是电力系统加上带动发电机转动的动力装置构成的整体",
+      "电力系统由发电厂、升压变电所、输电线路、降压变电所及电力用户组成",
+      "电力网仅包含输电线路和降压变电所",
+      "电力系统的主要作用是实现电能的生产、传输和分配"
+    ],
+    "answer": "ABD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "高压隔离开关的正确作用包括以下哪些？",
+    "options": [
+      "隔离电源，形成明显断开点",
+      "开断正常工作的负荷电流",
+      "进行线路或母线的倒闸操作",
+      "断合空载母线和电压互感器等小电流电路"
+    ],
+    "answer": "ACD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "目前电力系统中常用的高压断路器灭弧介质有哪些？",
+    "options": [
+      "六氟化硫（SF₆）",
+      "真空",
+      "少油",
+      "氮气"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "下列属于户内型高压开关柜的是（ ）",
+    "options": [
+      "KYN28A-12",
+      "XLW",
+      "XGN2-12",
+      "GG-1A(F)"
+    ],
+    "answer": "ACD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "下列属于高压开关柜“五防”功能的有（ ）",
+    "options": [
+      "防止误分、合断路器",
+      "防止带负荷拉合隔离开关",
+      "防止接地开关合上时送电",
+      "防止过电压"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "关于电流互感器的正确说法是（ ）",
+    "options": [
+      "二次侧不得开路",
+      "二次侧可以短路",
+      "测量级和保护级可互换",
+      "高压CT二次侧必须一点接地"
+    ],
+    "answer": "ABD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "V/v接线方式可用于（ ）",
+    "options": [
+      "测量三相线电压",
+      "测量相对地电压",
+      "20kV及以下中性点不接地系统",
+      "大电流接地系统"
+    ],
+    "answer": "AC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "高压并联电容器的主要作用包括（ ）",
+    "options": [
+      "提高功率因数",
+      "改善电压质量",
+      "限制短路电流",
+      "补偿无功功率"
+    ],
+    "answer": "ABD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "下列属于限流电抗器的是（ ）",
+    "options": [
+      "线路电抗器",
+      "母线电抗器",
+      "并联电抗器",
+      "变压器回路电抗器"
+    ],
+    "answer": "ABD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "氧化锌避雷器的特点有（ ）",
+    "options": [
+      "无串联间隙",
+      "非线性特性好",
+      "有续流",
+      "残压低"
+    ],
+    "answer": "ABD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "单母线分段接线的优点包括（ ）",
+    "options": [
+      "提高供电可靠性",
+      "限制短路电流",
+      "任意支路检修不影响其他",
+      "可对重要用户双回路供电"
+    ],
+    "answer": "ABD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "内桥接线适用于（ ）",
+    "options": [
+      "线路较长",
+      "变压器需频繁切换",
+      "故障可能性大的线路",
+      "穿越功率大"
+    ],
+    "answer": "AC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "一台半断路器接线的特点有（ ）",
+    "options": [
+      "每回路接两台断路器",
+      "两组母线同时工作",
+      "任一母线故障不影响供电",
+      "二次接线简单"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "下列哪些是电力系统的组成部分？（多选）",
+    "options": [
+      "发电厂",
+      "变电所",
+      "输电线路",
+      "家用冰箱"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "下列哪些属于变电所的类型？（多选）",
+    "options": [
+      "枢纽变电所",
+      "中间变电所",
+      "地区变电所",
+      "风力变电所"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "衡量电能质量的指标包括哪些？（多选）",
+    "options": [
+      "频率",
+      "电压",
+      "波形",
+      "电流"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "下列属于一次设备的是（ ）",
+    "options": [
+      "电流互感器",
+      "电压表",
+      "断路器",
+      "继电保护装置"
+    ],
+    "answer": "AC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "关于断路器的正确说法是（ ）",
+    "options": [
+      "有灭弧装置",
+      "可断开正常工作电流",
+      "可断开短路电流",
+      "用于隔离电源"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "下列属于二次设备的是（ ）",
+    "options": [
+      "测量表计",
+      "继电保护装置",
+      "直流电源设备",
+      "母线"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "隔离开关按装设地点可分为（ ）",
+    "options": [
+      "户内式",
+      "户外式",
+      "单极式",
+      "三极式"
+    ],
+    "answer": "AB",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "隔离开关在结构上应满足的要求包括（ ）",
+    "options": [
+      "明显断开点",
+      "可靠绝缘",
+      "足够热稳定性",
+      "自动断开功能"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "GN19-10型隔离开关的结构特点包括（ ）",
+    "options": [
+      "三相共底座",
+      "动触头为槽型铜片",
+      "1000A以上型号带磁锁板",
+      "双柱式结构"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "以下属于隔离开关操动机构类型的有（ ）",
+    "options": [
+      "手动操动机构",
+      "压缩空气操动机构",
+      "液压操动机构",
+      "电动操动机构"
+    ],
+    "answer": "ABCD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "手动操动机构的优点包括（ ）",
+    "options": [
+      "结构简单",
+      "价格低廉",
+      "维护工作量少",
+      "可远方操作"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "电动操动机构的组成部分包括（ ）",
+    "options": [
+      "电动机",
+      "机械减速传动系统",
+      "电气控制系统",
+      "液压泵"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "以下属于高压隔离开关常规运行检查项目的有（）",
+    "options": [
+      "绝缘子完整，无裂纹、放电现象",
+      "触头接触良好，接头温度不超过70℃",
+      "闭锁装置良好，电磁或机械闭锁位置正确",
+      "接地闸刀可挠部分无异常"
+    ],
+    "answer": "ABCD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "隔离开关机构故障的常见原因有（）",
+    "options": [
+      "机构箱进水凝露导致轴承锈死",
+      "传动结构设计不合理，操作阻力大",
+      "接地开关锈蚀使轴销断裂",
+      "辅助开关切换不到位或接触不良"
+    ],
+    "answer": "ABCD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "隔离开关检修时的技术措施包括（）",
+    "options": [
+      "拆除接线时做好记录，按记录恢复接线",
+      "检查触头是否光滑时可戴手套操作",
+      "临近绝缘子作业需防止金属工具损伤瓷件",
+      "装配顺序与拆卸时相反，安装中测试各项尺寸"
+    ],
+    "answer": "ACD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "下列哪些属于断路器的基本功能？",
+    "options": [
+      "关合正常电流",
+      "承载正常电流",
+      "开断短路电流",
+      "以上都是"
+    ],
+    "answer": "ABCD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "以下属于SF₆断路器常见结构类型的是？",
+    "options": [
+      "瓷柱式",
+      "落地罐式",
+      "悬臂式",
+      "箱式"
+    ],
+    "answer": "AB",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "关于E2级断路器，下列说法正确的是？",
+    "options": [
+      "主回路灭弧元件使用期内无需维护",
+      "其余部件维护工作量最少",
+      "属于E1级断路器范畴",
+      "需要频繁维护灭弧室"
+    ],
+    "answer": "AB",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "下列哪些是熄灭电弧的基本方法？",
+    "options": [
+      "冷却电弧",
+      "增加电弧温度",
+      "提高气体压力",
+      "使用低导热介质"
+    ],
+    "answer": "AC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "单压式SF₆断路器包括以下哪些类型？",
+    "options": [
+      "定开距",
+      "变开距",
+      "双压式",
+      "真空式"
+    ],
+    "answer": "AB",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "真空灭弧室的主要组成部分包括？",
+    "options": [
+      "绝缘外壳",
+      "导电系统",
+      "屏蔽罩",
+      "压气室"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "弹簧储能电动操动机构的优点包括哪些？",
+    "options": [
+      "分合闸速度快",
+      "电动机功率小，可交直流两用",
+      "结构简单，零部件少",
+      "适用于中压断路器"
+    ],
+    "answer": "ABD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "型号CT19中，字母T代表什么类别？",
+    "options": [
+      "手动",
+      "弹簧",
+      "电磁",
+      "液压"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "缓冲器的主要作用包括哪些？",
+    "options": [
+      "吸收机构运动能量",
+      "使机构平稳停止",
+      "提高合闸速度",
+      "减小冲击"
+    ],
+    "answer": "ABD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "下列哪项属于断路器机械特性试验的主要内容？",
+    "options": [
+      "低电压动作特性测试",
+      "动作时间测试",
+      "动作速度测试",
+      "绝缘电阻测试"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "针对触电及仪器损坏的危险点，下列哪些是正确的控制措施？",
+    "options": [
+      "使用前将机械特性测试仪接上接地线",
+      "在感应电较强的场所做好安全措施",
+      "接拆试验电源必须在电源开关拉开时进行",
+      "测试时选择正确的挡位和操作电压"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "进行断路器低电压动作特性测试时，下列哪些注意事项是正确的？",
+    "options": [
+      "加在分合闸线圈上的操作电压时间不宜过长",
+      "尽可能使用外接电源作为测试电源",
+      "若存在第二分闸回路应测量其特性",
+      "以上都是"
+    ],
+    "answer": "ABCD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "下列属于按柜体结构分类的高压开关柜类型有哪些？",
+    "options": [
+      "金属铠装式",
+      "间隔式",
+      "箱式",
+      "敞开式"
+    ],
+    "answer": "ABCD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "关于KYN28A-12型高压开关柜，下列说法正确的是？",
+    "options": [
+      "额定电压为12kV",
+      "可配用VS1型真空断路器",
+      "外壳防护等级为IP4X",
+      "主母线额定电流最大为3150A"
+    ],
+    "answer": "ABCD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "高压开关柜的“五防”功能包含以下哪些内容？",
+    "options": [
+      "防止误入带电间隔",
+      "防止带电合接地开关",
+      "防止误分合断路器",
+      "防止带负荷操作隔离开关"
+    ],
+    "answer": "ABCD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "下列属于10kV高压开关柜绝缘故障表现的有哪些？",
+    "options": [
+      "外绝缘对地闪络击穿",
+      "相间绝缘闪络击穿",
+      "电流互感器爆炸",
+      "机构卡涩"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "导致10kV高压开关柜断路器不能合闸的原因可能有哪些？",
+    "options": [
+      "断路器手车未到确定位置",
+      "二次控制回路接线松动",
+      "合闸电压过低",
+      "接地开关未分闸"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "10kV高压开关柜接地开关无法操作的可能原因有哪些？",
+    "options": [
+      "电缆侧带电",
+      "闭锁电磁铁不动作",
+      "电缆室门未关好",
+      "传动机构故障"
+    ],
+    "answer": "ABCD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "下列关于电流互感器工作原理的描述正确的有哪些？",
+    "options": [
+      "二次侧可以开路运行",
+      "正常运行时二次侧接近短路状态",
+      "一次侧电流由主电路负荷决定",
+      "属于电压源设备"
+    ],
+    "answer": "BC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "按工作原理分类，电压互感器包括以下哪些类型？",
+    "options": [
+      "电磁式",
+      "电容式",
+      "数字式光电型",
+      "油浸式"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "电流互感器（CT）与电压互感器（VT）的主要区别有哪些？",
+    "options": [
+      "CT二次侧可短路，VT二次侧可开路",
+      "CT是电流源，VT是电压源",
+      "CT正常磁通密度低，VT接近饱和",
+      "CT故障时磁通增加，VT故障时磁通下降"
+    ],
+    "answer": "ABCD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "电压互感器常见的四种接线方式包括以下哪些？",
+    "options": [
+      "单相接线",
+      "V/v接法",
+      "Y/yn接法",
+      "YN/yn/d接法"
+    ],
+    "answer": "ABCD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "电压互感器的安全运行要求包括以下哪些？",
+    "options": [
+      "二次侧严禁短路",
+      "二次侧应装设熔断器",
+      "开口三角形绕组两端应加装并联电阻",
+      "高压绕组中性点必须接地"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "电流互感器运行的正确规则包括以下哪些？",
+    "options": [
+      "二次侧严禁开路",
+      "高压电流互感器二次侧必须有一点接地",
+      "低压电流互感器二次侧不应接地",
+      "测量级和保护级可以互换使用"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "以下属于电力电容器种类的有哪些？",
+    "options": [
+      "并联电容器",
+      "串联电容器",
+      "耦合电容器",
+      "消弧电抗器"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "并联电抗器的主要作用包括哪些？",
+    "options": [
+      "削弱线路电容效应",
+      "提高母线电压",
+      "限制短路电流",
+      "补偿无功功率"
+    ],
+    "answer": "ABD",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "高压并联电容器的结构组成包括哪些部分？",
+    "options": [
+      "电容元件",
+      "浸渍剂",
+      "外壳",
+      "铁芯"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "下列属于氧化锌避雷器优点的是（多选）：",
+    "options": [
+      "无续流",
+      "残压低",
+      "反应时间快",
+      "漏电流大"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "下列关于避雷器应用的说法正确的有（多选）：",
+    "options": [
+      "管型避雷器用于配电系统保护",
+      "阀型避雷器用于变电站保护",
+      "氧化锌避雷器可限制超高压系统内部过电压",
+      "避雷器与被保护设备串联"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "氧化锌避雷器的主要参数包括（多选）：",
+    "options": [
+      "额定电压",
+      "通流容量",
+      "压比",
+      "击穿电压"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "下列属于内桥接线特点的是（ ）",
+    "options": [
+      "线路操作方便",
+      "变压器操作复杂",
+      "适用于短线路",
+      "适用于频繁切换变压器"
+    ],
+    "answer": "AB",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "下列属于无母线电气主接线的是（ ）",
+    "options": [
+      "桥形接线",
+      "多角形接线",
+      "单元接线",
+      "单母线分段接线"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "multiple",
+    "content": "扩大单元接线的优点包括（ ）",
+    "options": [
+      "减少主变压器数量",
+      "简化高压侧接线",
+      "任一台机组停机不影响厂用电",
+      "变压器故障不影响机组运行"
+    ],
+    "answer": "ABC",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "电力系统由发电厂、变电站、输电线路和负荷组成。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "火力发电厂使用煤、石油或天然气作为燃料。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "核电厂利用核聚变反应产生热量。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "变电站仅用于降低电压等级。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "一次设备直接参与电能的生产、传输和分配。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "电流互感器（CT）将高电压转换为低电压。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "断路器可以在无电弧的情况下切断故障电流。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "隔离开关可以切断负荷电流。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "隔离开关有明显的断开点。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "GN19-10是户外型隔离开关。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "GW4-110是户外型隔离开关。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "SF6断路器使用六氟化硫气体灭弧。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "真空断路器主要用于220kV以上的高压系统。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "断路器中的电弧是由触头间空气电离形成的。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "弹簧操动机构利用弹簧储存能量。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "液压操动机构使用油压来操作开关。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "手动操动机构适用于高压断路器。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "隔离开关需要定期润滑运动部件。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "断路器不需要定期测试其操动机构。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "KYN28A-12型高压开关柜属于金属铠装抽出式开关设备",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "防止误分、合断路器是高压开关柜五防功能之一",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "电流互感器二次侧允许开路运行",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "电压互感器二次侧允许短路运行",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "并联电容器主要用于无功功率补偿",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "并联电抗器主要用于限制短路电流",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "氧化锌避雷器动作后无续流",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "不分段单母线接线具有很高的供电可靠性",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "双母线接线可采用一组母线运行、一组母线备用的方式",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "内桥接线适用于线路较长、变压器不需频繁切换的场合",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "发电机-变压器单元接线的接线形式简单清晰",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "发电机-变压器单元接线中不设置发电机电压母线",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "避雷器的残压应低于被保护设备的冲击耐压水平",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "三相完全星形接线的电流互感器能够准确反映每一相的真实电流",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "KYN28A-12型高压开关柜的额定电压为12kV",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "电力系统包含驱动发电机的动力装置。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "凝汽式火力发电厂的热效率高于热电厂。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "核电厂利用核裂变反应产生能量。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "枢纽变电所的电压等级一般为330kV及以上。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "大容量电力系统允许的频率偏差为±0.2Hz。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "电能可以大量储存。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "隔离开关有灭弧装置，可以断开短路电流。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "电流互感器的作用是将高电压转换为低电压。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "配电装置按组装方式可分为装配式和成套式。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "二次设备是对一次设备进行监察、测量、控制的辅助设备。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "熔断器可以接通或断开正常工作电流。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "电气主接线图是用图形和文字符号表示的单线图。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "隔离开关可以用来开断负荷电流。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "GW4-110(D)型隔离开关的接地方式有不接地、单接地、双接地三种。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "GN19-10型隔离开关的动触头接触压力靠两端的接触弹簧维持。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "GW6型隔离开关俗称剪刀式隔离开关。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "隔离开关的额定电压是指长期运行时承受的工作电压。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "GW5型隔离开关的主闸刀和接地闸刀可以同时合闸。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "手动操动机构可以实现远方遥控操作。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "液压操动机构目前在电力系统中仍被广泛使用。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "电动操动机构不具备手动操作功能。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "杠杆式手动操动机构适用于额定电流大于3000A的隔离开关。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "手动操动机构可配用电磁锁装置实现电气联锁，防止误操作。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "电动操动机构的电动机通常为三相交流异步电动机。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "对于经过完善化改造且符合国家技术规定的隔离开关，推荐每8-10年进行一次大修。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "高压隔离开关运行时，接头和触头的温度不应超过70℃。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "GN19-10型隔离开关检修后，三相同期应小于5mm。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "检修隔离开关绝缘子时，可直接使用金属工具接触瓷件进行检查。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "GN19-10型隔离开关检修后，接地回路电阻应不大于3Ω。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "隔离开关辅助开关的绝缘电阻用500V或1000V绝缘电阻表测量，应不小于1MΩ。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "3kV及以上电力系统中使用的断路器称为高压断路器。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "SF₆断路器只能用于室内场所。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "真空断路器只有户内型，没有户外型。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "E1级断路器是具有基本电寿命且维护工作量较少的断路器。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "落地罐式断路器的外壳是接地的。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "ZN28-12系列真空断路器属于悬臂式结构。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "电弧放电是气体非自持放电的一种形式。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "维持电弧稳定燃烧需要很高的电压。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "单压式SF₆断路器在分闸时通过压缩SF₆气体吹动电弧灭弧。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "真空断路器利用SF₆气体灭弧。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "真空灭弧室的主屏蔽罩可以冷凝电弧生成物。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "电弧形成的初始阶段是热游离。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "CT19型弹簧操动机构专为匹配真空断路器设计。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "CYA3型液压弹簧操动机构用于操动LW25-363/420型高压SF₆断路器。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "弹簧储能电动操动机构的缺点是结构复杂，零部件较多，加工精度要求高。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "气动操动机构已逐步被淘汰。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "分闸线圈的最低动作电压应在额定电压的30%～65%范围内。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "三相合闸时间中的最大值与最小值之差即为合闸同期性偏差。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "进行断路器低电压特性测试时，加在分合闸线圈上的操作电压时间可以过长。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "机械特性测试仪在使用前不需要接接地线。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "断路器动作速度的测试可结合动作时间测试同时进行。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "若断路器存在第二分闸回路，则不需要测量其低电压动作特性。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "KYN28A-12型高压开关柜属于固定式开关设备。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "高压开关柜的“五防”功能包括防止带电合接地开关。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "当KYN28A-12型开关设备的手车处于工作位置时，二次插头可以拔出。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "KYN28A-12型高压开关柜的额定频率为60Hz。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "金属铠装式开关柜的代码为字母“K”。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "KYN28A-12型开关设备的电缆室门仅在接地开关合闸时才能打开。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "真空灭弧室的真空度不能低于6.6×10⁻²Pa。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "断路器手车在合闸状态下可以从试验位置移动到工作位置。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "工频耐压法可以定量测量真空灭弧室的真空度。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "接地开关与柜电缆室门间有连锁，若电缆室门未关好，接地开关无法操作合闸。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "触头电磨损值达到规定值时，必须更换真空灭弧室。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "10kV高压开关柜载流故障主要原因是隔离插头接触不良导致触头烧熔。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "真空灭弧室真空度降低严重时，开断电流发出的是蓝色弧光。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "国产电流互感器的型号首字母为'L'。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "电磁式电压互感器二次侧发生短路时会产生巨大电流，可能烧毁线圈。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "电容式电压互感器主要应用于220kV及以下的电力系统。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "电压互感器的容量与电力变压器一样大，以千伏安为单位。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "电磁式电压互感器的二次侧必须可靠接地。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "油浸式是电压互感器按绝缘结构分类的一种类型。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "单相电压互感器可用于测量110kV及以上中性点直接接地系统的相对地电压。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "电压互感器的V/v接线方式可以测量相对地电压。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "电压互感器的YN/yn/d接线方式中，辅助绕组接成开口三角形用于单相接地保护。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "电流互感器运行时二次侧可以开路。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "高压电流互感器二次回路必须有多个接地点以保证安全。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "电流互感器的两相不完全星形接线方式适用于小电流接地系统（6-10kV），保护三相和两相短路故障。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "电容器在交流电压下使用时，容量单位为乏(var)或千乏(kvar)。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "并联电抗器一般接在超高压输电线路的末端和地之间。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "限流电抗器串联于电力线路中以限制短路电流。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "电容器型号中第二位字母表示固体介质材料种类。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "个别补偿是将电容器直接装设在用电设备的同一电气回路中。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "避雷器通常与被保护设备串联。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "管型避雷器主要用于限制大气过电压，适用于配电系统、线路和变电站进线段保护。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "阀型避雷器存在续流现象。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "氧化锌避雷器的压比越小，保护性能越好。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "氧化锌避雷器的荷电率越低，稳定性能越好。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "避雷器能截断续流，防止系统接地短路。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "内桥接线适用于线路较长、故障可能性大且变压器不需要经常切换的场合。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "外桥接线适用于线路较短、故障可能性小且变压器需要经常切换的场合。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "一台半断路器接线至少需要三个串才能形成多环供电结构。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "单元接线设有发电机电压母线。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "B",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "judge",
+    "content": "扩大单元接线由两台发电机共用一台变压器组成。",
+    "options": [
+      "是",
+      "否"
+    ],
+    "answer": "A",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "电力系统由发电厂、升压变电所、输电线路、降压变电所及（   ）组成。",
+    "options": [],
+    "answer": "电力用户",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "重点掌握的三种发电厂类型是火力发电厂、水力发电厂和（   ）。",
+    "options": [],
+    "answer": "核电厂",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "我国规定电力系统的额定频率为（   ）。",
+    "options": [],
+    "answer": "50Hz",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "一次设备中的开关电器包括断路器、隔离开关、负荷开关等，其中（   ）没有灭弧装置，主要用于隔离电源。",
+    "options": [],
+    "answer": "隔离开关",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "二次设备中，（   ）的作用是当发生故障时，作用于断路器跳闸以切除故障元件。",
+    "options": [],
+    "answer": "继电保护装置",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "配电装置按安装地点可分为屋内型和（   ）型两种。",
+    "options": [],
+    "answer": "屋外",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "GN19-10型隔离开关的型号中，\"N\"表示（   ）式。",
+    "options": [],
+    "answer": "户内",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "GW4-110(D)型隔离开关属于（   ）式结构。",
+    "options": [],
+    "answer": "双柱单断口水平旋转",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "隔离开关的结构包括导电部分、绝缘部分、传动机构、操动机构和（   ）。",
+    "options": [],
+    "answer": "支持底座",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "GW5型隔离开关的主闸刀和接地闸刀之间通过（   ）实现机械闭锁。",
+    "options": [],
+    "answer": "闭锁板",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "隔离开关没有专门的（   ）装置，因此不能开断负荷电流和短路电流。",
+    "options": [],
+    "answer": "灭弧",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "隔离开关操动机构一般有手动操动机构、压缩空气操动机构、液压操动机构和（   ）四种类型。",
+    "options": [],
+    "answer": "电动操动机构",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "手动操动机构有（   ）和蜗轮式两种，前者适用于额定电流小于3000A的隔离开关，后者适用于额定电流大于3000A的隔离开关。",
+    "options": [],
+    "answer": "杠杆式",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "电动操动机构中的电动机通常为（   ）异步电动机。",
+    "options": [],
+    "answer": "三相交流",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "高压隔离开关的小修周期一般不应超过3年；对于经过完善化改造的隔离开关，推荐每（   ）年进行一次大修。",
+    "options": [],
+    "answer": "8-10",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "隔离开关交接验收时，三相不同期值应符合产品技术规定；触头应（   ）良好。",
+    "options": [],
+    "answer": "接触紧密",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "隔离开关导电回路发热的处理措施包括更换静触头弹簧夹和烧伤触指、清除氧化层、涂导电膏，彻底解决办法是（   ）。",
+    "options": [],
+    "answer": "更换静触头",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "高压断路器在电网中主要起两大作用：一是控制作用，二是（   ）作用。",
+    "options": [],
+    "answer": "保护",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "SF₆断路器按外壳结构可分为绝缘支柱式和（   ）式两种主要类型。",
+    "options": [],
+    "answer": "落地罐",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "真空断路器的总体结构基本型式分为悬臂式和（   ）式。",
+    "options": [],
+    "answer": "落地",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "电弧的去游离方式主要有复合和（   ）两种。",
+    "options": [],
+    "answer": "扩散",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "SF₆气体的灭弧能力约为空气的（   ）倍。",
+    "options": [],
+    "answer": "100",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "真空断路器中，电弧在（   ）作用下沿触头表面切线方向快速运动。",
+    "options": [],
+    "answer": "磁场",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "操动机构型号第一位用大写拼音字母C表示操动机构；第二位用大写拼音字母表示类别，其中（   ）表示弹簧操动机构；第三位用数字表示设计序号。",
+    "options": [],
+    "answer": "T",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "操动机构通常由合闸机构、保持机构、（   ）、输出装置和辅助设备五部分组成。",
+    "options": [],
+    "answer": "分闸机构",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "缓冲器主要有油缓冲器、弹簧缓冲器和（   ）缓冲器三类，其中橡胶垫缓冲器应用于断路器的操动机构。",
+    "options": [],
+    "answer": "橡胶垫",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "CT19型弹簧操动机构合闸弹簧的储能方式有（   ）储能和手动储能两种。",
+    "options": [],
+    "answer": "电动机",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "操动机构应具备足够的合闸功能、保持合闸功能、较短的分闸时间、防跳功能和（   ）装置等基本要求。",
+    "options": [],
+    "answer": "联动",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "断路器机械特性试验主要包括低电压动作特性测试、动作时间测试和（   ）测试。",
+    "options": [],
+    "answer": "动作速度",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "合闸线圈的最低动作电压应不大于额定电压的（   ）%。",
+    "options": [],
+    "answer": "80",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "在ZN28-12型断路器机械特性试验中，所使用的主要测试仪器是（   ）。",
+    "options": [],
+    "answer": "开关机械特性测试仪",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "KYN28A-12型开关柜属于移开式（手车式）（安装方式）和（   ）（柜体结构）的高压开关柜。",
+    "options": [],
+    "answer": "金属铠装式",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "高压开关柜的“五防”功能包括防止误分合断路器、防止带负荷操作隔离开关、防止带电合接地开关、防止接地开关合闸时送电以及防止（   ）。",
+    "options": [],
+    "answer": "误入带电间隔",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "KYN28A-12型高压开关柜的额定电压为12kV，额定频率为（   ）Hz。",
+    "options": [],
+    "answer": "50",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "检测真空灭弧室真空度的常用方法有火花计法、观察法、工频耐压法和（   ）。",
+    "options": [],
+    "answer": "真空度测试仪法",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "国产电流互感器型号的第一个字母是（   ），代表电流互感器。",
+    "options": [],
+    "answer": "L",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "电磁式电压互感器的二次侧应（   ），以防止一、二次侧绝缘损坏时二次侧出现对地高电位。",
+    "options": [],
+    "answer": "可靠接地",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "电容式电压互感器一般用于电力系统电压等级高于（   ）kV的场合。",
+    "options": [],
+    "answer": "110",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "采用两台单相电压互感器且只能测量线电压而不能测量相对地电压的电压互感器接线方式是（   ）。",
+    "options": [],
+    "answer": "V/v 接法",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "电压互感器的YN/yn/d接线方式中，辅助二次绕组接成（   ），以提供单相接地保护的信号。",
+    "options": [],
+    "answer": "开口三角形",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "电流互感器运行中最关键的安全要求是（   ）侧严禁开路。",
+    "options": [],
+    "answer": "二次",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "高压电流互感器的二次回路必须有（   ）个接地点以保证安全。",
+    "options": [],
+    "answer": "一",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "适用于测量三相平衡电流且主要用于测量回路的电流互感器接线方式是（   ）。",
+    "options": [],
+    "answer": "单相接线",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "在低压系统中使用穿心式电流互感器（如LMZ型）时，穿心匝数应以（   ）为准，而非外围匝数计算。",
+    "options": [],
+    "answer": "穿过铁芯的导线根数",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "并联电容器主要用来补偿电力系统（   ）负载的无功功率，以提高系统的功率因数。",
+    "options": [],
+    "answer": "感性",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "电抗器按结构特征可分为空心式电抗器和（   ）电抗器。",
+    "options": [],
+    "answer": "铁芯式",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "电容器型号中第一位字母B表示（   ）电容器。",
+    "options": [],
+    "answer": "并联",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "避雷器能泄放雷电兼能释放电力系统操作过电压能量，保护电气设备免受（   ）危害，又能截断续流，不致引起系统接地短路的电气装置。",
+    "options": [],
+    "answer": "瞬时过电压",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "避雷器的类型主要有管型避雷器、（   ）和氧化锌避雷器。",
+    "options": [],
+    "answer": "阀型避雷器",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "氧化锌避雷器在正常工作电压下呈（   ）状态，当冲击电压作用时呈低阻状态，雷电流通过后恢复高阻状态。",
+    "options": [],
+    "answer": "高阻",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "根据桥回路断路器的位置不同，桥形接线可分为内桥接线和（   ）。",
+    "options": [],
+    "answer": "外桥接线",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "由两台发电机与一台变压器组成的单元接线称为（   ）。",
+    "options": [],
+    "answer": "扩大单元接线",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  },
+  {
+    "type": "fill",
+    "content": "一台半断路器接线又称为（   ）。",
+    "options": [],
+    "answer": "二分之三接线",
+    "explanation": "",
+    "knowledgePoints": [],
+    "difficulty": 2
+  }
+]
