@@ -1,7 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { getAllBanks, getQuestionsByBank, updateQuestionMastery, addWrongRecord } from '../store/db';
 import type { Question, QuestionBank } from '../types';
-import QuestionCard from './QuestionCard';
+import QuestionCard, { type AnswerRecord } from './QuestionCard';
 
 type ViewState = 'banks' | 'detail' | 'practice' | 'complete';
 
@@ -18,6 +18,7 @@ export default function PracticePanel() {
   const [studyMode, setStudyMode] = useState<'practice' | 'memorize'>('practice');
   const [showJump, setShowJump] = useState(false);
   const [jumpTo, setJumpTo] = useState('');
+  const answerHistoryRef = useRef<Record<string, AnswerRecord>>({});
 
   const loadBanks = async () => {
     setLoading(true);
@@ -74,6 +75,8 @@ export default function PracticePanel() {
     const isCorrect = userAnswer.trim().toLowerCase() === currentQuestion.answer.trim().toLowerCase();
     await updateQuestionMastery(currentQuestion.id, isCorrect);
     if (!isCorrect) await addWrongRecord(currentQuestion.id, userAnswer);
+    // 保存到历史记录
+    answerHistoryRef.current[currentQuestion.id] = { userAnswer, isCorrect };
     return { isCorrect };
   }, [currentQuestion]);
 
@@ -81,13 +84,19 @@ export default function PracticePanel() {
     if (currentIndex > 0) setCurrentIndex(i => i - 1);
   }, [currentIndex]);
 
-  const nextQuestion = useCallback(() => {
+  const nextQuestion = useCallback((skip?: boolean) => {
+    if (skip) {
+      // 跳过未作答：记录为空答案
+      if (currentQuestion && !answerHistoryRef.current[currentQuestion.id]) {
+        answerHistoryRef.current[currentQuestion.id] = { userAnswer: '', isCorrect: false };
+      }
+    }
     if (!isLastQuestion) {
       setCurrentIndex(i => i + 1);
     } else {
       setView('complete');
     }
-  }, [isLastQuestion]);
+  }, [isLastQuestion, currentQuestion]);
 
   const doJump = () => {
     const n = parseInt(jumpTo);
@@ -296,6 +305,7 @@ export default function PracticePanel() {
         timerMinutes={timerMinutes}
         timerEnabled={timerEnabled}
         studyMode={studyMode}
+        savedRecord={answerHistoryRef.current[currentQuestion.id] || null}
       />
     </div>
   );

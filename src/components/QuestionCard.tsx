@@ -4,24 +4,30 @@ import Timer from './Timer';
 import DrawingPad from './DrawingPad';
 import AIAssistant from './AIAssistant';
 
+export interface AnswerRecord {
+  userAnswer: string;
+  isCorrect: boolean;
+}
+
 interface QuestionCardProps {
   question: Question;
   questionNumber: number;
   totalQuestions: number;
   onAnswer: (userAnswer: string) => Promise<{ isCorrect: boolean }>;
-  onNext: () => void;
+  onNext: (skip?: boolean) => void;
   onPrev?: () => void;
   isFirstQuestion?: boolean;
   isLastQuestion: boolean;
   timerMinutes: number;
   timerEnabled: boolean;
   studyMode?: 'practice' | 'memorize';
+  savedRecord?: AnswerRecord | null;
 }
 
 type CardState = 'answering' | 'feedback' | 'complete';
 
 export default function QuestionCard({
-  question, questionNumber, totalQuestions, onAnswer, onNext, onPrev, isFirstQuestion, isLastQuestion, timerMinutes, timerEnabled, studyMode = 'practice',
+  question, questionNumber, totalQuestions, onAnswer, onNext, onPrev, isFirstQuestion, isLastQuestion, timerMinutes, timerEnabled, studyMode = 'practice', savedRecord,
 }: QuestionCardProps) {
   const [state, setState] = useState<CardState>('answering');
   const [selectedAnswer, setSelectedAnswer] = useState('');
@@ -32,15 +38,24 @@ export default function QuestionCard({
   const multiDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hasSubmittedRef = useRef(false);
 
-  // Reset state when question changes
+  // Reset state when question changes - but restore if previously answered
   useEffect(() => {
-    setState('answering');
-    setSelectedAnswer('');
-    setFillAnswer('');
-    setIsCorrect(false);
-    setTimerRunning(true);
-    hasSubmittedRef.current = false;
-  }, [question.id]);
+    if (savedRecord) {
+      setState('feedback');
+      setSelectedAnswer(savedRecord.userAnswer);
+      setFillAnswer(savedRecord.userAnswer);
+      setIsCorrect(savedRecord.isCorrect);
+      setTimerRunning(false);
+      hasSubmittedRef.current = true;
+    } else {
+      setState('answering');
+      setSelectedAnswer('');
+      setFillAnswer('');
+      setIsCorrect(false);
+      setTimerRunning(true);
+      hasSubmittedRef.current = false;
+    }
+  }, [question.id, savedRecord]);
 
   const doSubmit = async (answer: string) => {
     if (hasSubmittedRef.current || !answer.trim()) return;
@@ -98,16 +113,20 @@ export default function QuestionCard({
     }
   }, [state, studyMode]);
 
-  const handleNext = () => {
+  const handleNext = (skip = false) => {
+    if (!skip && state === 'answering' && !hasSubmittedRef.current) {
+      // Submit current answer before moving on
+      const answer = (question.type === 'fill' || question.type === 'essay') ? fillAnswer : selectedAnswer;
+      if (answer.trim()) {
+        doSubmit(answer);
+        return; // doSubmit will trigger feedback, which handles next
+      }
+    }
+    // Move to next question (skip or after feedback)
     if (isLastQuestion) {
       setState('complete');
     } else {
-      setState('answering');
-      setSelectedAnswer('');
-      setFillAnswer('');
-      setTimerRunning(true);
-      hasSubmittedRef.current = false;
-      onNext();
+      onNext(skip);
     }
   };
 
@@ -150,26 +169,12 @@ export default function QuestionCard({
       <div className="card-apple overflow-hidden">
         <div className="px-4 py-3 flex items-center justify-between" style={{ borderBottom: '2px solid #f2fde4' }}>
           <div className="flex items-center gap-2">
-            {onPrev && !isFirstQuestion && (
-              <button onClick={onPrev} className="text-xs px-2 py-1 rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors">
-                ← 上一题
-              </button>
-            )}
             <span className="badge-apple text-xs font-bold">{getTypeLabel(question.type)}</span>
             <span className="text-sm font-medium" style={{ color: '#387612' }}>
               {questionNumber}/{totalQuestions}
             </span>
-            {state === 'feedback' && (
-              studyMode === 'memorize' ? (
-                <button onClick={handleNext} className="text-xs px-3 py-1.5 rounded-full font-bold text-white"
-                  style={{ background: 'linear-gradient(135deg, #5cb818, #387612)' }}>
-                  📖 下一题 →
-                </button>
-              ) : (
-                <button onClick={handleNext} className="text-xs px-2 py-1 rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors">
-                  跳过 →
-                </button>
-              )
+            {state === 'feedback' && studyMode === 'memorize' && (
+              <span className="text-xs text-gray-400">已作答</span>
             )}
           </div>
           <div className="flex items-center gap-2">
@@ -327,14 +332,14 @@ export default function QuestionCard({
               {/* 底部按钮 */}
               {studyMode === 'practice' ? (
                 <button
-                  onClick={handleNext}
+                  onClick={() => handleNext(false)}
                   className="w-full py-2.5 text-sm text-gray-400 hover:text-gray-600 transition-colors"
                 >
                   跳过等待 →
                 </button>
               ) : (
                 <button
-                  onClick={handleNext}
+                  onClick={() => handleNext(false)}
                   className="w-full py-3.5 btn-apple text-base mt-3"
                 >
                   📖 下一题
@@ -342,6 +347,47 @@ export default function QuestionCard({
               )}
             </>
           )}
+        </div>
+
+        {/* 🔄 持久导航栏：始终可见的上下题切换 */}
+        <div className="px-5 pb-4 flex items-center justify-between gap-3">
+          {onPrev && (
+            <button
+              onClick={onPrev}
+              disabled={isFirstQuestion}
+              className={`flex-1 py-2.5 rounded-2xl text-sm font-medium transition-all duration-200 ${
+                isFirstQuestion
+                  ? 'bg-gray-100 text-gray-300 cursor-not-allowed'
+                  : 'bg-gray-50 text-gray-600 hover:bg-gray-100 hover:shadow-sm active:scale-[0.98]'
+              }`}
+              style={!isFirstQuestion ? { border: '1px solid #e5e5e5' } : {}}
+            >
+              ← 上一题
+            </button>
+          )}
+          <button
+            onClick={() => {
+              if (state === 'answering' && !hasSubmittedRef.current) {
+                // 跳过：不提交答案，直接下一题
+                handleNext(true);
+              } else {
+                handleNext(false);
+              }
+            }}
+            className={`flex-1 py-2.5 rounded-2xl text-sm font-medium transition-all duration-200 active:scale-[0.98] ${
+              isLastQuestion && state === 'feedback'
+                ? 'btn-apple text-white'
+                : 'bg-gray-50 text-gray-600 hover:bg-gray-100 hover:shadow-sm'
+            }`}
+            style={(!isLastQuestion || state !== 'feedback') ? { border: '1px solid #e5e5e5' } : {}}
+          >
+            {isLastQuestion && state === 'feedback'
+              ? '🎉 完成练习'
+              : state === 'answering' && !hasSubmittedRef.current
+                ? '下一题 →'
+                : '下一题 →'
+            }
+          </button>
         </div>
       </div>
 

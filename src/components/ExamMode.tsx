@@ -352,6 +352,34 @@ export default function ExamMode() {
             )}
           </div>
 
+          {/* 🔄 上下题导航 */}
+          <div className="flex items-center justify-between gap-3">
+            <button
+              onClick={() => setCurrentIndex(i => Math.max(0, i - 1))}
+              disabled={currentIndex === 0}
+              className={`flex-1 py-2.5 rounded-2xl text-sm font-medium transition-all duration-200 active:scale-[0.98] ${
+                currentIndex === 0
+                  ? 'bg-gray-100 text-gray-300 cursor-not-allowed'
+                  : 'bg-gray-50 text-gray-600 hover:bg-gray-100 hover:shadow-sm'
+              }`}
+              style={currentIndex !== 0 ? { border: '1px solid #e5e5e5' } : {}}
+            >
+              ← 上一题
+            </button>
+            <button
+              onClick={() => setCurrentIndex(i => Math.min(questions.length - 1, i + 1))}
+              disabled={currentIndex === questions.length - 1}
+              className={`flex-1 py-2.5 rounded-2xl text-sm font-medium transition-all duration-200 active:scale-[0.98] ${
+                currentIndex === questions.length - 1
+                  ? 'bg-gray-100 text-gray-300 cursor-not-allowed'
+                  : 'bg-gray-50 text-gray-600 hover:bg-gray-100 hover:shadow-sm'
+              }`}
+              style={currentIndex !== questions.length - 1 ? { border: '1px solid #e5e5e5' } : {}}
+            >
+              下一题 →
+            </button>
+          </div>
+
           <div className="card-apple p-3">
             <div className="flex flex-wrap gap-1 mb-3">
               {questions.map((q,i)=>{

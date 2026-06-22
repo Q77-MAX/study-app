@@ -1,0 +1,36 @@
+Total: 500 questions
+  单选题 (single): 169
+  多选题 (multiple): 65
+  判断题 (judge): 156
+  填空题 (fill): 70
+  简答题 (essay): 40
+
+=== Missing label issues: 0 ===
+
+=== Samples ===
+
+[single] Q: （ ） 不属于一次设备。
+  A. 变压器
+  B. 母线
+  C. 继电保护装置
+  Answer: C
+
+[multiple] Q: 变电站中（ ）属于一次设备。
+  A. (选项A)
+  B. 断路器
+  C. 继电保护
+  D. 避雷器
+  Answer: ABD
+
+[judge] Q: 二次系统中 ， 由各种电气测量仪表、监测装置、切换开关及其回路接线构成 ，实现指⽰或记录一次系统和设备的运行状态和参数的系统称为控制系统。
+  A. 对
+  B. 错
+  Answer: B
+
+[fill] Q: 当电力系统发生故障时 ，继电保护装置应该自动、迅速、有选择的将故障元件 	 ,  使其免于继续遭到破坏。
+  Answer: 切除
+
+[essay] Q: 什么是电力系统二次设备 ?
+  Answer: 电力系统二次设备是指对一次设备的运行状态进行监视、测量、控制和保护的设备。
+
+=== Answer/index mismatch: 0 ===
