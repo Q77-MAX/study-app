@@ -534,16 +534,16 @@ export default function ImportPanel() {
         onDone={() => { setImported(false); }}
       />
       <PresetBankImport
-        label="继电保护及其运行与调试"
-        desc="500 道题 · 单选169 多选65 判断156 填空70 简答40"
-        bankName="继电保护及其运行与调试"
+        label="继电保护题库"
+        desc="430 道题 · 单选169 多选65 判断156 简答40"
+        bankName="继电保护题库"
         fileName="questions_jidianbaohu.json"
         onDone={() => { setImported(false); }}
       />
       <PresetBankImport
-        label="发电厂和变电站电气设备题库"
-        desc="500 道题 · 单选252 多选68 判断127 填空53"
-        bankName="发电厂和变电站电气设备"
+        label="发电厂变电站题库"
+        desc="447 道题 · 单选252 多选68 判断127"
+        bankName="发电厂变电站题库"
         fileName="questions_fadianchang.json"
         onDone={() => { setImported(false); }}
       />
