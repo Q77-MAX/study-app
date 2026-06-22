@@ -16,6 +16,7 @@ interface QuestionCardProps {
   onAnswer: (userAnswer: string) => Promise<{ isCorrect: boolean }>;
   onNext: (skip?: boolean) => void;
   onPrev?: () => void;
+  onClearRecord?: () => void;
   isFirstQuestion?: boolean;
   isLastQuestion: boolean;
   timerMinutes: number;
@@ -27,7 +28,7 @@ interface QuestionCardProps {
 type CardState = 'answering' | 'feedback' | 'complete';
 
 export default function QuestionCard({
-  question, questionNumber, totalQuestions, onAnswer, onNext, onPrev, isFirstQuestion, isLastQuestion, timerMinutes, timerEnabled, studyMode = 'practice', savedRecord,
+  question, questionNumber, totalQuestions, onAnswer, onNext, onPrev, onClearRecord, isFirstQuestion, isLastQuestion, timerMinutes, timerEnabled, studyMode = 'practice', savedRecord,
 }: QuestionCardProps) {
   const [state, setState] = useState<CardState>('answering');
   const [selectedAnswer, setSelectedAnswer] = useState('');
@@ -176,7 +177,27 @@ export default function QuestionCard({
               {questionNumber}/{totalQuestions}
             </span>
             {state === 'feedback' && studyMode === 'memorize' && (
-              <span className="text-xs text-gray-400">已作答</span>
+              <>
+                <span className="text-xs text-gray-400">已作答</span>
+                {onClearRecord && (
+                  <button
+                    onClick={() => {
+                      onClearRecord();
+                      setState('answering');
+                      setSelectedAnswer('');
+                      setFillAnswer('');
+                      setIsCorrect(false);
+                      setTimerRunning(true);
+                      hasSubmittedRef.current = false;
+                      autoAdvanceDisabledRef.current = false;
+                    }}
+                    className="text-xs px-1.5 py-0.5 rounded-full text-red-400 hover:text-red-500 hover:bg-red-50 transition-colors"
+                    title="清空本题作答记录"
+                  >
+                    ↺ 清空
+                  </button>
+                )}
+              </>
             )}
           </div>
           <div className="flex items-center gap-2">
@@ -195,42 +216,43 @@ export default function QuestionCard({
           </div>
         </div>
 
-        {/* 🔄 导航栏：上一题 / 下一题（放在题目上方） */}
-        <div className="px-4 py-2.5 flex items-center justify-between gap-3" style={{ borderBottom: '1px solid #f2fde4' }}>
+        {/* 🔄 导航栏：上一题 / 下一题（放在题目上方）*/}
+        <div className="px-3 py-2 flex items-center justify-between gap-2" style={{ borderBottom: '1px solid #f2fde4' }}>
           {onPrev && (
             <button
               onClick={() => {
-                autoAdvanceDisabledRef.current = true;  // 点了上一题：禁用自动跳转
+                autoAdvanceDisabledRef.current = true;
                 onPrev();
               }}
               disabled={isFirstQuestion}
-              className={`flex-1 py-2 rounded-2xl text-sm font-medium transition-all duration-200 active:scale-[0.98] ${
+              className={`flex items-center justify-center gap-1 px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-200 active:scale-[0.97] ${
                 isFirstQuestion
                   ? 'bg-gray-100 text-gray-300 cursor-not-allowed'
-                  : 'bg-gray-50 text-gray-600 hover:bg-gray-100 hover:shadow-sm'
+                  : 'bg-red-50 text-red-500 hover:bg-red-100'
               }`}
-              style={!isFirstQuestion ? { border: '1px solid #e5e5e5' } : {}}
+              style={!isFirstQuestion ? { border: '1px solid #fecaca' } : {}}
             >
-              ← 上一题
+              <span className="text-base">🍎</span> 上一题
             </button>
           )}
           <button
             onClick={() => {
-              autoAdvanceDisabledRef.current = false;  // 点了下一题：恢复自动跳转
+              autoAdvanceDisabledRef.current = false;
               if (state === 'answering' && !hasSubmittedRef.current) {
                 handleNext(true);
               } else {
                 handleNext(false);
               }
             }}
-            className={`flex-1 py-2 rounded-2xl text-sm font-medium transition-all duration-200 active:scale-[0.98] ${
+            className={`flex items-center justify-center gap-1 px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-200 active:scale-[0.97] ${
               isLastQuestion && state === 'feedback'
                 ? 'text-white'
-                : 'bg-gray-50 text-gray-600 hover:bg-gray-100 hover:shadow-sm'
+                : 'bg-green-50 text-green-600 hover:bg-green-100'
             }`}
-            style={(!isLastQuestion || state !== 'feedback') ? { border: '1px solid #e5e5e5', background: isLastQuestion && state === 'feedback' ? 'linear-gradient(135deg, #5cb818, #387612)' : undefined } : { background: 'linear-gradient(135deg, #5cb818, #387612)' }}
+            style={(!isLastQuestion || state !== 'feedback') ? { border: '1px solid #bbf7d0' } : { background: 'linear-gradient(135deg, #5cb818, #387612)' }}
           >
-            {isLastQuestion && state === 'feedback' ? '🎉 完成练习' : '下一题 →'}
+            <span className="text-base">{isLastQuestion && state === 'feedback' ? '🎉' : '🍏'}</span>
+            {isLastQuestion && state === 'feedback' ? '完成练习' : '下一题'}
           </button>
         </div>
 
