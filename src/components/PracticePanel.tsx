@@ -20,12 +20,6 @@ export default function PracticePanel() {
   const [jumpTo, setJumpTo] = useState('');
   const answerHistoryRef = useRef<Record<string, AnswerRecord>>({});
 
-  const clearRecord = useCallback(() => {
-    if (currentQuestion) {
-      delete answerHistoryRef.current[currentQuestion.id];
-    }
-  }, [currentQuestion]);
-
   const loadBanks = async () => {
     setLoading(true);
     setBanks(await getAllBanks());
@@ -75,6 +69,12 @@ export default function PracticePanel() {
 
   const currentQuestion = questions[currentIndex] || null;
   const isLastQuestion = currentIndex >= questions.length - 1;
+
+  const clearRecord = useCallback(() => {
+    if (currentQuestion) {
+      delete answerHistoryRef.current[currentQuestion.id];
+    }
+  }, [currentQuestion]);
 
   const answerQuestion = useCallback(async (userAnswer: string) => {
     if (!currentQuestion) return { isCorrect: false };
