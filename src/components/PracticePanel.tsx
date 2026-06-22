@@ -192,15 +192,15 @@ export default function PracticePanel() {
 
         {/* 学习模式 */}
         <div className="flex rounded-xl overflow-hidden mb-3 text-sm" style={{ border: '1px solid #e5e5e5' }}>
-          <button onClick={() => setStudyMode('practice')}
-            className="flex-1 py-2 text-center transition-colors"
-            style={{ background: studyMode==='practice'?'#f2fde4':'white', color: studyMode==='practice'?'#387612':'#999' }}>
-            🍏 刷题模式
-          </button>
           <button onClick={() => setStudyMode('memorize')}
             className="flex-1 py-2 text-center transition-colors"
             style={{ background: studyMode==='memorize'?'#f2fde4':'white', color: studyMode==='memorize'?'#387612':'#999' }}>
             📖 背题模式
+          </button>
+          <button onClick={() => setStudyMode('practice')}
+            className="flex-1 py-2 text-center transition-colors"
+            style={{ background: studyMode==='practice'?'#f2fde4':'white', color: studyMode==='practice'?'#387612':'#999' }}>
+            🍏 刷题模式
           </button>
         </div>
 

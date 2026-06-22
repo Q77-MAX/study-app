@@ -37,6 +37,7 @@ export default function QuestionCard({
   const [timerRunning, setTimerRunning] = useState(true);
   const multiDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hasSubmittedRef = useRef(false);
+  const autoAdvanceDisabledRef = useRef(false);
 
   // Reset state when question changes - but restore if previously answered
   useEffect(() => {
@@ -101,13 +102,13 @@ export default function QuestionCard({
   }, []);
 
   // 背题模式：不论对错，都需要手动切换下一题
-  // 刷题模式：不论对错0.5秒自动跳转
+  // 刷题模式：不论对错1秒自动跳转（除非被上一题操作禁用）
   useEffect(() => {
     if (state === 'feedback') {
-      if (studyMode === 'practice') {
+      if (studyMode === 'practice' && !autoAdvanceDisabledRef.current) {
         const timer = setTimeout(() => {
           handleNext();
-        }, 500);
+        }, 1000);
         return () => clearTimeout(timer);
       }
     }
@@ -167,7 +168,8 @@ export default function QuestionCard({
 
       {/* 题目卡片 */}
       <div className="card-apple overflow-hidden">
-        <div className="px-4 py-3 flex items-center justify-between" style={{ borderBottom: '2px solid #f2fde4' }}>
+        {/* 头部：题型 + 题号 + AI */}
+        <div className="px-4 py-2.5 flex items-center justify-between" style={{ borderBottom: '2px solid #f2fde4' }}>
           <div className="flex items-center gap-2">
             <span className="badge-apple text-xs font-bold">{getTypeLabel(question.type)}</span>
             <span className="text-sm font-medium" style={{ color: '#387612' }}>
@@ -191,6 +193,45 @@ export default function QuestionCard({
             </button>
             <span className="text-xs">{'🍏'.repeat(question.difficulty)}</span>
           </div>
+        </div>
+
+        {/* 🔄 导航栏：上一题 / 下一题（放在题目上方） */}
+        <div className="px-4 py-2.5 flex items-center justify-between gap-3" style={{ borderBottom: '1px solid #f2fde4' }}>
+          {onPrev && (
+            <button
+              onClick={() => {
+                autoAdvanceDisabledRef.current = true;  // 点了上一题：禁用自动跳转
+                onPrev();
+              }}
+              disabled={isFirstQuestion}
+              className={`flex-1 py-2 rounded-2xl text-sm font-medium transition-all duration-200 active:scale-[0.98] ${
+                isFirstQuestion
+                  ? 'bg-gray-100 text-gray-300 cursor-not-allowed'
+                  : 'bg-gray-50 text-gray-600 hover:bg-gray-100 hover:shadow-sm'
+              }`}
+              style={!isFirstQuestion ? { border: '1px solid #e5e5e5' } : {}}
+            >
+              ← 上一题
+            </button>
+          )}
+          <button
+            onClick={() => {
+              autoAdvanceDisabledRef.current = false;  // 点了下一题：恢复自动跳转
+              if (state === 'answering' && !hasSubmittedRef.current) {
+                handleNext(true);
+              } else {
+                handleNext(false);
+              }
+            }}
+            className={`flex-1 py-2 rounded-2xl text-sm font-medium transition-all duration-200 active:scale-[0.98] ${
+              isLastQuestion && state === 'feedback'
+                ? 'text-white'
+                : 'bg-gray-50 text-gray-600 hover:bg-gray-100 hover:shadow-sm'
+            }`}
+            style={(!isLastQuestion || state !== 'feedback') ? { border: '1px solid #e5e5e5', background: isLastQuestion && state === 'feedback' ? 'linear-gradient(135deg, #5cb818, #387612)' : undefined } : { background: 'linear-gradient(135deg, #5cb818, #387612)' }}
+          >
+            {isLastQuestion && state === 'feedback' ? '🎉 完成练习' : '下一题 →'}
+          </button>
         </div>
 
         {question.knowledgePoints.length > 0 && (
@@ -312,8 +353,11 @@ export default function QuestionCard({
                   </p>
                 )}
                 {/* 刷题模式 → 自动跳转提示 */}
-                {studyMode === 'practice' && (
-                  <p className="text-xs text-gray-400 mt-1">⏳ 0.5秒后自动跳下一题...</p>
+                {studyMode === 'practice' && !autoAdvanceDisabledRef.current && (
+                  <p className="text-xs text-gray-400 mt-1">⏳ 1秒后自动跳下一题...</p>
+                )}
+                {studyMode === 'practice' && autoAdvanceDisabledRef.current && (
+                  <p className="text-xs text-gray-400 mt-1">已暂停自动跳转，点击下一题恢复</p>
                 )}
                 {/* 背题模式 + 答错 → 显示解析 */}
                 {studyMode === 'memorize' && !isCorrect && question.explanation && (
@@ -332,7 +376,7 @@ export default function QuestionCard({
               {/* 底部按钮 */}
               {studyMode === 'practice' ? (
                 <button
-                  onClick={() => handleNext(false)}
+                  onClick={() => { autoAdvanceDisabledRef.current = false; handleNext(false); }}
                   className="w-full py-2.5 text-sm text-gray-400 hover:text-gray-600 transition-colors"
                 >
                   跳过等待 →
@@ -347,47 +391,6 @@ export default function QuestionCard({
               )}
             </>
           )}
-        </div>
-
-        {/* 🔄 持久导航栏：始终可见的上下题切换 */}
-        <div className="px-5 pb-4 flex items-center justify-between gap-3">
-          {onPrev && (
-            <button
-              onClick={onPrev}
-              disabled={isFirstQuestion}
-              className={`flex-1 py-2.5 rounded-2xl text-sm font-medium transition-all duration-200 ${
-                isFirstQuestion
-                  ? 'bg-gray-100 text-gray-300 cursor-not-allowed'
-                  : 'bg-gray-50 text-gray-600 hover:bg-gray-100 hover:shadow-sm active:scale-[0.98]'
-              }`}
-              style={!isFirstQuestion ? { border: '1px solid #e5e5e5' } : {}}
-            >
-              ← 上一题
-            </button>
-          )}
-          <button
-            onClick={() => {
-              if (state === 'answering' && !hasSubmittedRef.current) {
-                // 跳过：不提交答案，直接下一题
-                handleNext(true);
-              } else {
-                handleNext(false);
-              }
-            }}
-            className={`flex-1 py-2.5 rounded-2xl text-sm font-medium transition-all duration-200 active:scale-[0.98] ${
-              isLastQuestion && state === 'feedback'
-                ? 'btn-apple text-white'
-                : 'bg-gray-50 text-gray-600 hover:bg-gray-100 hover:shadow-sm'
-            }`}
-            style={(!isLastQuestion || state !== 'feedback') ? { border: '1px solid #e5e5e5' } : {}}
-          >
-            {isLastQuestion && state === 'feedback'
-              ? '🎉 完成练习'
-              : state === 'answering' && !hasSubmittedRef.current
-                ? '下一题 →'
-                : '下一题 →'
-            }
-          </button>
         </div>
       </div>
 

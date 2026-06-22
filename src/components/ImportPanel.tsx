@@ -542,7 +542,7 @@ export default function ImportPanel() {
       />
       <PresetBankImport
         label="发电厂变电站题库"
-        desc="447 道题 · 单选252 多选68 判断127"
+        desc="500 道题 · 单选252 多选68 判断127 填空53"
         bankName="发电厂变电站题库"
         fileName="questions_fadianchang.json"
         onDone={() => { setImported(false); }}
