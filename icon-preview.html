@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>选图标</title>
+<style>
+  body{font-family:-apple-system,sans-serif;background:#f2fde4;text-align:center;padding:20px}
+  h2{color:#387612}
+  .row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin:20px 0}
+  .card{background:white;border-radius:24px;padding:20px;border:3px solid #e8f5e0;width:140px}
+  .card.selected{border-color:#5cb818;box-shadow:0 0 0 4px rgba(92,184,24,0.2)}
+  .card img{width:100px;height:100px}
+  .card button{width:100%;margin-top:10px;padding:10px;border:none;border-radius:14px;background:#5cb818;color:white;font-size:15px;font-weight:bold}
+  .card button.done{background:#387612}
+</style></head>
+<body>
+<h2>🍏 选一个图标</h2>
+<div class="row" id="row"></div>
+<p style="color:#999;font-size:13px">选中后自动设为桌面图标</p>
+<script>
+const styles=[
+  {name:'可爱风',desc:'有表情的萌萌苹果',file:'icon-style-1.svg'},
+  {name:'极简风',desc:'干净利落的纯苹果',file:'icon-style-2.svg'},
+  {name:'经典风',desc:'圆角底+渐变苹果',file:'icon-style-3.svg'},
+];
+const row=document.getElementById('row');
+styles.forEach((s,i)=>{
+  const c=document.createElement('div');c.className='card';
+  c.innerHTML=`<img src="${s.file}"><p style="font-weight:bold;color:#387612">${s.name}</p><p style="font-size:12px;color:#999">${s.desc}</p><button onclick="pick(${i})" id="btn${i}">选这个</button>`;
+  row.appendChild(c);
+});
+function pick(i){
+  document.querySelectorAll('.card').forEach(c=>c.classList.remove('selected'));
+  document.querySelectorAll('button').forEach(b=>{b.className='';b.textContent='选这个'});
+  row.children[i].classList.add('selected');
+  const btn=document.getElementById('btn'+i);
+  btn.className='done';btn.textContent='✅ 已选';
+  fetch('/api/copy-icon',{method:'POST',body:styles[i].file});
+}
+</script>
+</body>
+</html>

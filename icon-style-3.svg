@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="g3" cx="40%" cy="35%">
+      <stop offset="0%" stop-color="#b8f075"/>
+      <stop offset="60%" stop-color="#58b015"/>
+      <stop offset="100%" stop-color="#35720a"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" rx="120" fill="#5cb818"/>
+  <!-- 叶子 -->
+  <path d="M310 120 C325 100 340 85 350 72 C345 88 336 100 325 112Z" fill="#356e08"/>
+  <!-- 茎 -->
+  <path d="M325 112 C328 100 330 90 332 82" fill="none" stroke="#4a3508" stroke-width="5" stroke-linecap="round"/>
+  <!-- 苹果身体 -->
+  <path d="M250 130 C170 130 110 200 100 290 C90 380 140 440 220 455 C280 465 320 465 370 450 C430 435 460 380 450 300 C440 220 370 160 310 140 C295 125 275 130 250 130Z" fill="url(#g3)"/>
+  <!-- 高光 -->
+  <ellipse cx="180" cy="260" rx="45" ry="65" fill="rgba(255,255,255,0.3)" transform="rotate(-15 180 260)"/>
+</svg>

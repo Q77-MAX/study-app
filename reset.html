@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>重置数据</title>
+<style>body{font-family:-apple-system,sans-serif;background:#f2fde4;text-align:center;padding:40px 20px}h2{color:#387612}button{padding:16px 40px;font-size:18px;border:none;border-radius:16px;background:#e03131;color:white;font-weight:bold;margin:20px}p{color:#999;font-size:14px}</style></head>
+<body>
+<h2>🍏 重置青苹果刷题数据</h2>
+<p id="msg">正在检测...</p>
+<button id="btn" onclick="reset()" style="display:none">🗑 清除所有数据</button>
+<script>
+async function check(){
+  const dbs=await indexedDB.databases?.()||[];
+  const ours=dbs.filter(d=>d.name?.startsWith('StudyApp'));
+  const msg=document.getElementById('msg');
+  const btn=document.getElementById('btn');
+  if(ours.length===0){msg.textContent='✅ 数据库已清空，无需重置。去注册吧！';btn.style.display='none';}
+  else{msg.textContent='发现 '+ours.length+' 个数据库：'+ours.map(d=>d.name).join(', ');btn.style.display='inline-block';}
+}
+async function reset(){
+  const dbs=await indexedDB.databases?.()||[];
+  for(const d of dbs){if(d.name?.startsWith('StudyApp')){await indexedDB.deleteDatabase(d.name);}}
+  document.getElementById('msg').textContent='✅ 已清除！请关闭此页面，重新打开刷题网址注册。';
+  document.getElementById('btn').style.display='none';
+}
+check();
+</script>
+</body>
+</html>
