@@ -63,16 +63,57 @@ export default function WrongBook() {
               ):(
                 records.map(record=>(
                   <div key={record.id} className="card-apple p-3" style={{borderLeft:record.reviewed?undefined:'3px solid #ff8787'}}>
-                    <p className="text-xs text-gray-700 mb-1.5 leading-relaxed">{record.question?.content||'(题目已删除)'}</p>
-                    <div className="flex items-center justify-between text-xs">
-                      <div className="flex gap-2">
-                        <span className="text-red-400">你的：{record.userAnswer}</span>
-                        <span style={{color:'#4a9b10'}}>正确：{record.question?.answer||'-'}</span>
+                    <p className="text-xs text-gray-700 mb-2 leading-relaxed">{record.question?.content||'(题目已删除)'}</p>
+
+                    {/* 显示选项列表 */}
+                    {record.question?.options && record.question.options.length > 0 && (
+                      <div className="mb-2 space-y-1 pl-2">
+                        {record.question.options.map((opt, idx) => {
+                          const letter = String.fromCharCode(65 + idx); // A, B, C, D...
+                          const isCorrectAnswer = record.question?.answer.includes(letter);
+                          const isUserChoice = record.userAnswer.includes(letter);
+
+                          return (
+                            <div
+                              key={idx}
+                              className="text-xs py-1 px-2 rounded flex items-start gap-2"
+                              style={{
+                                background: isCorrectAnswer ? '#f0fbe4' : isUserChoice ? '#fff3f3' : 'transparent',
+                                borderLeft: isCorrectAnswer ? '3px solid #4a9b10' : isUserChoice ? '3px solid #ff8787' : '3px solid transparent',
+                                color: isCorrectAnswer ? '#2d6a10' : isUserChoice ? '#d32f2f' : '#666'
+                              }}
+                            >
+                              <span className="font-bold flex-shrink-0">{letter}.</span>
+                              <span className="flex-1">{opt}</span>
+                              {isCorrectAnswer && <span className="text-[10px] flex-shrink-0 font-medium" style={{color:'#4a9b10'}}>✓ 正确</span>}
+                              {isUserChoice && !isCorrectAnswer && <span className="text-[10px] flex-shrink-0 font-medium" style={{color:'#ff8787'}}>✗ 你的选择</span>}
+                            </div>
+                          );
+                        })}
                       </div>
+                    )}
+
+                    {/* 答案信息 */}
+                    <div className="flex flex-col gap-1.5 text-xs mt-2 pt-2" style={{borderTop:'1px solid #f5f5f5'}}>
+                      <div className="flex items-center gap-3">
+                        <span className="text-red-400">你的答案：{record.userAnswer || '未作答'}</span>
+                        <span style={{color:'#4a9b10'}} className="font-bold">正确答案：{record.question?.answer||'-'}</span>
+                      </div>
+
+                      {/* 显示答案解析 */}
+                      {record.question?.explanation && (
+                        <div className="mt-1 p-2 rounded" style={{background:'#f8fcf4', border:'1px solid #e8f5e0'}}>
+                          <p className="text-[11px] text-gray-500 font-medium mb-0.5">💡 答案解析：</p>
+                          <p className="text-[11px] text-gray-600 leading-relaxed">{record.question.explanation}</p>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="flex items-center justify-between text-xs mt-2">
+                      <span className="text-gray-400">{new Date(record.timestamp).toLocaleDateString()}</span>
                       <div className="flex gap-1.5 items-center">
-                        <span className="text-gray-400">{new Date(record.timestamp).toLocaleDateString()}</span>
                         {!record.reviewed&&(
-                          <button onClick={()=>{markWrongAsReviewed(record.id);loadData();}} className="text-green-500 font-medium text-xs">标记已复习</button>
+                          <button onClick={()=>{markWrongAsReviewed(record.id);loadData();}} className="text-green-500 font-medium text-xs px-2 py-1 rounded hover:bg-green-50">标记已复习</button>
                         )}
                       </div>
                     </div>
@@ -95,11 +136,42 @@ export default function WrongBook() {
                       <span className="text-gray-400">{expanded[type]?'收起 ▲':'展开 ▼'}</span>
                     </button>
                     {expanded[type]&&(
-                      <div className="px-3 pb-2 space-y-1.5" style={{borderTop:'2px solid #f2fde4'}}>
+                      <div className="px-3 pb-2 space-y-2" style={{borderTop:'2px solid #f2fde4'}}>
                         {questions.map(q=>(
-                          <div key={q.id} className="text-xs text-gray-700 py-1.5" style={{borderBottom:'1px solid #f5f5f5'}}>
-                            <p className="line-clamp-2">{q.content}</p>
-                            <p className="mt-0.5" style={{color:'#4a9b10'}}>答案：{q.answer}</p>
+                          <div key={q.id} className="py-2" style={{borderBottom:'1px solid #f5f5f5'}}>
+                            <p className="text-xs text-gray-700 mb-1.5 leading-relaxed">{q.content}</p>
+
+                            {/* 显示选项 */}
+                            {q.options && q.options.length > 0 && (
+                              <div className="mb-1.5 space-y-0.5 pl-2">
+                                {q.options.map((opt, idx) => {
+                                  const letter = String.fromCharCode(65 + idx);
+                                  const isCorrectAnswer = q.answer.includes(letter);
+
+                                  return (
+                                    <div
+                                      key={idx}
+                                      className="text-[11px] py-0.5 px-1.5 rounded flex items-start gap-1.5"
+                                      style={{
+                                        background: isCorrectAnswer ? '#f0fbe4' : 'transparent',
+                                        color: isCorrectAnswer ? '#2d6a10' : '#888'
+                                      }}
+                                    >
+                                      <span className="font-bold flex-shrink-0">{letter}.</span>
+                                      <span className="flex-1">{opt}</span>
+                                      {isCorrectAnswer && <span className="text-[10px] flex-shrink-0" style={{color:'#4a9b10'}}>✓</span>}
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            )}
+
+                            <div className="flex flex-col gap-1">
+                              <p className="text-xs font-bold" style={{color:'#4a9b10'}}>正确答案：{q.answer}</p>
+                              {q.explanation && (
+                                <p className="text-[11px] text-gray-500">💡 {q.explanation}</p>
+                              )}
+                            </div>
                           </div>
                         ))}
                       </div>
@@ -123,11 +195,42 @@ export default function WrongBook() {
                       <span className="text-gray-400 flex-shrink-0">{expanded[kp]?'收起 ▲':'展开 ▼'}</span>
                     </button>
                     {expanded[kp]&&(
-                      <div className="px-3 pb-2 space-y-1.5" style={{borderTop:'2px solid #f2fde4'}}>
+                      <div className="px-3 pb-2 space-y-2" style={{borderTop:'2px solid #f2fde4'}}>
                         {questions.map(q=>(
-                          <div key={q.id} className="text-xs text-gray-700 py-1.5" style={{borderBottom:'1px solid #f5f5f5'}}>
-                            <p className="line-clamp-2">{q.content}</p>
-                            <p className="mt-0.5" style={{color:'#4a9b10'}}>答案：{q.answer}</p>
+                          <div key={q.id} className="py-2" style={{borderBottom:'1px solid #f5f5f5'}}>
+                            <p className="text-xs text-gray-700 mb-1.5 leading-relaxed">{q.content}</p>
+
+                            {/* 显示选项 */}
+                            {q.options && q.options.length > 0 && (
+                              <div className="mb-1.5 space-y-0.5 pl-2">
+                                {q.options.map((opt, idx) => {
+                                  const letter = String.fromCharCode(65 + idx);
+                                  const isCorrectAnswer = q.answer.includes(letter);
+
+                                  return (
+                                    <div
+                                      key={idx}
+                                      className="text-[11px] py-0.5 px-1.5 rounded flex items-start gap-1.5"
+                                      style={{
+                                        background: isCorrectAnswer ? '#f0fbe4' : 'transparent',
+                                        color: isCorrectAnswer ? '#2d6a10' : '#888'
+                                      }}
+                                    >
+                                      <span className="font-bold flex-shrink-0">{letter}.</span>
+                                      <span className="flex-1">{opt}</span>
+                                      {isCorrectAnswer && <span className="text-[10px] flex-shrink-0" style={{color:'#4a9b10'}}>✓</span>}
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            )}
+
+                            <div className="flex flex-col gap-1">
+                              <p className="text-xs font-bold" style={{color:'#4a9b10'}}>正确答案：{q.answer}</p>
+                              {q.explanation && (
+                                <p className="text-[11px] text-gray-500">💡 {q.explanation}</p>
+                              )}
+                            </div>
                           </div>
                         ))}
                       </div>
