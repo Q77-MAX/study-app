@@ -360,6 +360,10 @@ export async function getWrongCount(): Promise<number> {
   return records.length;
 }
 
+export async function clearAllWrongRecords(): Promise<void> {
+  await db.wrongRecords.clear();
+}
+
 // ============ 笔记操作 ============
 
 export async function saveNote(questionId: string, strokes: string): Promise<void> {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getWrongRecords, getWrongQuestionsByType, getWrongQuestionsByKnowledge, markWrongAsReviewed } from '../store/db';
+import { getWrongRecords, getWrongQuestionsByType, getWrongQuestionsByKnowledge, markWrongAsReviewed, clearAllWrongRecords } from '../store/db';
 import type { Question, WrongRecord } from '../types';
 
 type ViewMode = 'list' | 'byType' | 'byKnowledge';
@@ -27,6 +27,20 @@ export default function WrongBook() {
 
   const unreviewedCount = records.filter((r) => !r.reviewed).length;
 
+  const handleClearAll = async () => {
+    if (!window.confirm('确定要清空所有错题记录吗？此操作不可恢复。')) {
+      return;
+    }
+    try {
+      await clearAllWrongRecords();
+      await loadData();
+      alert('错题记录已清空');
+    } catch (error) {
+      console.error('清空错题记录失败:', error);
+      alert('清空失败，请重试');
+    }
+  };
+
   return (
     <div className="animate-fadeIn">
       <div className="flex items-center justify-between mb-3">
@@ -34,9 +48,24 @@ export default function WrongBook() {
           <span className="text-xl">📕</span>
           <h2 className="text-base font-bold" style={{ color: '#387612' }}>错题本</h2>
         </div>
-        {unreviewedCount > 0 && (
-          <span className="badge-pink text-xs font-bold px-2 py-0.5">{unreviewedCount} 待复习</span>
-        )}
+        <div className="flex items-center gap-2">
+          {records.length > 0 && (
+            <button
+              onClick={handleClearAll}
+              className="text-xs px-3 py-1.5 rounded-lg font-medium transition-all duration-200 hover:scale-105"
+              style={{
+                background: '#fff3f3',
+                color: '#d32f2f',
+                border: '1px solid #ff8787',
+              }}
+            >
+              🗑️ 一键清空
+            </button>
+          )}
+          {unreviewedCount > 0 && (
+            <span className="badge-pink text-xs font-bold px-2 py-0.5">{unreviewedCount} 待复习</span>
+          )}
+        </div>
       </div>
 
       <div className="flex gap-1.5 mb-3">
