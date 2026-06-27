@@ -22,3 +22,14 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# 安全配置和敏感信息
+.env
+.env.local
+.env.*.local
+*secret*
+*key*
+!node_modules/
+secure-config/
+api-keys.env
+tokens/

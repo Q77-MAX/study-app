@@ -351,6 +351,34 @@ export async function getWrongQuestionsByKnowledge(): Promise<Record<string, Que
   return grouped;
 }
 
+export async function getWrongQuestionsByBank(): Promise<Record<string, (Question & { wrongFreq: number })[]>> {
+  const records = await db.wrongRecords.toArray();
+  // 统计每题错题次数
+  const freqMap: Record<string, number> = {};
+  for (const r of records) {
+    freqMap[r.questionId] = (freqMap[r.questionId] || 0) + 1;
+  }
+  const questionIds = Object.keys(freqMap);
+  const questions = await db.questions.bulkGet(questionIds);
+  const valid = questions.filter(Boolean) as Question[];
+  const grouped: Record<string, (Question & { wrongFreq: number })[]> = {};
+  for (const q of valid) {
+    const bankName = q.batchName || '未分类';
+    if (!grouped[bankName]) grouped[bankName] = [];
+    grouped[bankName].push({ ...q, wrongFreq: freqMap[q.id] || 1 });
+  }
+  return grouped;
+}
+
+export async function getWrongFreqMap(): Promise<Record<string, number>> {
+  const records = await db.wrongRecords.toArray();
+  const freqMap: Record<string, number> = {};
+  for (const r of records) {
+    freqMap[r.questionId] = (freqMap[r.questionId] || 0) + 1;
+  }
+  return freqMap;
+}
+
 export async function markWrongAsReviewed(id: string): Promise<void> {
   await db.wrongRecords.update(id, { reviewed: true });
 }
